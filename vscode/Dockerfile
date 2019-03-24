@@ -2,38 +2,42 @@ ARG BUILD_FROM=hassioaddons/ubuntu-base:3.0.0
 ###############################################################################
 # Get the original code-server container.
 ###############################################################################
+# code-server do not have version tags yet :(
+# hadolint ignore=DL3006
 FROM codercom/code-server as codeserver
 
 ###############################################################################
 # Build container to get custom vscode extensions.
 ###############################################################################
+# hadolint ignore=DL3006
 FROM ${BUILD_FROM} as vscode
 
 # Copy in extensions list
 COPY vscode.extensions /root/vscode.extensions
 
 # Install the actual VSCode to download configs and extensions
+# hadolint ignore=DL3015
 RUN \
     apt-get update \
     \
-	&& apt-get install -y --no-install-recommends \
-        libx11-xcb1 \
-        libasound2 \
+    && apt-get install -y --no-install-recommends \
+        libx11-xcb1=2:1.6.4-3ubuntu0.2 \
+        libasound2=1.1.3-5ubuntu0.2 \
     \
-	&& curl \
+    && curl \
         -o vscode-amd64.deb \
         -L https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable \
     \
-	&& dpkg -i vscode-amd64.deb || true \
-	&& apt-get install -y -f \
-	&& rm -f vscode-amd64.deb \
+    && dpkg -i vscode-amd64.deb || true \
+    && apt-get install -y -f \
+    && rm -f vscode-amd64.deb \
     \
     && code -v --user-data-dir /root/.config/Code
 
 RUN \
     while read -r ext; do \
-        echo "Installing vscode extension: $ext"; \
-	    code --user-data-dir /root/.config/Code --install-extension $ext; \
+        echo "Installing vscode extension: ${ext}"; \
+        code --user-data-dir /root/.config/Code --install-extension "${ext}"; \
     done < /root/vscode.extensions \
     && ls -la /root/.vscode/extensions
 
