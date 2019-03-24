@@ -1,0 +1,16 @@
+---
+include: https://raw.githubusercontent.com/hassio-addons/organization/master/gitlabci/addon.yml
+
+variables:
+  ADDON_GITHUB_REPO: "hassio-addons/addon-vscode"
+  ADDON_SLUG: "vscode"
+  ADDON_TARGET: "vscode"
+
+  ADDON_LEGACY_TAGS: "true"
+
+  ADDON_AARCH64: "false"
+  ADDON_ARMHF: "false"
+  ADDON_ARMV7: "false"
+  ADDON_I386: "false"
+
+  ADDON_AMD64_BASE: "hassioaddons/ubuntu-base-amd64:3.0.0"
