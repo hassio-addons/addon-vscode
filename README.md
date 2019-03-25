@@ -26,14 +26,14 @@ Visual Studio Code, accessible through the browser.
 ## About
 
 This add-on runs Visual Studio Code, allowing you to edit your Home Assistant
-configuration straight from the web browser and can be embeded straight
+configuration straight from the web browser and can be embedded straight
 into the Home Assistant frontend UI.
 
 Visual Studio Code runs as a remote server using `code-server`, and is a
 fully fletched VSCode experience.
 
 The add-on has the Home Assistant and MDI icons extensions pre-installed
-and pre-configured right out of the box. This mean that auto completion works
+and pre-configured right out of the box. This means that autocompletion works
 instantly, without the need for configuring anything.
 
 ![Visual Studio Code in the Home Assistant Frontend](images/screenshot.png)
@@ -45,7 +45,7 @@ comparison to installing any other Hass.io add-on.
 
 1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
 1. Install the "Visual Studio Code" add-on.
-1. Configure a "password".
+1. Configure a "password" in the add-on settings.
 1. Start the "Visual Studio Code" add-on.
 1. Check the logs of the "Visual Studio Code" add-on to see if everything went
    well.
@@ -127,19 +127,19 @@ time for the add-on._
 
 ### Option: `init_commands`
 
-Customize your IDE environment even more with the `init_commands` option.
+Customize your VSCode environment even more with the `init_commands` option.
 Add one or more shell commands to the list, and they will be executed every
 single time this add-on starts.
 
 ### Option: `leave_front_door_open`
 
 Adding this option to the add-on configuration allows you to disable
-authentication on the IDE by setting it to `true`.
+authentication on the VSCode by setting it to `true`.
 
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
 
-#### Option: `i_like_to_be_pwned`
+### Option: `i_like_to_be_pwned`
 
 Adding this option to the add-on configuration allows to you bypass the
 HaveIBeenPwned password requirement by setting it to `true`.
@@ -149,8 +149,8 @@ using this option! USE AT YOUR OWN RISK!_
 
 ## Embedding into Home Assistant
 
-It is possible to embed the IDE directly into Home Assistant, allowing
-you to access your IDE through the Home Assistant frontend.
+It is possible to embed VSCode directly into Home Assistant, allowing
+you to access your VSCode through the Home Assistant frontend.
 
 Home Assistant provides the `panel_iframe` component, for these purposes.
 
@@ -168,6 +168,15 @@ panel_iframe:
 
 - This add-on currently only supports AMD64 machines, we hope to be able
   to ship other architectures soon!
+- "Visual Studio Code is unable to watch for file changes in this large
+   workspace" (error ENOSPC)  
+   This issue is caused by your system not having enough file handles,
+   which causes VSCode to be unable to watch all your files. For HassOS,
+   currently the only option is to click on the little gog when the
+   notification appears and tell it to not show again. In case you have
+   a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:  
+   <https://code.visualstudio.com/docs/setup/linux#_error-enospc>
+
 
 ## Changelog & Releases
 
