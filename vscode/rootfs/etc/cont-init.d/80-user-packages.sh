@@ -8,7 +8,7 @@ if bashio::config.has_value 'packages'; then
         || bashio::exit.nok 'Failed updating Ubuntu packages repository indexes'
 
     for package in $(bashio::config 'packages'); do
-        apt add -y "$package" \
+        apt-get install -y "$package" \
             || bashio::exit.nok "Failed installing package ${package}"
     done
 fi
