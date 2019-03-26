@@ -178,7 +178,7 @@ panel_iframe:
    notification appears and tell it to not show again. In case you have
    a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:
 
-   <https://code.visualstudio.com/docs/setup/linux#_error-enospc>
+   <https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc>
 
 ## Changelog & Releases
 
