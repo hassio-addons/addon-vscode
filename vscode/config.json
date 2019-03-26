@@ -27,7 +27,7 @@
   ],
   "options": {
     "password": "",
-    "ssl": false,
+    "ssl": true,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
     "packages": [],
