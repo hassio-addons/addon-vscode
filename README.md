@@ -26,14 +26,14 @@ Visual Studio Code, accessible through the browser.
 ## About
 
 This add-on runs Visual Studio Code, allowing you to edit your Home Assistant
-configuration straight from the web browser and can be embedded straight
+configuration directly from your web browser and can be embedded straight
 into the Home Assistant frontend UI.
 
 Visual Studio Code runs as a remote server using `code-server`, and is a
 fully fledged VSCode experience.
 
 The add-on has the Home Assistant and MDI icons extensions pre-installed
-and pre-configured right out of the box. This means that autocompletion works
+and pre-configured right out of the box. This means that auto-completion works
 instantly, without the need for configuring anything.
 
 ![Visual Studio Code in the Home Assistant Frontend](images/screenshot.png)
@@ -161,7 +161,7 @@ panel_iframe:
   vscode:
     title: Visual Studio Code
     icon: mdi:visual-studio-code
-    url: https://addres.to.your.hass.io:1337
+    url: https://address.to.your.hass.io:1337
 ```
 
 ## Known issues and limitations
