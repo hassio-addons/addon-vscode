@@ -14,4 +14,9 @@ if ! bashio::fs.directory_exists "${GIT_USER_PATH}"; then
             'Failed setting permissions on persistent git folder'
 fi
 
+if ! bashio::fs.file_exists "${GIT_USER_PATH}/.gitconfig"; then
+    touch "${GIT_USER_PATH}/.gitconfig" \
+        || bashio::exit.nok 'Failed to create .gitconfig'
+fi
+
 ln -s "${GIT_USER_PATH}/.gitconfig" ~/.gitconfig
