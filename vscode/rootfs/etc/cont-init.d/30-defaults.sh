@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
 # Community Hass.io Add-ons: Visual Studio Code
-# This files check if all user configuration requirements are met
+# Updates/installs build-in extensions and set up initial user configuration.
 # ==============================================================================
 
 # Ensure persistent data folder exists
@@ -12,3 +12,11 @@ fi
 
 # Copy in the extensions we deliver
 cp -R /root/.code-server/extensions/* /data/vscode/extensions
+
+# Sets up default user settings on first start.
+if ! bashio::fs.file_exists '/data/vscode/User/settings.json'; then
+    mkdir -p /data/vscode/User \
+        || bashio::exit.nok "Could not create persistent storage folder."
+
+    cp -R /root/.code-server/settings.json /data/vscode/User/settings.json
+fi

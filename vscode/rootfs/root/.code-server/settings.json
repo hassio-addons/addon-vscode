@@ -1,0 +1,12 @@
+{
+    "files.watcherExclude": {
+        "**/__pycache__/**": true,
+        "**/deps/**": true
+    },
+    "search.exclude": {
+        "**/__pycache__/**": true,
+        "**/deps/**": true
+    },
+    "editor.selectionClipboard": false,
+    "terminal.integrated.copyOnSelection": true
+}
