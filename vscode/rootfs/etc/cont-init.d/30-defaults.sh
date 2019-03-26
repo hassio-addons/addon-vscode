@@ -20,3 +20,11 @@ if ! bashio::fs.file_exists '/data/vscode/User/settings.json'; then
 
     cp -R /root/.code-server/settings.json /data/vscode/User/settings.json
 fi
+
+# Workaround workspace bug for code-server
+# https://github.com/codercom/code-server/issues/121
+if ! bashio::fs.file_exists '/data/vscode/Backups/workspace.json'; then
+    mkdir -p /data/vscode/Backups \
+        || bashio::exit.nok "Could not create persistent storage folder."
+    touch /data/vscode/Backups/workspace.json
+fi
