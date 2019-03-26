@@ -166,8 +166,9 @@ panel_iframe:
 
 ## Known issues and limitations
 
-- This add-on currently only supports AMD64 machines, we hope to be able
-  to ship other architectures soon!
+- This add-on currently only supports AMD64 machines, although we hope
+  we are able to support ARM devices in the future, it is most likely that
+  most devices will lack the resources to run this add-on (e.g., Raspberry Pi).
 - "Visual Studio Code is unable to watch for file changes in this large
    workspace" (error ENOSPC)
 
