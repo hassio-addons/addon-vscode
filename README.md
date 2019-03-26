@@ -30,7 +30,7 @@ configuration straight from the web browser and can be embedded straight
 into the Home Assistant frontend UI.
 
 Visual Studio Code runs as a remote server using `code-server`, and is a
-fully fletched VSCode experience.
+fully fledged VSCode experience.
 
 The add-on has the Home Assistant and MDI icons extensions pre-installed
 and pre-configured right out of the box. This means that autocompletion works
@@ -61,7 +61,7 @@ Example add-on configuration:
 
 ```json
 {
-  "log_level": "info",
+    "log_level": "info",
     "password": "ChooChooHomie",
     "ssl": false,
     "certfile": "fullchain.pem",
@@ -75,7 +75,7 @@ Example add-on configuration:
 }
 ```
 
-**Note**: _This is just an example, don't copy and past it! Create your own!_
+**Note**: _This is just an example, don't copy and paste it! Create your own!_
 
 ### Option: `log_level`
 
@@ -174,7 +174,7 @@ panel_iframe:
 
    This issue is caused by your system not having enough file handles,
    which causes VSCode to be unable to watch all your files. For HassOS,
-   currently the only option is to click on the little gog when the
+   currently the only option is to click on the little cog when the
    notification appears and tell it to not show again. In case you have
    a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:
 
