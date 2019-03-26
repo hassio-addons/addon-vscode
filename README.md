@@ -169,14 +169,15 @@ panel_iframe:
 - This add-on currently only supports AMD64 machines, we hope to be able
   to ship other architectures soon!
 - "Visual Studio Code is unable to watch for file changes in this large
-   workspace" (error ENOSPC)  
+   workspace" (error ENOSPC)
+
    This issue is caused by your system not having enough file handles,
    which causes VSCode to be unable to watch all your files. For HassOS,
    currently the only option is to click on the little gog when the
    notification appears and tell it to not show again. In case you have
-   a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:  
-   <https://code.visualstudio.com/docs/setup/linux#_error-enospc>
+   a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:
 
+   <https://code.visualstudio.com/docs/setup/linux#_error-enospc>
 
 ## Changelog & Releases
 
