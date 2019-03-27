@@ -29,4 +29,4 @@ export HASS_SERVER="http://hassio/homeassistant"
 export HASS_TOKEN="${HASSIO_TOKEN:-}"
 
 # Run the code server
-exec code-server "${options[@]}" /config
+exec code-server "${options[@]}" /config /share
