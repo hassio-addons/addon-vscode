@@ -81,7 +81,7 @@ RUN \
     && locale-gen en_US.UTF-8 \
     \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/codercom/code-server/releases/download/1.408-vsc1.32.0/code-server1.408-vsc1.32.0-linux-x64.tar.gz" \
+        "https://github.com/codercom/code-server/releases/download/1.32.0-310/code-server-1.32.0-310-linux-x64.tar.gz" \
     && tar zxvf \
         /tmp/code.tar.gz \
         --strip 1 -C /tmp \
