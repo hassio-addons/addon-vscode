@@ -40,7 +40,6 @@
     "keyfile": "str",
     "packages": ["str"],
     "init_commands": ["str"],
-    "leave_front_door_open": "bool?",
-    "i_like_to_be_pwned": "bool?"
+    "leave_front_door_open": "bool?"
   }
 }
