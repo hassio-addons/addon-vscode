@@ -1,12 +1,5 @@
 ARG BUILD_FROM=hassioaddons/ubuntu-base:3.0.0
 ###############################################################################
-# Get the original code-server container.
-###############################################################################
-# code-server do not have version tags yet :(
-# hadolint ignore=DL3006
-FROM codercom/code-server as codeserver
-
-###############################################################################
 # Build container to get custom vscode extensions.
 ###############################################################################
 # hadolint ignore=DL3006
@@ -82,6 +75,15 @@ RUN \
     \
     && locale-gen en_US.UTF-8 \
     \
+    && curl -J -L -o /tmp/code.tar.gz \
+        "https://github.com/codercom/code-server/releases/download/1.408-vsc1.32.0/code-server1.408-vsc1.32.0-linux-x64.tar.gz" \
+    && tar zxvf \
+        /tmp/code.tar.gz \
+        --strip 1 -C /tmp \
+    \
+    && mv /tmp/code-server /usr/local/bin/code-server \
+    && chmod a+x /usr/local/bin/code-server  \
+    \
     && curl -L -s -o /usr/bin/hassio \
         "https://github.com/home-assistant/hassio-cli/releases/download/2.1.0/hassio_${BUILD_ARCH}" \
     && chmod a+x /usr/bin/hassio \
@@ -119,9 +121,6 @@ RUN \
 
 # Copy root filesystem
 COPY rootfs /
-
-# Get the code server binary
-COPY --from=codeserver /usr/local/bin/code-server /usr/local/bin/code-server
 
 # Get the custom extensions
 COPY --from=vscode /root/.vscode/extensions /root/.code-server/extensions
