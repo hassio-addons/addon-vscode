@@ -7,22 +7,13 @@ declare -a options
 
 bashio::log.info 'Starting the code server...'
 
-# Non-interactive
-options+=(--port 1337)
+options+=(--port 8443)
 options+=(--data-dir "/data/vscode")
+options+=(--host 127.0.0.1)
+options+=(--allow-http)
 
-if bashio::config.false 'ssl'; then
-    options+=(--allow-http)
-else
-    options+=(--cert "/ssl/$(bashio::config 'certfile')")
-    options+=(--cert-key "/ssl/$(bashio::config 'keyfile')")
-fi
-
-if ! bashio::config.has_value 'password'; then
-    options+=(--no-auth)
-else
-    options+=(--password "$(bashio::config 'password')")
-fi
+# Disable code authentication, we use HA authentication
+options+=(--no-auth)
 
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://hassio/homeassistant"

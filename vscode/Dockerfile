@@ -60,16 +60,21 @@ RUN \
         build-essential=12.4ubuntu1 \
         colordiff=1.0.18-1 \
         git=1:2.17.1-1ubuntu0.4 \
+        libnginx-mod-http-lua=1.14.0-0ubuntu1.2 \
         locales=2.27-3ubuntu1 \
+        luarocks=2.4.2+dfsg-1 \
         mosquitto-clients=1.4.15-2ubuntu0.18.04.2 \
         net-tools=1.60+git20161116.90da8a0-1ubuntu1 \
+        nginx=1.14.0-0ubuntu1.2 \
         nmap=7.60-1ubuntu5 \
         openssh-client=1:7.6p1-4ubuntu0.3 \
         openssl=1.1.0g-2ubuntu4.3 \
-        python3=3.6.7-1~18.04 \
         python3-dev=3.6.7-1~18.04 \
+        python3=3.6.7-1~18.04 \
         wget=1.19.4-1ubuntu2.1 \
         zsh=5.4.2-3ubuntu3.1 \
+    \
+    && luarocks install lua-resty-http 0.13-0 \
     \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
     \
@@ -106,8 +111,9 @@ RUN \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     \
     && apt-get purge -y --auto-remove \
-        python3-dev \
         build-essential \
+        luarocks \
+        python3-dev \
     \
     && find /usr/local/lib/python3.6/ -type d -name tests -depth -exec rm -rf {} \; \
     && find /usr/local/lib/python3.6/ -type d -name test -depth -exec rm -rf {} \; \

@@ -1,6 +1,9 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/execlineb -S0
 # ==============================================================================
 # Community Hass.io Add-ons: Visual Studio Code
-# This files check if all user configuration requirements are met
+# Take down the S6 supervision tree when Nginx fails
 # ==============================================================================
-bashio::config.require.ssl
+if -n { s6-test $# -ne 0 }
+if -n { s6-test ${1} -eq 256 }
+
+s6-svscanctl -t /var/run/s6/services
