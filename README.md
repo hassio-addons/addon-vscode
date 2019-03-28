@@ -62,7 +62,6 @@ Example add-on configuration:
 ```json
 {
     "log_level": "info",
-    "password": "ChooChooHomie",
     "ssl": false,
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
@@ -94,12 +93,6 @@ Please note that each level automatically includes log messages from a
 more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
-
-### Option: `password`
-
-Password needed to login into the Visual Studio Code.
-
-**Note**: _This option support secrets, e.g., `!secret vscode_password`._
 
 ### Option: `ssl`
 
