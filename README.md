@@ -45,10 +45,10 @@ comparison to installing any other Hass.io add-on.
 
 1. [Add our Hass.io add-ons repository][repository] to your Hass.io instance.
 1. Install the "Visual Studio Code" add-on.
-1. Configure a "password" in the add-on settings.
 1. Start the "Visual Studio Code" add-on.
 1. Check the logs of the "Visual Studio Code" add-on to see if everything went
    well.
+1. Go to https://address.to.your.hass.io:1337 and use your homeassistant credentials.
 
 **NOTE**: Do not add this repository to Hass.io, please use:
 `https://github.com/hassio-addons/repository`.
