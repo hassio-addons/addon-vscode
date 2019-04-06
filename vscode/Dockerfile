@@ -73,6 +73,7 @@ RUN \
         python3=3.6.7-1~18.04 \
         wget=1.19.4-1ubuntu2.1 \
         zsh=5.4.2-3ubuntu3.1 \
+        ack=2.22-1 \
     \
     && luarocks install lua-resty-http 0.13-0 \
     \
