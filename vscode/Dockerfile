@@ -71,7 +71,7 @@ RUN \
         openssl=1.1.0g-2ubuntu4.3 \
         python3-dev=3.6.7-1~18.04 \
         python3=3.6.7-1~18.04 \
-        wget=1.19.4-1ubuntu2.1 \
+        wget=1.19.4-1ubuntu2.2 \
         zsh=5.4.2-3ubuntu3.1 \
         ack=2.22-1 \
     \
