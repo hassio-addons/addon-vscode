@@ -155,7 +155,7 @@ panel_iframe:
 - This add-on currently only supports AMD64 machines, although we hope
   we are able to support ARM devices in the future, it is most likely that
   most devices will lack the resources to run this add-on (e.g., Raspberry Pi).
-- if you get a blank screen (and it worked before) it could be that you changed
+- If you get a blank screen (and it worked before), it could be that you changed
   your workspace. Reinstalling the add-on will not help since it keeps the data
   in your browser. To remove it (Chrome) open up developer mode, then application
   tab and find "clear storage". Now refresh the page and your back.
