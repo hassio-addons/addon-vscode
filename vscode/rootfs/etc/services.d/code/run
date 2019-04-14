@@ -8,7 +8,8 @@ declare -a options
 bashio::log.info 'Starting the code server...'
 
 options+=(--port 8443)
-options+=(--data-dir "/data/vscode")
+options+=(--user-data-dir "/data/vscode")
+options+=(--extensions-dir "/data/vscode/extensions")
 options+=(--host 127.0.0.1)
 options+=(--allow-http)
 

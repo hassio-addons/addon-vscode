@@ -123,8 +123,12 @@ RUN \
     \
     && rm -fr \
         /tmp/* \
+        /etc/nginx \
         /var/{cache,log}/* \
-        /var/lib/apt/lists/*
+        /var/lib/apt/lists/* \
+    \
+    && mkdir -p /var/log/nginx \
+    && touch /var/log/nginx/error.log
 
 # Copy root filesystem
 COPY rootfs /

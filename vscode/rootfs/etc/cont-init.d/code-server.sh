@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
 # Community Hass.io Add-ons: Visual Studio Code
-# Updates/installs build-in extensions and set up initial user configuration.
+# Sets up code-server.
 # ==============================================================================
 
 # Ensure persistent data folder exists

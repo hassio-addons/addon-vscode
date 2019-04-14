@@ -3,14 +3,9 @@
 # Community Hass.io Add-ons: Visual Studio Code
 # Runs the Nginx daemon
 # ==============================================================================
-declare -a options
 
 # Wait for code-server to become available
-s6-svwait -u -t 5000 /var/run/s6/services/code
-timeout 15 \
-    bash -c \
-        'until echo > /dev/tcp/localhost/8443 ; do sleep 0.5; done' \
-            > /dev/null 2>&1
+bashio::net.wait_for 8443
 
 bashio::log.info "Starting NGinx..."
 
@@ -19,10 +14,4 @@ if bashio::config.true 'leave_front_door_open'; then
     export DISABLE_HA_AUTHENTICATION=true
 fi
 
-options+=(-g "daemon off;")
-
-if bashio::config.true 'ssl'; then
-    options+=(-c /etc/nginx/nginx-ssl.conf)
-fi
-
-exec nginx "${options[@]}"
+exec nginx

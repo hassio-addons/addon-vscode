@@ -48,8 +48,7 @@ comparison to installing any other Hass.io add-on.
 1. Start the "Visual Studio Code" add-on.
 1. Check the logs of the "Visual Studio Code" add-on to see if everything went
    well.
-1. Click the "OPEN WEB UI" button to open Visual Studio Code and use the same
-   username & password as you would use with the Home Assistant frontend.
+1. Click the "OPEN WEB UI" button to open Visual Studio Code.
 
 **NOTE**: Do not add this repository to Hass.io, please use:
 `https://github.com/hassio-addons/repository`.
@@ -70,7 +69,7 @@ Example add-on configuration:
       "mariadb-client"
     ],
     "init_commands": [
-      "pip3 install yamllint"
+      "ls -la"
     ]
 }
 ```
@@ -98,6 +97,9 @@ you are troubleshooting.
 ### Option: `ssl`
 
 Enables/Disables SSL (HTTPS). Set it `true` to enable it, `false` otherwise.
+
+**Note**: _The SSL settings only apply to direct access and has no effect
+on the Hass.io Ingress service._
 
 ### Option: `certfile`
 
@@ -132,23 +134,6 @@ authentication on the VSCode by setting it to `true`.
 
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
-
-## Embedding into Home Assistant
-
-It is possible to embed VSCode directly into Home Assistant, allowing
-you to access your VSCode through the Home Assistant frontend.
-
-Home Assistant provides the `panel_iframe` component, for these purposes.
-
-Example configuration:
-
-```yaml
-panel_iframe:
-  vscode:
-    title: Visual Studio Code
-    icon: mdi:visual-studio-code
-    url: https://address.to.your.hass.io:1337
-```
 
 ## Known issues and limitations
 
