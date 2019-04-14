@@ -142,10 +142,11 @@ only exposed to your internal network. USE AT YOUR OWN RISK!_
   most devices will lack the resources to run this add-on (e.g., Raspberry Pi).
 - If you get a blank screen (and it worked before), it could be that you changed
   your workspace. Reinstalling the add-on will not help since it keeps the data
-  in your browser. To remove it (in Chrome) open up developer tools (F12), then go to the application
-  tab and click "clear storage". Now refresh the page and you're back in action.
+  in your browser. To remove it (in Chrome) open up developer tools (F12),
+  then go to the application tab and click "clear storage".
+  Now refresh the page and you're back in action.
 - "Visual Studio Code is unable to watch for file changes in this large
-   workspace" (error ENOSPC)
+  workspace" (error ENOSPC)
 
    This issue is caused by your system not having enough file handles,
    which causes VSCode to be unable to watch all your files. For HassOS,
