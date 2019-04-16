@@ -8,5 +8,18 @@
         "**/deps/**": true
     },
     "editor.selectionClipboard": false,
-    "terminal.integrated.copyOnSelection": true
+    "terminal.integrated.copyOnSelection": true,
+    "settings": {
+		"editor.tabSize": 2,
+		"editor.renderWhitespace": "boundary",
+		"yaml.customTags": [
+			"!secret",
+			"!yaml",
+			"!include",
+			"!include_dir_list",
+			"!include_dir_named",
+			"!include_dir_merge_list",
+			"!include_dir_merge_named"
+		]
+	}
 }
