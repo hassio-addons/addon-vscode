@@ -12,6 +12,7 @@ options+=(--user-data-dir "/data/vscode")
 options+=(--extensions-dir "/data/vscode/extensions")
 options+=(--host 127.0.0.1)
 options+=(--allow-http)
+options+=(--disable-telemetry)
 
 # Disable code authentication, we use HA authentication
 options+=(--no-auth)
