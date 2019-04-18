@@ -36,7 +36,8 @@
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
     "packages": [],
-    "init_commands": []
+    "init_commands": [],
+    "disable_telemetry": false
   },
   "schema": {
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
@@ -45,6 +46,7 @@
     "keyfile": "str",
     "packages": ["str"],
     "init_commands": ["str"],
+    "disable_telemetry": "bool?",
     "leave_front_door_open": "bool?"
   }
 }

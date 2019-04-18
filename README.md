@@ -70,7 +70,8 @@ Example add-on configuration:
     ],
     "init_commands": [
       "ls -la"
-    ]
+    ],
+    "disable_telemetry": false
 }
 ```
 
@@ -126,6 +127,10 @@ time for the add-on._
 Customize your VSCode environment even more with the `init_commands` option.
 Add one or more shell commands to the list, and they will be executed every
 single time this add-on starts.
+
+### Option: `disable_telemetry`
+
+Disables annonymous usage telemetry data from being sent to code-server.
 
 ### Option: `leave_front_door_open`
 
