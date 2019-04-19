@@ -1,29 +1,39 @@
 {
-    "files.watcherExclude": {
-        "**/__pycache__/**": true,
-        "**/deps/**": true
-    },
-    "search.exclude": {
-        "**/__pycache__/**": true,
-        "**/deps/**": true
-    },
+    "editor.renderWhitespace": "boundary",
+    "editor.selectionClipboard": false,
     "files.associations": {
         "*.dash": "yaml"
     },
-    "editor.selectionClipboard": false,
+    "files.watcherExclude": {
+        "**/__pycache__/**": true,
+        "**/deps/**": true,
+        ".Trash-0/**": true,
+        ".nfs**": true,
+    },
+    "search.exclude": {
+        "**/__pycache__/**": true,
+        "**/deps/**": true,
+        ".Trash-0/**": true,
+    },
     "terminal.integrated.copyOnSelection": true,
-    "settings": {
+    "yaml.customTags": [
+        "!env_var scalar",
+        "!include_dir_list scalar",
+        "!include_dir_merge_list scalar",
+        "!include_dir_merge_named scalar",
+        "!include_dir_named scalar",
+        "!include scalar",
+        "!secret scalar"
+    ],
+    "yaml.format.enable": true,
+    "[yaml]": {
+        "editor.autoIndent": true,
+        "editor.insertSpaces": true,
         "editor.tabSize": 2,
-        "editor.renderWhitespace": "boundary",
-        "yaml.customTags": [
-            "!env_var",
-            "!include_dir_list",
-            "!include_dir_merge_list",
-            "!include_dir_merge_named",
-            "!include_dir_named",
-            "!include",
-            "!secret",
-            "!yaml"
-        ]
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
     }
 }
