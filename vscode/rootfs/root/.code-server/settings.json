@@ -7,6 +7,9 @@
         "**/__pycache__/**": true,
         "**/deps/**": true
     },
+    "files.associations": {
+        "*.dash": "yaml"
+    },
     "editor.selectionClipboard": false,
     "terminal.integrated.copyOnSelection": true,
     "settings": {
