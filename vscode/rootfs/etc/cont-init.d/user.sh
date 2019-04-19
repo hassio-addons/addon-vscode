@@ -5,6 +5,8 @@
 # ==============================================================================
 readonly GIT_USER_PATH=/data/git
 readonly SSH_USER_PATH=/data/.ssh
+readonly ZSH_HISTORY_FILE=/root/.zsh_history
+readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
 
 # Store SSH settings in add-on data folder
 if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
@@ -16,6 +18,17 @@ if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
             'Failed setting permissions on persistent .ssh folder'
 fi
 ln -s "${SSH_USER_PATH}" ~/.ssh
+
+# Sets up ZSH shell
+touch "${ZSH_HISTORY_PERSISTANT_FILE}" \
+    || bashio::exit.nok 'Failed creating a persistent ZSH history file'
+
+chmod 600 "$ZSH_HISTORY_PERSISTANT_FILE" \
+    || bashio::exit.nok \
+        'Failed setting the correct permissions to the ZSH history file'
+
+ln -s -f "$ZSH_HISTORY_PERSISTANT_FILE" "$ZSH_HISTORY_FILE" \
+    || bashio::exit.nok 'Failed linking the persistant ZSH history file'
 
 # Store user GIT settings in add-on data folder
 if ! bashio::fs.directory_exists "${GIT_USER_PATH}"; then
