@@ -8,12 +8,12 @@
         "**/__pycache__/**": true,
         "**/deps/**": true,
         ".Trash-0/**": true,
-        ".nfs**": true,
+        ".nfs**": true
     },
     "search.exclude": {
         "**/__pycache__/**": true,
         "**/deps/**": true,
-        ".Trash-0/**": true,
+        ".Trash-0/**": true
     },
     "terminal.integrated.copyOnSelection": true,
     "yaml.customTags": [
