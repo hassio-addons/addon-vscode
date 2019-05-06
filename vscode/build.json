@@ -1,6 +1,6 @@
 {
     "build_from": {
-        "amd64": "hassioaddons/ubuntu-base-amd64:3.1.0"
+        "amd64": "hassioaddons/ubuntu-base-amd64:3.1.1"
     },
     "args": {}
 }
