@@ -2,7 +2,8 @@
     "editor.renderWhitespace": "boundary",
     "editor.selectionClipboard": false,
     "files.associations": {
-        "*.dash": "yaml"
+        "*.dash": "yaml",
+        "*.yaml": "home-assistant"
     },
     "files.watcherExclude": {
         ".nfs**": true,
