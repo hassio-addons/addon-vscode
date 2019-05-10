@@ -140,6 +140,18 @@ authentication on the VSCode by setting it to `true`.
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
 
+## Resetting your VSCode settings to the add-on defaults
+
+The add-on updates your settings to be optimized for use with Home Assistant.
+As soon as you change a setting, the add-on will stop doing that since it
+might be destructive. However, in case you changed some things, but want to
+return to the defaults as delivered by this add-on, do the following:
+
+1. Open the Visual Studio Code editor.
+1. Click on `Terminal` in the top menu bar and clik on `New Terminal`.
+1. Execute the following command in the terminal window: `reset-settings`.
+1. Done!
+
 ## Known issues and limitations
 
 - This add-on currently only supports AMD64 machines, although we hope
