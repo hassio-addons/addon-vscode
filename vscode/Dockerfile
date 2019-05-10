@@ -30,7 +30,9 @@ RUN \
 RUN \
     while read -r ext; do \
         echo "Installing vscode extension: ${ext}"; \
-        code --user-data-dir /root/.config/Code --install-extension "${ext}"; \
+        code \
+            --user-data-dir /root/.config/Code \
+            --install-extension "${ext%#*}"; \
     done < /root/vscode.extensions \
     && ls -la /root/.vscode/extensions
 
