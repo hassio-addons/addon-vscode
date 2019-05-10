@@ -7,6 +7,7 @@
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     86776df88391c3d94f79f62b430f9ff8538960628d5e04fb660165a5a46640d2e74f89cd68b3e6985dc59101ae2dda00a1e25aa48381acfd4736858c5f23878b
+    2be4c50575c05711d30121c3a1320698d3dbb034523c481be3aad3b638af3e0a46113d8c3f8cfc1b0f01e4cc10f32da3a30feca161c31b5b27177aeb7231bf70
 )
 
 # Ensure persistent data folder exists.

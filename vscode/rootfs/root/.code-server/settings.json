@@ -5,10 +5,19 @@
         "*.dash": "yaml"
     },
     "files.watcherExclude": {
-        "**/__pycache__/**": true,
-        "**/deps/**": true,
+        ".nfs**": true,
         ".Trash-0/**": true,
-        ".nfs**": true
+        "**/__pycache__/**": true,
+        "**/._*": true,
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/*.db-shm": true,
+        "**/*.db-wal": true,
+        "**/*.db": true,
+        "**/*.log": true,
+        "**/deps/**": true,
+        "**/OZW_Log.txt": true,
+        "**/pyozw.sqlite": true
     },
     "search.exclude": {
         "**/__pycache__/**": true,
