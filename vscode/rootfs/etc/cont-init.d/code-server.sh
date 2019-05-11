@@ -48,3 +48,8 @@ if ! bashio::fs.file_exists '/data/vscode/User/workspaceStorage'; then
      mkdir -p /data/vscode/User/workspaceStorage \
          || bashio::exit.nok "Could not create persistent storage folder."
 fi
+
+# Hotfix for incorrect path reference in Home Assistant Config Helper
+# extension.
+cd /data/vscode/extensions/keesschollaart.vscode-home-assistant-* \
+&& ln -sf out src
