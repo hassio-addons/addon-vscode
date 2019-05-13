@@ -45,5 +45,8 @@
             "comments": false,
             "strings": true
         }
+    },
+    "files.exclude": {
+        "**/._*": true
     }
 }
