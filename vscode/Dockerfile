@@ -84,7 +84,7 @@ RUN \
     && locale-gen en_US.UTF-8 \
     \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/1.939-vsc1.33.1/code-server1.939-vsc1.33.1-linux-x64.tar.gz" \
+        "https://github.com/cdr/code-server/releases/download/1.1119-vsc1.33.1/code-server1.1119-vsc1.33.1-linux-x64.tar.gz" \
     && tar zxvf \
         /tmp/code.tar.gz \
         --strip 1 -C /tmp \
