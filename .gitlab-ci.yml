@@ -13,4 +13,4 @@ variables:
   ADDON_ARMV7: "false"
   ADDON_I386: "false"
 
-  ADDON_AMD64_BASE: "hassioaddons/ubuntu-base-amd64:3.1.1"
+  ADDON_AMD64_BASE: "hassioaddons/ubuntu-base-amd64:3.1.2"
