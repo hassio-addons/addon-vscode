@@ -46,9 +46,9 @@ labels:
   - name: "Type: Discussion"
     color: d4c5f9
     description: "Marks an issue as an generic discussion ticket."
-  - name: "Type: Maintaince"
+  - name: "Type: Maintenance"
     color: 2af79e
-    description: "Generic maintaince tasks, e.g., package updates."
+    description: "Generic maintenance tasks, e.g., package updates."
 
   # Additional markers
   - name: "Security"

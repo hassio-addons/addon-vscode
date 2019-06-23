@@ -6,6 +6,6 @@
   "commitMessageTopic": "{{depName}}",
   "commitMessagePrefix": ":arrow_up:",
   "labels": [
-    "Type: Maintaince"
+    "Type: Maintenance"
   ]
 }
