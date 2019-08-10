@@ -67,7 +67,7 @@ RUN \
         luarocks=2.4.2+dfsg-1 \
         mosquitto-clients=1.4.15-2ubuntu0.18.04.3 \
         net-tools=1.60+git20161116.90da8a0-1ubuntu1 \
-        nginx=1.14.0-0ubuntu1.2 \
+        nginx=1.14.0-0ubuntu1.3 \
         nmap=7.60-1ubuntu5 \
         openssh-client=1:7.6p1-4ubuntu0.3 \
         openssl=1.1.0g-2ubuntu4.3 \
