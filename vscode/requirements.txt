@@ -1,2 +1,2 @@
 homeassistant_cli==0.7.0
-yamllint==1.16.0
+yamllint==1.17.0
