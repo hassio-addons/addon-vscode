@@ -31,7 +31,7 @@ function authenticate()
 
     --- HTTP request against Hassio API
     local httpc = http.new()
-    local res, err = httpc:request_uri("http://hassio/auth", {
+    local res, err = httpc:request_uri("http://supervisor.local.hass.io/auth", {
         method = "POST",
         body = ngx.encode_args({["username"]=username, ["password"]=password}),
         headers = {
