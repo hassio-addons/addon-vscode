@@ -5,6 +5,7 @@
 # ==============================================================================
 declare port
 declare certfile
+declare hassio_dns
 declare ingress_interface
 declare ingress_port
 declare keyfile
@@ -30,3 +31,6 @@ ingress_port=$(bashio::addon.ingress_port)
 ingress_interface=$(bashio::addon.ip_address)
 sed -i "s/%%port%%/${ingress_port}/g" /etc/nginx/servers/ingress.conf
 sed -i "s/%%interface%%/${ingress_interface}/g" /etc/nginx/servers/ingress.conf
+
+hassio_dns=$(bashio::dns.host)
+sed -i "s/%%hassio_dns%%/${hassio_dns}/g" /etc/nginx/includes/resolver.conf
