@@ -62,7 +62,7 @@ RUN \
         build-essential=12.4ubuntu1 \
         colordiff=1.0.18-1 \
         git=1:2.17.1-1ubuntu0.4 \
-        libnginx-mod-http-lua=1.14.0-0ubuntu1.5 \
+        libnginx-mod-http-lua=1.14.0-0ubuntu1.6 \
         locales=2.27-3ubuntu1 \
         luarocks=2.4.2+dfsg-1 \
         mosquitto-clients=1.4.15-2ubuntu0.18.04.3 \
