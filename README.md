@@ -140,6 +140,21 @@ authentication on the VSCode by setting it to `true`.
 **Note**: _We STRONGLY suggest, not to use this, even if this add-on is
 only exposed to your internal network. USE AT YOUR OWN RISK!_
 
+## Panel
+In order to configure VSCode as a panel in Home Assistant, you can add following lines in your *configuration.yaml*:
+```
+panel_custom:
+  - name: hassio-main
+    sidebar_title: Visual Studio Code
+    sidebar_icon: mdi:visual-studio-code
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: vscode
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: a0d7b954_vscode
+```
+
 ## Resetting your VSCode settings to the add-on defaults
 
 The add-on updates your settings to be optimized for use with Home Assistant.
