@@ -11,14 +11,13 @@ options+=(--port 8443)
 options+=(--user-data-dir "/data/vscode")
 options+=(--extensions-dir "/data/vscode/extensions")
 options+=(--host 127.0.0.1)
-options+=(--allow-http)
 
 if bashio::config.true 'disable_telemetry'; then
     options+=(--disable-telemetry)
 fi
 
 # Disable code authentication, we use HA authentication
-options+=(--no-auth)
+options+=(--auth none)
 
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://hassio/homeassistant"
