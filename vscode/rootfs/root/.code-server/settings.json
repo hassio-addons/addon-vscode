@@ -1,6 +1,5 @@
 {
     "editor.renderWhitespace": "boundary",
-    "editor.selectionClipboard": false,
     "files.associations": {
         "*.dash": "yaml",
         "*.yaml": "home-assistant"
@@ -45,5 +44,6 @@
             "comments": false,
             "strings": true
         }
-    }
+    },
+    "terminal.integrated.shell.linux": "/usr/bin/zsh"
 }
