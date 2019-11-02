@@ -152,6 +152,39 @@ return to the defaults as delivered by this add-on, do the following:
 1. Execute the following command in the terminal window: `reset-settings`.
 1. Done!
 
+## Using with ESPHome
+
+The add-on has support for ESPHome (and its vscode extension), built-in!
+It has been installed and pre-configured for you, however, it might need
+an adjustment to your ESPHome add-on in order to function.
+
+1. Go to the ESPHome add-on configuration in your Hass.io panel.
+1. Add the `leave_front_door_open` option, since the vscode extension of
+   ESPHome does not support authentication yet. The ESPHome add-on
+   configuration would look like this:
+
+   ```json
+   {
+     "leave_front_door_open": true
+   }
+   ```
+
+1. Save the add-on configuration.
+1. Enable direct access to the ESPHome add-on, but enabling the network port.
+   This option can be found on the ESPHome add-on settings page, in the
+   "Network" section. In the "Host" field (that is now showing disabled),
+   enter `6052` and hit save.
+1. Restart the ESPHome add-on.
+
+And you're set!
+
+No changes to the vscode add-on are needed, since it has been pre-configured.
+
+**Please note!** This opens up ESPHome for access within your network
+without authentication! Currently, this is how ESPHome advises how to
+set up your system, but it surely has security risks. We hope ESPHome
+will come up with a better solution for this soon.
+
 ## Known issues and limitations
 
 - This add-on currently only supports AMD64 machines, although we hope
