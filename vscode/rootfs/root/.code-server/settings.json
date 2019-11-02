@@ -45,5 +45,7 @@
             "strings": true
         }
     },
-    "terminal.integrated.shell.linux": "/usr/bin/zsh"
+    "terminal.integrated.shell.linux": "/usr/bin/zsh",
+    "workbench.iconTheme": "vscode-icons",
+    "vsicons.dontShowNewVersionMessage": true
 }
