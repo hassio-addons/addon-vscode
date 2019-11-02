@@ -59,9 +59,11 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
+        ack=2.22-1 \
         build-essential=12.4ubuntu1 \
         colordiff=1.0.18-1 \
         git=1:2.17.1-1ubuntu0.4 \
+        iputils-ping=3:20161105-1ubuntu3 \
         libnginx-mod-http-lua=1.14.0-0ubuntu1.6 \
         locales=2.27-3ubuntu1 \
         luarocks=2.4.2+dfsg-1 \
@@ -75,7 +77,6 @@ RUN \
         python3=3.6.7-1~18.04 \
         wget=1.19.4-1ubuntu2.2 \
         zsh=5.4.2-3ubuntu3.1 \
-        ack=2.22-1 \
     \
     && luarocks install lua-resty-http 0.13-0 \
     \
