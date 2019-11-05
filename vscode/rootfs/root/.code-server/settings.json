@@ -26,6 +26,7 @@
         ".Trash-0/**": true
     },
     "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.shell.linux": "zsh",
     "yaml.customTags": [
         "!env_var scalar",
         "!include_dir_list scalar",
