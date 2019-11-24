@@ -72,7 +72,7 @@ RUN \
         nginx=1.14.0-0ubuntu1.6 \
         nmap=7.60-1ubuntu5 \
         openssh-client=1:7.6p1-4ubuntu0.3 \
-        openssl=1.1.1-1ubuntu2.1~18.04.4 \
+        openssl=1.1.1-1ubuntu2.1~18.04.5 \
         python3-dev=3.6.7-1~18.04 \
         python3=3.6.7-1~18.04 \
         wget=1.19.4-1ubuntu2.2 \
