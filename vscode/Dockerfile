@@ -94,7 +94,7 @@ RUN \
     && chmod a+x /usr/local/bin/code-server  \
     \
     && curl -L -s -o /usr/bin/hassio \
-        "https://github.com/home-assistant/hassio-cli/releases/download/3.1.0/hassio_${BUILD_ARCH}" \
+        "https://github.com/home-assistant/hassio-cli/releases/download/3.1.2/hassio_${BUILD_ARCH}" \
     && chmod a+x /usr/bin/hassio \
     \
     && git clone --branch master --single-branch --depth 1 \
