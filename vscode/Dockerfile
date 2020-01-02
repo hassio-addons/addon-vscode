@@ -1,4 +1,4 @@
-ARG BUILD_FROM=hassioaddons/ubuntu-base:4.0.1
+ARG BUILD_FROM=hassioaddons/ubuntu-base:4.0.3
 ###############################################################################
 # Build container to get custom vscode extensions.
 ###############################################################################
