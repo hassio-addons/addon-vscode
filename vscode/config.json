@@ -34,6 +34,7 @@
   ],
   "options": {
     "ssl": true,
+    "allow": "172.30.32.2",
     "certfile": "fullchain.pem",
     "keyfile": "privkey.pem",
     "packages": [],
@@ -43,6 +44,7 @@
   "schema": {
     "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
     "ssl": "bool",
+    "allow": "str",
     "certfile": "str",
     "keyfile": "str",
     "packages": ["str"],
