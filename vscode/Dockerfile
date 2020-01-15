@@ -64,7 +64,7 @@ RUN \
         colordiff=1.0.18-1 \
         git=1:2.17.1-1ubuntu0.5 \
         iputils-ping=3:20161105-1ubuntu3 \
-        libnginx-mod-http-lua=1.14.0-0ubuntu1.6 \
+        libnginx-mod-http-lua=1.14.0-0ubuntu1.7 \
         locales=2.27-3ubuntu1 \
         luarocks=2.4.2+dfsg-1 \
         mosquitto-clients=1.4.15-2ubuntu0.18.04.3 \
