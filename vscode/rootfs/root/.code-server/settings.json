@@ -50,5 +50,6 @@
     "esphome.validator": "dashboard",
     "esphome.dashboardUri": "15ef4d2f-esphome.local.hass.io:6052",
     "workbench.iconTheme": "vscode-icons",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "update.mode": "none"
 }
