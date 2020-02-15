@@ -93,9 +93,9 @@ RUN \
     && mv /tmp/code-server /usr/local/bin/code-server \
     && chmod a+x /usr/local/bin/code-server  \
     \
-    && curl -L -s -o /usr/bin/hassio \
-        "https://github.com/home-assistant/hassio-cli/releases/download/3.1.2/hassio_${BUILD_ARCH}" \
-    && chmod a+x /usr/bin/hassio \
+    && curl -L -s -o /usr/bin/ha \
+        "https://github.com/home-assistant/cli/releases/download/4.0.1/ha_${BUILD_ARCH}" \
+    && chmod a+x /usr/bin/ha \
     \
     && git clone --branch master --single-branch --depth 1 \
         "git://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
