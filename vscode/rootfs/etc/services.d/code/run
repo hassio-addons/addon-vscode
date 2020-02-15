@@ -9,6 +9,7 @@ bashio::log.info 'Starting the code server...'
 
 options+=(--port 1337)
 options+=(--user-data-dir "/data/vscode")
+options+=(--extra-builtin-extensions-dir "/root/.code-server/extensions/")
 options+=(--extensions-dir "/data/vscode/extensions")
 options+=(--host 0.0.0.0)
 
