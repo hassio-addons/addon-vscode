@@ -84,11 +84,12 @@ RUN \
         \
         echo "Installing vscode extension: ${slug} by ${vendor} @ ${version} "; \
         \
-        mkdir -p "/root/.code-server/extensions/${extention}-${version}"; \
         echo "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
-        curl -JL --retry 5 -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" \
-            "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage" \
-                | bsdtar --strip-components=1 -xf - \
+        curl -JL --retry 5 -o "/tmp/${extention}-${version}.vsix" \
+            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" \
+            "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
+        mkdir -p "/root/.code-server/extensions/${extention}-${version}"; \
+        bsdtar --strip-components=1 -xf "/tmp/${extention}-${version}.vsix" \
                     -C "/root/.code-server/extensions/${extention}-${version}" extension; \
         sleep 5; \
     done < /root/vscode.extensions \
