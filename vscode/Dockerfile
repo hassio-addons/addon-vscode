@@ -1,44 +1,4 @@
 ARG BUILD_FROM=hassioaddons/ubuntu-base:5.0.0
-###############################################################################
-# Build container to get custom vscode extensions.
-###############################################################################
-# hadolint ignore=DL3006
-FROM ${BUILD_FROM} as vscode
-
-# Copy in extensions list
-COPY vscode.extensions /root/vscode.extensions
-
-# Install the actual VSCode to download configs and extensions
-# hadolint ignore=DL3015
-RUN \
-    apt-get update \
-    \
-    && apt-get install -y --no-install-recommends \
-        libx11-xcb1=2:1.6.4-3ubuntu0.2 \
-        libasound2=1.1.3-5ubuntu0.2 \
-    \
-    && curl \
-        -o vscode-amd64.deb \
-        -L https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable \
-    \
-    && dpkg -i vscode-amd64.deb || true \
-    && apt-get install -y -f \
-    && rm -f vscode-amd64.deb \
-    \
-    && code -v --user-data-dir /root/.config/Code
-
-RUN \
-    while read -r ext; do \
-        echo "Installing vscode extension: ${ext}"; \
-        code \
-            --user-data-dir /root/.config/Code \
-            --install-extension "${ext%#*}"; \
-    done < /root/vscode.extensions \
-    && ls -la /root/.vscode/extensions
-
-###############################################################################
-# Build the actual add-on.
-###############################################################################
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -53,6 +13,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Copy Python requirements file
 COPY requirements.txt /tmp/requirements.txt
 
+# Copy in extensions list
+COPY vscode.extensions /root/vscode.extensions
+
 # Setup base system
 ARG BUILD_ARCH
 RUN \
@@ -60,6 +23,7 @@ RUN \
     \
     && apt-get install -y --no-install-recommends \
         ack=2.22-1 \
+        bsdtar=3.2.2-3.1ubuntu0.5 \
         build-essential=12.4ubuntu1 \
         colordiff=1.0.18-1 \
         git=1:2.17.1-1ubuntu0.5 \
@@ -109,9 +73,28 @@ RUN \
     \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     \
+    && mkdir -p /root/.code-server/extensions \
+    && while read -r ext; do  \
+        extention="${ext%%#*}" \
+        vendor="${extention%%.*}"; \
+        slug="${extention#*.}"; \
+        version="${ext##*#}"; \
+        \
+        echo "Installing vscode extension: ${slug} by ${vendor} @ ${version} "; \
+        \
+        mkdir -p "/root/.code-server/extensions/${extention}-${version}"; \
+        echo "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
+        curl -JL --retry 5 -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" \
+            "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage" \
+                | bsdtar --strip-components=1 -xf - \
+                    -C "/root/.code-server/extensions/${extention}-${version}" extension; \
+        sleep 5; \
+    done < /root/vscode.extensions \
+    && ls -la /root/.code-server/extensions/ \
+    \
     && apt-get purge -y --auto-remove \
+        bsdtar \
         build-essential \
-        luarocks \
         python3-dev \
     \
     && find /usr/local/lib/python3.6/ -type d -name tests -depth -exec rm -rf {} \; \
