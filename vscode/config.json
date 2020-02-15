@@ -23,7 +23,7 @@
     "80/tcp": null
   },
   "ports_description": {
-    "80/tcp": "VSCode (Not required for Hass.io Ingress)"
+    "80/tcp": "VSCode (Not required for Ingress)"
   },
   "map": [
     "config:rw",

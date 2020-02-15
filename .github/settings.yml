@@ -1,8 +1,8 @@
 ---
 repository:
-  description: "Visual Studio Code - Community Hass.io Add-on for Home Assistant"
+  description: "Visual Studio Code - Home Assistant Community Add-ons"
   homepage: https://addons.community
-  topics: vscode, ide, code-server, hassio-addons, hassio, hass, home-assistant, homeassistant
+  topics: vscode, ide, code-server, addon, addons, home-assistant, homeassistant
   private: false
   has_issues: true
   has_projects: false

@@ -29,7 +29,7 @@ function authenticate()
         return true
     end
 
-    --- HTTP request against Hassio API
+    --- HTTP request against the Supervisor API
     local httpc = http.new()
     local res, err = httpc:request_uri("http://supervisor.local.hass.io/auth", {
         method = "POST",
@@ -44,13 +44,13 @@ function authenticate()
 
     --- Error during API request
     if err then
-        ngx.log(ngx.WARN, "Error during Hassio user authentication.", err)
+        ngx.log(ngx.WARN, "Error during Home Assistant user authentication.", err)
         return false
     end
 
     --- No result? Something went wrong...
     if not res then
-        ngx.log(ngx.WARN, "Error during Hassio user authentication.")
+        ngx.log(ngx.WARN, "Error during Home Assistant user authentication.")
         return false
     end
 

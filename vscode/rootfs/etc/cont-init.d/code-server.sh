@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Visual Studio Code
+# Home Assistant Community Add-on: Visual Studio Code
 # Sets up code-server.
 # ==============================================================================
 

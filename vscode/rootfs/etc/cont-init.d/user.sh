@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Community Hass.io Add-ons: Visual Studio Code
+# Home Assistant Community Add-on: Visual Studio Code
 # Persists user settings and installs custom user packages.
 # ==============================================================================
 readonly GIT_USER_PATH=/data/git
