@@ -24,7 +24,7 @@ fi
 while read -r ext; do
     extension="${ext%%#*}"
     echo "${extension,,}"
-    rm -f -r /data/vscode/extensions/${extension,,}*
+    rm -f -r "/data/vscode/extensions/${extension,,}*"
 done < /root/vscode.extensions
 
 # Ensure user extensions folder exists
