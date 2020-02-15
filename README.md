@@ -148,9 +148,10 @@ will come up with a better solution for this soon.
 
 ## Known issues and limitations
 
-- This add-on currently only supports AMD64 machines, although we hope
-  we are able to support ARM devices in the future, it is most likely that
-  most devices will lack the resources to run this add-on (e.g., Raspberry Pi).
+- This add-on currently only supports AMD64 and aarch64/ARM64 machines.
+  Although we support ARM devices, please be aware, that this add-on is quite
+  heavy to run, and requires quite a bit of RAM. We do not recommended to run
+  it on devices with less than 4Gb of memory.
 - If you get a blank screen (and it worked before), it could be that you changed
   your workspace. Reinstalling the add-on will not help since it keeps the data
   in your browser. To remove it (in Chrome) open up developer tools (F12),
@@ -244,7 +245,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[aarch64-shield]: https://img.shields.io/badge/aarch64-no-red.svg
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg

@@ -17,7 +17,7 @@ COPY requirements.txt /tmp/requirements.txt
 COPY vscode.extensions /root/vscode.extensions
 
 # Setup base system
-ARG BUILD_ARCH
+ARG BUILD_ARCH=amd64
 RUN \
     apt-get update \
     \
@@ -43,8 +43,10 @@ RUN \
     \
     && locale-gen en_US.UTF-8 \
     \
+    && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
+    && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="x86_64"; fi \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/2.1698/code-server2.1698-vsc1.41.1-linux-x86_64.tar.gz" \
+        "https://github.com/cdr/code-server/releases/download/2.1698/code-server2.1698-vsc1.41.1-linux-${ARCH}.tar.gz" \
     && tar zxvf \
         /tmp/code.tar.gz \
         --strip 1 -C /tmp \
@@ -109,9 +111,6 @@ RUN \
 
 # Copy root filesystem
 COPY rootfs /
-
-# Get the custom extensions
-COPY --from=vscode /root/.vscode/extensions /root/.code-server/extensions
 
 # Build arguments
 ARG BUILD_DATE

@@ -8,7 +8,7 @@
   "ingress_port": 1337,
   "panel_icon": "mdi:visual-studio-code",
   "startup": "services",
-  "arch": ["amd64"],
+  "arch": ["aarch64", "amd64"],
   "boot": "auto",
   "hassio_api": true,
   "hassio_role": "manager",
