@@ -56,20 +56,16 @@ comparison to installing any other Hass.io add-on.
 
 Example add-on configuration:
 
-```json
-{
-    "log_level": "info",
-    "ssl": false,
-    "certfile": "fullchain.pem",
-    "keyfile": "privkey.pem",
-    "packages": [
-      "mariadb-client"
-    ],
-    "init_commands": [
-      "ls -la"
-    ],
-    "disable_telemetry": false
-}
+```yaml
+log_level: info
+ssl: false
+certfile: fullchain.pem
+keyfile: privkey.pem
+packages:
+  - mariadb-client
+init_commands:
+  - ls -la
+disable_telemetry: false
 ```
 
 **Note**: _This is just an example, don't copy and paste it! Create your own!_
