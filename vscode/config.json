@@ -10,9 +10,7 @@
   "panel_icon": "mdi:visual-studio-code",
   "startup": "services",
   "homeassistant": "0.92.0b2",
-  "arch": [
-    "amd64"
-  ],
+  "arch": ["amd64"],
   "boot": "auto",
   "hassio_api": true,
   "auth_api": true,
@@ -25,13 +23,7 @@
   "ports_description": {
     "80/tcp": "VSCode (Not required for Ingress)"
   },
-  "map": [
-    "config:rw",
-    "ssl:rw",
-    "addons:rw",
-    "share:rw",
-    "backup:rw"
-  ],
+  "map": ["config:rw", "ssl:rw", "addons:rw", "share:rw", "backup:rw"],
   "options": {
     "ssl": true,
     "certfile": "fullchain.pem",
@@ -41,7 +33,7 @@
     "disable_telemetry": false
   },
   "schema": {
-    "log_level": "match(^(trace|debug|info|notice|warning|error|fatal)$)?",
+    "log_level": "list(trace|debug|info|notice|warning|error|fatal)?",
     "ssl": "bool",
     "certfile": "str",
     "keyfile": "str",
