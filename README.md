@@ -121,7 +121,7 @@ The add-on has support for ESPHome (and its vscode extension), built-in!
 It has been installed and pre-configured for you, however, it might need
 an adjustment to your ESPHome add-on in order to function.
 
-1. Go to the ESPHome add-on configuration in your Hass.io panel.
+1. Go to the ESPHome add-on configuration in your Supervisor panel.
 1. Add the `leave_front_door_open` option, since the vscode extension of
    ESPHome does not support authentication yet. The ESPHome add-on
    configuration would look like this:
