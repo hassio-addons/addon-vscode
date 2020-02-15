@@ -85,25 +85,6 @@ more severe level, e.g., `debug` also shows `info` messages. By default,
 the `log_level` is set to `info`, which is the recommended setting unless
 you are troubleshooting.
 
-### Option: `ssl`
-
-Enables/Disables SSL (HTTPS). Set it `true` to enable it, `false` otherwise.
-
-**Note**: _The SSL settings only apply to direct access and has no effect
-on the Ingress service._
-
-### Option: `certfile`
-
-The certificate file to use for SSL.
-
-**Note**: _The file MUST be stored in `/ssl/`, which is the default_
-
-### Option: `keyfile`
-
-The private key file to use for SSL.
-
-**Note**: _The file MUST be stored in `/ssl/`, which is the default_
-
 ### Option: `packages`
 
 Allows you to specify additional [Ubuntu packages][ubuntu-packages] to be
@@ -120,15 +101,7 @@ single time this add-on starts.
 
 ### Option: `disable_telemetry`
 
-Disables annonymous usage telemetry data from being sent to code-server.
-
-### Option: `leave_front_door_open`
-
-Adding this option to the add-on configuration allows you to disable
-authentication on the VSCode by setting it to `true`.
-
-**Note**: _We STRONGLY suggest, not to use this, even if this add-on is
-only exposed to your internal network. USE AT YOUR OWN RISK!_
+Disables anonymous usage telemetry data from being sent to code-server.
 
 ## Resetting your VSCode settings to the add-on defaults
 

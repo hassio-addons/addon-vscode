@@ -7,10 +7,10 @@ declare -a options
 
 bashio::log.info 'Starting the code server...'
 
-options+=(--port 8443)
+options+=(--port 1337)
 options+=(--user-data-dir "/data/vscode")
 options+=(--extensions-dir "/data/vscode/extensions")
-options+=(--host 127.0.0.1)
+options+=(--host 0.0.0.0)
 
 if bashio::config.true 'disable_telemetry'; then
     options+=(--disable-telemetry)
