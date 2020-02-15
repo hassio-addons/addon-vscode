@@ -20,8 +20,8 @@ fi
 options+=(--auth none)
 
 # Export env variables for the Home Assistant extension
-export HASS_SERVER="http://hassio/homeassistant"
-export HASS_TOKEN="${HASSIO_TOKEN:-}"
+export HASS_SERVER="http://supervisor/core"
+export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 # Run the code server
 exec code-server "${options[@]}" /config

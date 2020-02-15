@@ -36,7 +36,7 @@ function authenticate()
         body = ngx.encode_args({["username"]=username, ["password"]=password}),
         headers = {
             ["Content-Type"] = "application/x-www-form-urlencoded",
-            ["X-HASSIO-KEY"] = os.getenv("HASSIO_TOKEN"),
+            ["X-Supervisor-Token"] = os.getenv("SUPERVISOR_TOKEN"),
         },
         keepalive_timeout = 60,
         keepalive_pool = 10
