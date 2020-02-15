@@ -58,9 +58,6 @@ Example add-on configuration:
 
 ```yaml
 log_level: info
-ssl: false
-certfile: fullchain.pem
-keyfile: privkey.pem
 packages:
   - mariadb-client
 init_commands:
