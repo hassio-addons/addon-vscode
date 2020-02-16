@@ -131,7 +131,7 @@ LABEL \
     org.label-schema.build-date=${BUILD_DATE} \
     org.label-schema.name="Visual Studio Code" \
     org.label-schema.schema-version="1.0" \
-    org.label-schema.url="https://community.home-assistant.io/?u=frenck" \
+    org.label-schema.url="https://community.home-assistant.io/t/home-assistant-community-add-on-visual-studio-code/107863?u=frenck" \
     org.label-schema.usage="https://github.com/hassio-addons/addon-vscode/tree/master/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
     org.label-schema.vcs-url="https://github.com/hassio-addons/addon-vscode" \
