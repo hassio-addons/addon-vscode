@@ -15,7 +15,7 @@
   "hassio_role": "manager",
   "homeassistant_api": true,
   "map": ["config:rw", "ssl:rw", "addons:rw", "share:rw", "backup:rw"],
-  "services": ["mqtt:want"],
+  "services": ["mysql:want", "mqtt:want"],
   "options": {
     "packages": [],
     "init_commands": [],

@@ -29,6 +29,7 @@ RUN \
         git=1:2.17.1-1ubuntu0.5 \
         iputils-ping=3:20161105-1ubuntu3 \
         locales=2.27-3ubuntu1 \
+        mariadb-client=1:10.1.44-0ubuntu0.18.04.1 \
         mosquitto-clients=1.4.15-2ubuntu0.18.04.3 \
         net-tools=1.60+git20161116.90da8a0-1ubuntu1 \
         nmap=7.60-1ubuntu5 \
