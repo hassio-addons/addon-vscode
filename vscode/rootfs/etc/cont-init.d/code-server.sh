@@ -23,7 +23,8 @@ fi
 # Clean up copies of extensions we deliver from the persistent storage
 while read -r ext; do
     extension="${ext%%#*}"
-    rm -f -r "/data/vscode/extensions/${extension,,}*"
+    # shellcheck disable=SC2086
+    rm -f -r /data/vscode/extensions/${extension,,}*
 done < /root/vscode.extensions
 
 # Ensure user extensions folder exists
