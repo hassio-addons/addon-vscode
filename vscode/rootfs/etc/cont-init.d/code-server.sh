@@ -23,7 +23,6 @@ fi
 # Clean up copies of extensions we deliver from the persistent storage
 while read -r ext; do
     extension="${ext%%#*}"
-    echo "${extension,,}"
     rm -f -r "/data/vscode/extensions/${extension,,}*"
 done < /root/vscode.extensions
 
