@@ -131,7 +131,7 @@ an adjustment to your ESPHome add-on in order to function.
    ```
 
 1. Save the add-on configuration.
-1. Enable direct access to the ESPHome add-on, but enabling the network port.
+1. Enable direct access to the ESPHome add-on, by enabling the network port.
    This option can be found on the ESPHome add-on settings page, in the
    "Network" section. In the "Host" field (that is now showing disabled),
    enter `6052` and hit save.
