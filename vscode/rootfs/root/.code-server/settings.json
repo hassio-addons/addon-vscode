@@ -1,55 +1,86 @@
 {
-    "editor.renderWhitespace": "boundary",
-    "files.associations": {
-        "*.dash": "yaml",
-        "**/esphome/*.yaml": "yaml",
-        "*.yaml": "home-assistant"
-    },
-    "files.watcherExclude": {
-        ".nfs**": true,
-        ".Trash-0/**": true,
-        "**/__pycache__/**": true,
-        "**/._*": true,
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/*.db-shm": true,
-        "**/*.db-wal": true,
-        "**/*.db": true,
-        "**/*.log": true,
-        "**/deps/**": true,
-        "**/OZW_Log.txt": true,
-        "**/pyozw.sqlite": true
-    },
-    "search.exclude": {
-        "**/__pycache__/**": true,
-        "**/deps/**": true,
-        ".Trash-0/**": true
-    },
-    "terminal.integrated.copyOnSelection": true,
-    "yaml.customTags": [
-        "!env_var scalar",
-        "!include_dir_list scalar",
-        "!include_dir_merge_list scalar",
-        "!include_dir_merge_named scalar",
-        "!include_dir_named scalar",
-        "!include scalar",
-        "!secret scalar"
-    ],
-    "yaml.format.enable": true,
-    "[yaml]": {
-        "editor.autoIndent": true,
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2,
-        "editor.quickSuggestions": {
-            "other": true,
-            "comments": false,
-            "strings": true
-        }
-    },
-    "terminal.integrated.shell.linux": "/usr/bin/zsh",
-    "esphome.validator": "dashboard",
-    "esphome.dashboardUri": "15ef4d2f-esphome.local.hass.io:6052",
-    "workbench.iconTheme": "vscode-icons",
-    "vsicons.dontShowNewVersionMessage": true,
-    "update.mode": "none"
+  "files.associations": {
+    "*.dash": "yaml",
+    "**/esphome/*.yaml": "yaml",
+    "*.yaml": "home-assistant"
+  },
+  "files.watcherExclude": {
+    ".nfs**": true,
+    ".Trash-0/**": true,
+    "**/__pycache__/**": true,
+    "**/._*": true,
+    "**/.cloud": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.HA_VERSION": true,
+    "**/.storage": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
+    "**/*.log": true,
+    "**/deps/**": true,
+    "**/OZW_Log.txt": true,
+    "**/pyozw.sqlite": true
+  },
+  "search.exclude": {
+    ".Trash-0/**": true,
+    "**/__pycache__/**": true,
+    "**/._*": true,
+    "**/.cloud": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.git": true,
+    "**/.HA_VERSION": true,
+    "**/.storage": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
+    "**/*.log": true,
+    "**/deps/**": true,
+    "**/OZW_Log.txt": true,
+    "**/pyozw.sqlite": true
+  },
+  "files.exclude": {
+    ".Trash-0/**": true,
+    "**/__pycache__": true,
+    "**/.cloud": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.HA_VERSION": true,
+    "**/.storage": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
+    "**/deps/**": true
+  },
+  "yaml.customTags": [
+    "!env_var scalar",
+    "!include_dir_list scalar",
+    "!include_dir_merge_list scalar",
+    "!include_dir_merge_named scalar",
+    "!include_dir_named scalar",
+    "!include scalar",
+    "!secret scalar"
+  ],
+  "[yaml]": {
+    "editor.autoIndent": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  },
+  "editor.renderWhitespace": "boundary",
+  "esphome.dashboardUri": "15ef4d2f-esphome.local.hass.io:6052",
+  "esphome.validator": "dashboard",
+  "telemetry.enableTelemetry": false,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "update.mode": "none",
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.projectDetection.disableDetect": true,
+  "workbench.iconTheme": null,
+  "yaml.format.enable": true
 }
