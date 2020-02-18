@@ -81,6 +81,6 @@
   "update.mode": "none",
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.projectDetection.disableDetect": true,
-  "workbench.iconTheme": null,
+  "workbench.iconTheme": "vs-seti",
   "yaml.format.enable": true
 }
