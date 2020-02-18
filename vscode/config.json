@@ -18,13 +18,11 @@
   "services": ["mysql:want", "mqtt:want"],
   "options": {
     "packages": [],
-    "init_commands": [],
-    "disable_telemetry": false
+    "init_commands": []
   },
   "schema": {
     "log_level": "list(trace|debug|info|notice|warning|error|fatal)?",
     "packages": ["str"],
-    "init_commands": ["str"],
-    "disable_telemetry": "bool?"
+    "init_commands": ["str"]
   }
 }
