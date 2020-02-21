@@ -8,8 +8,8 @@ declare password
 declare port
 declare username
 
-host=$(bashio::services "mqtt" "host")
-if bashio::var.has_value "${host}"; then
+if bashio::services.available "mqtt"; then
+  host=$(bashio::services "mqtt" "host")
   password=$(bashio::services "mqtt" "password")
   port=$(bashio::services "mqtt" "port")
   username=$(bashio::services "mqtt" "username")
@@ -24,6 +24,4 @@ if bashio::var.has_value "${host}"; then
 
   ln -s /root/.config/mosquitto_sub /root/.config/mosquitto_pub
   ln -s /root/.config/mosquitto_sub /root/.config/mosquitto_rr
-else
-  bashio::log.info "The above error can be ignored if you don't have Mosquitto installed"
 fi

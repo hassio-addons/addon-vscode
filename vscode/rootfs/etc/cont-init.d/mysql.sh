@@ -8,8 +8,8 @@ declare password
 declare port
 declare username
 
-host=$(bashio::services "mysql" "host")
-if bashio::var.has_value "${host}"; then
+if bashio::services.available "mysql"; then
+  host=$(bashio::services "mysql" "host")
   password=$(bashio::services "mysql" "password")
   port=$(bashio::services "mysql" "port")
   username=$(bashio::services "mysql" "username")
@@ -22,6 +22,4 @@ if bashio::var.has_value "${host}"; then
     echo "port=${port}"
     echo "user=\"${username}\""
   } > /etc/mysql/conf.d/service.cnf
-else
-  bashio::log.info "The above error can be ignored if you don't have MariaDB installed"
 fi
