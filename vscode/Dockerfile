@@ -23,7 +23,7 @@ RUN \
     \
     && apt-get install -y --no-install-recommends \
         ack=2.22-1 \
-        bsdtar=3.2.2-3.1ubuntu0.5 \
+        bsdtar=3.2.2-3.1ubuntu0.6 \
         build-essential=12.4ubuntu1 \
         colordiff=1.0.18-1 \
         git=1:2.17.1-1ubuntu0.5 \
