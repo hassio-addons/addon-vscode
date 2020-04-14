@@ -48,13 +48,13 @@ RUN \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="x86_64"; fi \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/2.1698/code-server2.1698-vsc1.41.1-linux-${ARCH}.tar.gz" \
+        "https://github.com/cdr/code-server/releases/download/3.1.0/code-server-3.1.0-linux-${ARCH}.tar.gz" \
+    && mkdir -p /usr/local/lib/code-server \
     && tar zxvf \
         /tmp/code.tar.gz \
-        --strip 1 -C /tmp \
+        --strip 1 -C /usr/local/lib/code-server \
     \
-    && mv /tmp/code-server /usr/local/bin/code-server \
-    && chmod a+x /usr/local/bin/code-server  \
+    && ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server \
     \
     && mkdir -p /root/.code-server/extensions \
     && while read -r ext; do  \
