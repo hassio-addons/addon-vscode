@@ -6,11 +6,9 @@ variables:
   ADDON_SLUG: "vscode"
   ADDON_TARGET: "vscode"
 
-  ADDON_LEGACY_TAGS: "true"
-
   ADDON_ARMHF: "false"
   ADDON_ARMV7: "false"
   ADDON_I386: "false"
 
-  ADDON_AARCH64_BASE: "hassioaddons/ubuntu-base-aarch64:5.0.1"
-  ADDON_AMD64_BASE: "hassioaddons/ubuntu-base-amd64:5.0.1"
+  ADDON_AARCH64_BASE: "hassioaddons/ubuntu-base-aarch64:5.1.0"
+  ADDON_AMD64_BASE: "hassioaddons/ubuntu-base-amd64:5.1.0"
