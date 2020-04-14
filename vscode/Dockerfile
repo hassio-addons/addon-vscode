@@ -56,27 +56,6 @@ RUN \
     && mv /tmp/code-server /usr/local/bin/code-server \
     && chmod a+x /usr/local/bin/code-server  \
     \
-    && curl -L -s -o /usr/bin/ha \
-        "https://github.com/home-assistant/cli/releases/download/4.1.0/ha_${BUILD_ARCH}" \
-    && chmod a+x /usr/bin/ha \
-    \
-    && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
-    \
-    && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/zsh-users/zsh-autosuggestions" \
-        ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
-    && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/zsh-users/zsh-syntax-highlighting.git" \
-        ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
-    \
-    && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd \
-    \
-    && update-alternatives \
-        --install /usr/bin/python python /usr/bin/python3 10 \
-    \
-    && pip3 install --no-cache-dir -r /tmp/requirements.txt \
-    \
     && mkdir -p /root/.code-server/extensions \
     && while read -r ext; do  \
         extention="${ext%%#*}" \
@@ -97,6 +76,27 @@ RUN \
         sleep 60; \
     done < /root/vscode.extensions \
     && ls -la /root/.code-server/extensions/ \
+    \
+    && curl -L -s -o /usr/bin/ha \
+        "https://github.com/home-assistant/cli/releases/download/4.1.0/ha_${BUILD_ARCH}" \
+    && chmod a+x /usr/bin/ha \
+    \
+    && git clone --branch master --single-branch --depth 1 \
+        "git://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
+    \
+    && git clone --branch master --single-branch --depth 1 \
+        "git://github.com/zsh-users/zsh-autosuggestions" \
+        ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
+    && git clone --branch master --single-branch --depth 1 \
+        "git://github.com/zsh-users/zsh-syntax-highlighting.git" \
+        ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
+    \
+    && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd \
+    \
+    && update-alternatives \
+        --install /usr/bin/python python /usr/bin/python3 10 \
+    \
+    && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     \
     && apt-get purge -y --auto-remove \
         bsdtar \
