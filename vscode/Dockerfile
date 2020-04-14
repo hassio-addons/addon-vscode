@@ -17,8 +17,8 @@ COPY requirements.txt /tmp/requirements.txt
 COPY vscode.extensions /root/vscode.extensions
 
 # Setup base system
-# hadolint ignore=SC2181
 ARG BUILD_ARCH=amd64
+# hadolint ignore=SC2181
 RUN \
     apt-get update \
     \
