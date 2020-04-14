@@ -8,6 +8,7 @@
   "ingress_port": 1337,
   "panel_icon": "mdi:visual-studio-code",
   "startup": "services",
+  "init": false,
   "arch": ["aarch64", "amd64"],
   "boot": "auto",
   "auto_uart": true,
