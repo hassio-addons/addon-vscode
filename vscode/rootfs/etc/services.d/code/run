@@ -14,6 +14,7 @@ options+=(--extensions-dir "/data/vscode/extensions")
 options+=(--host 0.0.0.0)
 options+=(--disable-ssh)
 options+=(--disable-updates)
+options+=(--disable-telemetry)
 
 # Disable code authentication, we use HA authentication
 options+=(--auth none)
