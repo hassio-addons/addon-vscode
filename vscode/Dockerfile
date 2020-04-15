@@ -27,7 +27,7 @@ RUN \
         bsdtar=3.2.2-3.1ubuntu0.6 \
         build-essential=12.4ubuntu1 \
         colordiff=1.0.18-1 \
-        git=1:2.17.1-1ubuntu0.5 \
+        git=1:2.17.1-1ubuntu0.6 \
         iputils-ping=3:20161105-1ubuntu3 \
         locales=2.27-3ubuntu1 \
         mariadb-client=1:10.1.44-0ubuntu0.18.04.1 \
