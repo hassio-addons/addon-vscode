@@ -48,7 +48,7 @@ RUN \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="x86_64"; fi \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/3.1.1/code-server-3.1.1-linux-${ARCH}.tar.gz" \
+        "https://github.com/cdr/code-server/releases/download/3.2.0/code-server-3.2.0-linux-${ARCH}.tar.gz" \
     && mkdir -p /usr/local/lib/code-server \
     && tar zxvf \
         /tmp/code.tar.gz \
