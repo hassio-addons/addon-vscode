@@ -41,6 +41,8 @@ RUN \
         wget=1.20.1-1.1 \
         zsh=5.7.1-1 \
     \
+    && locale-gen en_US.UTF-8 \
+    \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
     \
     && locale-gen en_US.UTF-8 \
