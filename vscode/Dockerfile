@@ -56,7 +56,7 @@ RUN \
         /tmp/code.tar.gz \
         --strip 1 -C /usr/local/lib/code-server \
     \
-    && ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server \
+    && ln -s /usr/local/lib/code-server/bin/code-server /usr/local/bin/code-server \
     \
     && mkdir -p /root/.code-server/extensions \
     && while read -r ext; do  \
