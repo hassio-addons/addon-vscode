@@ -63,7 +63,7 @@
     "!secret scalar"
   ],
   "[yaml]": {
-    "editor.autoIndent": true,
+    "editor.autoIndent": "full",
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "editor.quickSuggestions": {
