@@ -5,6 +5,7 @@ FROM ${BUILD_FROM}
 # Confiure locale
 ENV \
     LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
     LC_ALL=en_US.UTF-8
 
 # Set shell
@@ -41,11 +42,10 @@ RUN \
         wget=1.20.1-1.1 \
         zsh=5.7.1-1 \
     \
-    && locale-gen en_US.UTF-8 \
+    && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
+    && locale-gen \
     \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
-    \
-    && locale-gen en_US.UTF-8 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
