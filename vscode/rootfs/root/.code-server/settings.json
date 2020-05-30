@@ -72,6 +72,11 @@
       "strings": true
     }
   },
+  "[home-assistant]": {
+    "editor.autoIndent": "full",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
   "editor.renderWhitespace": "boundary",
   "esphome.dashboardUri": "15ef4d2f-esphome.local.hass.io:6052",
   "esphome.validator": "dashboard",
