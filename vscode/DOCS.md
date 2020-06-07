@@ -136,8 +136,6 @@ will come up with a better solution for this soon.
 
    <https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc>
    
-- The `disable_telemetry` configuration option was [removed](https://github.com/hassio-addons/addon-vscode/commit/3bfbc45ddeb4f2473330f5585b66020d7b4fa91b) in [v2.2.0](https://github.com/hassio-addons/addon-vscode/releases/tag/v2.2.0), as telemetry was changed to be disabled by default. If you see a warning in the Supervisor log "`Unknown options disable_telemetry`", please remove the `disable_telemtry` line from the add-on configuration.
-
 ## Changelog & Releases
 
 This repository keeps a change log using [GitHub's releases][releases]
