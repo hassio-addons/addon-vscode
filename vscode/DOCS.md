@@ -35,7 +35,6 @@ packages:
   - mariadb-client
 init_commands:
   - ls -la
-disable_telemetry: false
 ```
 
 **Note**: _This is just an example, don't copy and paste it! Create your own!_
@@ -71,10 +70,6 @@ time for the add-on._
 Customize your VSCode environment even more with the `init_commands` option.
 Add one or more shell commands to the list, and they will be executed every
 single time this add-on starts.
-
-### Option: `disable_telemetry`
-
-Disables anonymous usage telemetry data from being sent to code-server.
 
 ## Resetting your VSCode settings to the add-on defaults
 
@@ -140,6 +135,8 @@ will come up with a better solution for this soon.
    a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:
 
    <https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc>
+   
+- The `disable_telemetry` configuration option was [removed](https://github.com/hassio-addons/addon-vscode/commit/3bfbc45ddeb4f2473330f5585b66020d7b4fa91b) in [v2.2.0](https://github.com/hassio-addons/addon-vscode/releases/tag/v2.2.0), as telemetry was changed to be disabled by default. If you see a warning in the Supervisor log "`Unknown options disable_telemetry`", please remove the `disable_telemtry` line from the add-on configuration.
 
 ## Changelog & Releases
 
