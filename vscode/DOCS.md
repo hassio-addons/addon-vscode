@@ -135,7 +135,7 @@ will come up with a better solution for this soon.
    a generic Linux setup (e.g., Ubuntu), follow this guide by Microsoft:
 
    <https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc>
-   
+
 ## Changelog & Releases
 
 This repository keeps a change log using [GitHub's releases][releases]
