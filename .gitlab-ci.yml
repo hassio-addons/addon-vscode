@@ -10,5 +10,5 @@ variables:
   ADDON_ARMV7: "false"
   ADDON_I386: "false"
 
-  ADDON_AARCH64_BASE: "hassioaddons/debian-base-aarch64:3.2.0"
-  ADDON_AMD64_BASE: "hassioaddons/debian-base-amd64:3.2.0"
+  ADDON_AARCH64_BASE: "hassioaddons/debian-base-aarch64:3.2.1"
+  ADDON_AMD64_BASE: "hassioaddons/debian-base-amd64:3.2.1"

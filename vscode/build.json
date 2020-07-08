@@ -1,7 +1,7 @@
 {
   "build_from": {
-    "aarch64": "hassioaddons/debian-base-aarch64:3.2.0",
-    "amd64": "hassioaddons/debian-base-amd64:3.2.0"
+    "aarch64": "hassioaddons/debian-base-aarch64:3.2.1",
+    "amd64": "hassioaddons/debian-base-amd64:3.2.1"
   },
   "args": {}
 }
