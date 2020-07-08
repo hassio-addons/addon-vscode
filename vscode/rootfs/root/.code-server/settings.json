@@ -87,5 +87,6 @@
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.projectDetection.disableDetect": true,
   "workbench.iconTheme": "vs-seti",
-  "yaml.format.enable": true
+  "yaml.format.enable": true,
+  "materialdesigniconsIntellisense.mdiVersion": "4.5.95"
 }
