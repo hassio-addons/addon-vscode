@@ -59,7 +59,8 @@ RUN \
     && ln -s /usr/local/lib/code-server/bin/code-server /usr/local/bin/code-server \
     \
     && mkdir -p /root/.code-server/extensions \
-    && while read -r ext; do  \
+    && uuid=$(uuidgen) \
+    && while read -r ext; do \
         extention="${ext%%#*}" \
         vendor="${extention%%.*}"; \
         slug="${extention#*.}"; \
@@ -70,6 +71,7 @@ RUN \
         echo "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
         curl -JL --retry 5 -o "/tmp/${extention}-${version}.vsix" \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" \
+            -H "x-market-user-id: ${uuid}" \
             "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
         mkdir -p "/root/.code-server/extensions/${extention}-${version}"; \
         bsdtar --strip-components=1 -xf "/tmp/${extention}-${version}.vsix" \
