@@ -75,7 +75,7 @@ RUN \
         bsdtar --strip-components=1 -xf "/tmp/${extention}-${version}.vsix" \
                     -C "/root/.code-server/extensions/${extention}-${version}" extension; \
         [ $? -ne 0 ] && exit 1; \
-        sleep 180; \
+        sleep 300; \
     done < /root/vscode.extensions \
     && ls -la /root/.code-server/extensions/ \
     \
