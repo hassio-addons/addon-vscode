@@ -40,6 +40,7 @@ RUN \
         python3-dev=3.7.3-1 \
         python3=3.7.3-1 \
         wget=1.20.1-1.1 \
+        uuid-runtime=2.33.1-0.1 \
         zsh=5.7.1-1 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
@@ -77,7 +78,7 @@ RUN \
         bsdtar --strip-components=1 -xf "/tmp/${extention}-${version}.vsix" \
                     -C "/root/.code-server/extensions/${extention}-${version}" extension; \
         [ $? -ne 0 ] && exit 1; \
-        sleep 300; \
+        sleep 1; \
     done < /root/vscode.extensions \
     && ls -la /root/.code-server/extensions/ \
     \
