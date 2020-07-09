@@ -104,6 +104,7 @@ RUN \
         bsdtar \
         build-essential \
         python3-dev \
+        uuid-runtime \
     \
     && find /usr/local/lib/python3.7/ -type d -name tests -depth -exec rm -rf {} \; \
     && find /usr/local/lib/python3.7/ -type d -name test -depth -exec rm -rf {} \; \
