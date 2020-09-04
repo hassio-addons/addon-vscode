@@ -83,7 +83,7 @@ RUN \
     && ls -la /root/.code-server/extensions/ \
     \
     && curl -L -s -o /usr/bin/ha \
-        "https://github.com/home-assistant/cli/releases/download/4.3.0/ha_${BUILD_ARCH}" \
+        "https://github.com/home-assistant/cli/releases/download/4.4.0/ha_${BUILD_ARCH}" \
     && chmod a+x /usr/bin/ha \
     \
     && git clone --branch master --single-branch --depth 1 \
