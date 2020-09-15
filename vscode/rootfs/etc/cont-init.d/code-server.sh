@@ -3,6 +3,7 @@
 # Home Assistant Community Add-on: Visual Studio Code
 # Sets up code-server.
 # ==============================================================================
+declare config_path
 
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
@@ -15,6 +16,13 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     c5b8acf06ef6d9a2435e9ddb92cb9fce7cfbfe4a2206b0e0c3c4ed514cc926f8d3c662e694a995d102b5ba939056f93201c220558e06e1cd0872bfb1995ba148
     08d86c84a0d80720b22712e878963e90cbb34b659330dad8a823f3c5c7f0ae043d197a5e3020dd7ab4fda3625e17f794675ec074984951e7107db2488898a8d0
 )
+
+if bashio::config.has_value 'config_path'; then
+    config_path=$(bashio::config 'config_path')
+    if ! bashio::fs.directory_exists "${config_path}"; then
+        bashio::exit.nok "Configured config path does not exists"
+    fi
+fi
 
 # Ensure persistent data folder exists.
 if ! bashio::fs.directory_exists '/data/vscode'; then

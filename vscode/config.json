@@ -30,6 +30,7 @@
   },
   "schema": {
     "log_level": "list(trace|debug|info|notice|warning|error|fatal)?",
+    "config_path": "str?",
     "packages": ["str"],
     "init_commands": ["str"]
   }
