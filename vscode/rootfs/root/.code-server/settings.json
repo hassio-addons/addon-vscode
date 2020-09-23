@@ -75,7 +75,10 @@
   "[home-assistant]": {
     "editor.autoIndent": "full",
     "editor.insertSpaces": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
   },
   "editor.renderWhitespace": "boundary",
   "esphome.dashboardUri": "15ef4d2f-esphome.local.hass.io:6052",
@@ -87,5 +90,7 @@
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.projectDetection.disableDetect": true,
   "workbench.iconTheme": "vs-seti",
-  "yaml.format.enable": true
+  "yaml.format.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80, 88, 100, 120]
 }
