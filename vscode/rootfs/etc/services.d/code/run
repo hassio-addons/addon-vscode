@@ -19,6 +19,7 @@ options+=(--extra-builtin-extensions-dir "/root/.code-server/extensions/")
 options+=(--extensions-dir "/data/vscode/extensions")
 options+=(--host 0.0.0.0)
 options+=(--disable-telemetry)
+options+=(--disable-update-check)
 
 # Disable code authentication, we use HA authentication
 options+=(--auth none)
