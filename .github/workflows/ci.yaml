@@ -18,7 +18,7 @@ jobs:
     outputs:
       architectures: ${{ steps.information.outputs.architectures }}
       build: ${{ steps.information.outputs.build }}
-      description: ${{ steps.information.output.description }}
+      description: ${{ steps.information.outputs.description }}
       name: ${{ steps.information.outputs.name }}
       slug: ${{ steps.information.outputs.slug }}
       target: ${{ steps.information.outputs.target }}
