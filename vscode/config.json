@@ -10,7 +10,6 @@
   "startup": "services",
   "init": false,
   "arch": ["aarch64", "amd64"],
-  "boot": "auto",
   "auto_uart": true,
   "hassio_api": true,
   "hassio_role": "manager",
