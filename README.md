@@ -10,7 +10,7 @@
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
-[![GitLab CI][gitlabci-shield]][gitlabci]
+[![Github Actions][github-actions-shield]][github-actions]
 ![Project Maintenance][maintenance-shield]
 [![GitHub Activity][commits-shield]][commits]
 
@@ -108,19 +108,19 @@ SOFTWARE.
 [armhf-shield]: https://img.shields.io/badge/armhf-no-red.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-no-red.svg
 [commits-shield]: https://img.shields.io/github/commit-activity/y/hassio-addons/addon-vscode.svg
-[commits]: https://github.com/hassio-addons/addon-vscode/commits/master
+[commits]: https://github.com/hassio-addons/addon-vscode/commits/main
 [contributors]: https://github.com/hassio-addons/addon-vscode/graphs/contributors
 [discord-ha]: https://discord.gg/c5DvZ4e
 [discord-shield]: https://img.shields.io/discord/478094546522079232.svg
 [discord]: https://discord.me/hassioaddons
-[docs]: https://github.com/hassio-addons/addon-vscode/blob/master/vscode/DOCS.md
+[docs]: https://github.com/hassio-addons/addon-vscode/blob/main/vscode/DOCS.md
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg
 [forum]: https://community.home-assistant.io/t/home-assistant-community-add-on-visual-studio-code/107863?u=frenck
 [frenck]: https://github.com/frenck
+[github-actions-shield]: https://github.com/hassio-addons/addon-example/workflows/CI/badge.svg
+[github-actions]: https://github.com/hassio-addons/addon-example/actions
 [github-sponsors-shield]: https://frenck.dev/wp-content/uploads/2019/12/github_sponsor.png
 [github-sponsors]: https://github.com/sponsors/frenck
-[gitlabci-shield]: https://gitlab.com/hassio-addons/addon-vscode/badges/master/pipeline.svg
-[gitlabci]: https://gitlab.com/hassio-addons/addon-vscode/pipelines
 [i386-shield]: https://img.shields.io/badge/i386-no-red.svg
 [issue]: https://github.com/hassio-addons/addon-vscode/issues
 [license-shield]: https://img.shields.io/github/license/hassio-addons/addon-vscode.svg
