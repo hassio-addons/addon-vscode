@@ -39,8 +39,10 @@ RUN \
         openssl=1.1.1d-0+deb10u3 \
         python3-dev=3.7.3-1 \
         python3=3.7.3-1 \
-        wget=1.20.1-1.1 \
+        unzip=6.0-23+deb10u1 \
         uuid-runtime=2.33.1-0.1 \
+        wget=1.20.1-1.1 \
+        zip=3.0-11+b1 \
         zsh=5.7.1-1 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
