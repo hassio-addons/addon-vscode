@@ -74,7 +74,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v2.3.4
       - name: 🚀 Run mdl
-        uses: actionshub/markdownlint@2.0.0
+        uses: actionshub/markdownlint@2.0.2
 
   lint-shellcheck:
     name: Shellcheck
