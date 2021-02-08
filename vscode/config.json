@@ -10,7 +10,7 @@
   "startup": "services",
   "init": false,
   "arch": ["aarch64", "amd64"],
-  "auto_uart": true,
+  "uart": true,
   "hassio_api": true,
   "hassio_role": "manager",
   "homeassistant_api": true,
