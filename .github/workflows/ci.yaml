@@ -161,7 +161,7 @@ jobs:
             exit 1
           fi
       - name: 🚀 Build
-        uses: docker/build-push-action@v2.2.2
+        uses: docker/build-push-action@v2.3.0
         with:
           push: false
           context: ${{ needs.information.outputs.target }}
