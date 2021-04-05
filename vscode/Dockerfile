@@ -36,7 +36,7 @@ RUN \
         net-tools=1.60+git20180626.aebd88e-1 \
         nmap=7.70+dfsg1-6+deb10u1 \
         openssh-client=1:7.9p1-10+deb10u2 \
-        openssl=1.1.1d-0+deb10u4 \
+        openssl=1.1.1d-0+deb10u6 \
         python3-dev=3.7.3-1 \
         python3=3.7.3-1 \
         unzip=6.0-23+deb10u2 \
