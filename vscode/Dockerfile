@@ -29,7 +29,7 @@ RUN \
         build-essential=12.6 \
         colordiff=1.0.18-1 \
         git=1:2.20.1-2+deb10u3 \
-        iputils-ping=3:20180629-2+deb10u1 \
+        iputils-ping=3:20180629-2+deb10u2 \
         locales=2.28-10 \
         mariadb-client=1:10.3.27-0+deb10u1 \
         mosquitto-clients=1.5.7-1+deb10u1 \
