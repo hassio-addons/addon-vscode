@@ -63,6 +63,7 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+# shellcheck-ignore: SC1091
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
