@@ -38,7 +38,7 @@ jobs:
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v2.3.4
       - name: 🚀 Run Add-on Lint
-        uses: frenck/action-addon-linter@v2.1
+        uses: frenck/action-addon-linter@v2
         with:
           community: true
           path: "./${{ needs.information.outputs.target }}"
@@ -132,13 +132,17 @@ jobs:
         uses: actions/cache@v2.1.5
         with:
           path: /tmp/.docker-cache
-          key: docker-${{ github.ref }}-${{ matrix.architecture }}-${{ github.sha }}
+          key:
+            docker-${{ github.ref }}-${{ matrix.architecture }}-${{ github.sha
+            }}
           restore-keys: |
             docker-${{ github.ref }}-${{ matrix.architecture }}
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@v1.1.0
       - name: 🏗 Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.3.0
+      - name: 🏗 Set up CodeNotary
+        run: bash <(curl https://getvcn.codenotary.com -L)
       - name: ℹ️ Compose build flags
         id: flags
         run: |
@@ -160,6 +164,19 @@ jobs:
             echo "::error ::Could not determine platform for architecture ${{ matrix.architecture }}"
             exit 1
           fi
+      - name: ⤵️ Download base image
+        run: docker pull "${{ steps.flags.outputs.from }}"
+      - name: ✅ Verify authenticity of base image
+        run: |
+          vcn authenticate \
+            "docker://${{ steps.flags.outputs.from }}"
+          vcn authenticate \
+            --output json \
+            --signerID 0x03e406879fd89e52f38f4aab0061266d1183980a \
+            "docker://${{ steps.flags.outputs.from }}" \
+            | jq \
+              --exit-status \
+              '.verification.status == 0'
       - name: 🚀 Build
         uses: docker/build-push-action@v2.4.0
         with:

@@ -64,6 +64,10 @@ jobs:
       matrix:
         architecture: ${{ fromJson(needs.information.outputs.architectures) }}
     steps:
+      - name: 🔂 Wait for other runs to complete
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: ⤵️ Check out code from GitHub
         uses: actions/checkout@v2.3.4
       - name: 🏗 Set up build cache
@@ -71,13 +75,17 @@ jobs:
         uses: actions/cache@v2.1.5
         with:
           path: /tmp/.docker-cache
-          key: docker-${{ github.ref }}-${{ matrix.architecture }}-${{ github.sha }}
+          key:
+            docker-${{ github.ref }}-${{ matrix.architecture }}-${{ github.sha
+            }}
           restore-keys: |
             docker-${{ github.ref }}-${{ matrix.architecture }}
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@v1.1.0
       - name: 🏗 Set up Docker Buildx
         uses: docker/setup-buildx-action@v1.3.0
+      - name: 🏗 Set up CodeNotary
+        run: bash <(curl https://getvcn.codenotary.com -L)
       - name: ℹ️ Compose build flags
         id: flags
         run: |
@@ -103,12 +111,25 @@ jobs:
         uses: docker/login-action@v1.9.0
         with:
           registry: ghcr.io
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_PASSWORD }}
-      - name: 🚀 Build and push
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: ⤵️ Download base image
+        run: docker pull "${{ steps.flags.outputs.from }}"
+      - name: ✅ Verify authenticity of base image
+        run: |
+          vcn authenticate \
+            "docker://${{ steps.flags.outputs.from }}"
+          vcn authenticate \
+            --output json \
+            --signerID 0x03e406879fd89e52f38f4aab0061266d1183980a \
+            "docker://${{ steps.flags.outputs.from }}" \
+            | jq \
+              --exit-status \
+              '.verification.status == 0'
+      - name: 🚀 Build
         uses: docker/build-push-action@v2.4.0
         with:
-          push: true
+          load: true
           # yamllint disable rule:line-length
           tags: |
             ghcr.io/hassio-addons/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:${{ needs.information.outputs.environment }}
@@ -130,6 +151,33 @@ jobs:
             BUILD_REF=${{ github.sha }}
             BUILD_REPOSITORY=${{ github.repository }}
             BUILD_VERSION=${{ needs.information.outputs.version }}
+      - name: 🔏 Notarize
+        # yamllint disable rule:line-length
+        run: |
+          if vcn authenticate \
+            --output json \
+            "docker://ghcr.io/hassio-addons/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:${{ needs.information.outputs.version }}" \
+            | jq \
+              --exit-status \
+              '.verification.status != 0';
+          then
+            vcn login
+            vcn notarize \
+              --public \
+              "docker://ghcr.io/hassio-addons/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:${{ needs.information.outputs.version }}"
+          fi
+        env:
+          VCN_USER: ${{ secrets.VCN_USER }}
+          VCN_PASSWORD: ${{ secrets.VCN_PASSWORD }}
+          VCN_NOTARIZATION_PASSWORD: ${{ secrets.VCN_NOTARIZATION_PASSWORD }}
+          VCN_OTP_EMPTY: true
+      - name: 🚀 Push
+        # yamllint disable rule:line-length
+        run: |
+          docker push \
+            "ghcr.io/hassio-addons/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:${{ needs.information.outputs.environment }}"
+          docker push \
+            "ghcr.io/hassio-addons/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:${{ needs.information.outputs.version }}"
 
   publish-edge:
     name: 📢 Publish to edge repository
