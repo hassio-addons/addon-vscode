@@ -34,7 +34,7 @@ RUN \
         mariadb-client=1:10.3.29-0+deb10u1 \
         mosquitto-clients=1.5.7-1+deb10u1 \
         net-tools=1.60+git20180626.aebd88e-1 \
-        nmap=7.70+dfsg1-6+deb10u1 \
+        nmap=7.70+dfsg1-6+deb10u2 \
         openssh-client=1:7.9p1-10+deb10u2 \
         openssl=1.1.1d-0+deb10u6 \
         python3-dev=3.7.3-1 \
