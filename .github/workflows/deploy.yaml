@@ -83,7 +83,7 @@ jobs:
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@v1.2.0
       - name: 🏗 Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1.4.1
+        uses: docker/setup-buildx-action@v1.5.0
       - name: 🏗 Set up CodeNotary
         run: bash <(curl https://getvcn.codenotary.com -L)
       - name: ℹ️ Compose build flags
