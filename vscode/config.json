@@ -6,6 +6,7 @@
   "url": "https://github.com/hassio-addons/addon-vscode",
   "ingress": true,
   "ingress_port": 1337,
+  "ingress_stream": true,
   "panel_icon": "mdi:microsoft-visual-studio-code",
   "startup": "services",
   "init": false,
