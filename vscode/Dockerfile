@@ -41,7 +41,7 @@ RUN \
         python3=3.9.2-3 \
         unzip=6.0-26 \
         uuid-runtime=2.36.1-8 \
-        wget=1.21-1 \
+        wget>=1.21-1 \
         zip=3.0-12 \
         zsh=5.8-6+b2 \
     \
