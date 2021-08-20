@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:4.2.3
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.0.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -24,26 +24,26 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        ack=2.24-1 \
-        bsdtar=3.3.3-4+deb10u1 \
-        build-essential=12.6 \
-        colordiff=1.0.18-1 \
-        git=1:2.20.1-2+deb10u3 \
-        iputils-ping=3:20180629-2+deb10u2 \
-        locales=2.28-10 \
-        mariadb-client=1:10.3.29-0+deb10u1 \
-        mosquitto-clients=1.5.7-1+deb10u1 \
-        net-tools=1.60+git20180626.aebd88e-1 \
-        nmap=7.70+dfsg1-6+deb10u2 \
-        openssh-client=1:7.9p1-10+deb10u2 \
-        openssl=1.1.1d-0+deb10u6 \
-        python3-dev=3.7.3-1 \
-        python3=3.7.3-1 \
-        unzip=6.0-23+deb10u2 \
-        uuid-runtime=2.33.1-0.1 \
-        wget=1.20.1-1.1 \
-        zip=3.0-11+b1 \
-        zsh=5.7.1-1 \
+        ack=3.4.0-1 \
+        libarchive-tools=3.4.3-2+b1 \
+        build-essential=12.9 \
+        colordiff=1.0.18-1.1 \
+        git=1:2.30.2-1 \
+        iputils-ping=3:20210202-1 \
+        locales=2.31-13 \
+        mariadb-client=1:10.5.11-1 \
+        mosquitto-clients=2.0.11-1 \
+        net-tools=1.60+git20181103.0eebece-1 \
+        nmap=7.91+dfsg1+really7.80+dfsg1-2 \
+        openssh-client=1:8.4p1-5 \
+        openssl=1.1.1k-1 \
+        python3-dev=3.9.2-3 \
+        python3=3.9.2-3 \
+        unzip=6.0-26 \
+        uuid-runtime=2.36.1-8 \
+        wget>=1.21-1 \
+        zip=3.0-12 \
+        zsh=5.8-6+b2 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
@@ -112,10 +112,10 @@ RUN \
         python3-dev \
         uuid-runtime \
     \
-    && find /usr/local/lib/python3.7/ -type d -name tests -depth -exec rm -rf {} \; \
-    && find /usr/local/lib/python3.7/ -type d -name test -depth -exec rm -rf {} \; \
-    && find /usr/local/lib/python3.7/ -name __pycache__ -depth -exec rm -rf {} \; \
-    && find /usr/local/lib/python3.7/ -name "*.pyc" -depth -exec rm -f {} \; \
+    && find /usr/local \
+        \( -type d -a -name test -o -name tests -o -name '__pycache__' \) \
+        -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
+        -exec rm -rf '{}' + \
     \
     && rm -fr \
         /tmp/* \
