@@ -125,7 +125,7 @@ jobs:
               --exit-status \
               '.verification.status == 0'
       - name: 🚀 Build
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           load: true
           # yamllint disable rule:line-length
