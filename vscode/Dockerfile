@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.2.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -30,13 +30,13 @@ RUN \
         colordiff=1.0.18-1.1 \
         git=1:2.30.2-1 \
         iputils-ping=3:20210202-1 \
-        locales=2.31-13 \
-        mariadb-client=1:10.5.11-1 \
+        locales=2.31-13+deb11u2 \
+        mariadb-client=1:10.5.12-0+deb11u1 \
         mosquitto-clients=2.0.11-1 \
         net-tools=1.60+git20181103.0eebece-1 \
         nmap=7.91+dfsg1+really7.80+dfsg1-2 \
         openssh-client=1:8.4p1-5 \
-        openssl=1.1.1k-1 \
+        openssl=1.1.1k-1+deb11u1 \
         python3-dev=3.9.2-3 \
         python3=3.9.2-3 \
         unzip=6.0-26 \
@@ -51,9 +51,9 @@ RUN \
     && curl https://bootstrap.pypa.io/get-pip.py | python3 \
     \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
-    && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
+    && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="x64"; fi \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/v3.11.1/code-server-3.11.1-linux-${ARCH}.tar.gz" \
+        "https://github.com/gitpod-io/openvscode-server/releases/download/openvscode-server-v1.62.0/openvscode-server-v1.62.0-linux-${ARCH}.tar.gz" \
     && mkdir -p /usr/local/lib/code-server \
     && tar zxvf \
         /tmp/code.tar.gz \
