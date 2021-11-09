@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.0.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.2.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -36,7 +36,7 @@ RUN \
         net-tools=1.60+git20181103.0eebece-1 \
         nmap=7.91+dfsg1+really7.80+dfsg1-2 \
         openssh-client=1:8.4p1-5 \
-        openssl=1.1.1k-1 \
+        openssl=1.1.1k-1+deb11u1 \
         python3-dev=3.9.2-3 \
         python3=3.9.2-3 \
         unzip=6.0-26 \
