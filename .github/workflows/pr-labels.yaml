@@ -4,19 +4,14 @@ name: PR Labels
 # yamllint disable-line rule:truthy
 on:
   pull_request_target:
-    types: [opened, labeled, unlabeled, synchronize]
+    types:
+      - opened
+      - labeled
+      - unlabeled
+      - synchronize
 
 jobs:
-  pr_labels:
-    name: Verify
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏷 Verify PR has a valid label
-        uses: jesusvasquez333/verify-pr-label-action@v1.4.0
-        with:
-          pull-request-number: "${{ github.event.pull_request.number }}"
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          valid-labels: >-
-            breaking-change, bugfix, documentation, enhancement, refactor,
-            performance, new-feature, maintenance, ci, dependencies
-          disable-reviews: true
+  workflows:
+    uses: hassio-addons/workflows/.github/workflows/pr-labels.yaml@main
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
