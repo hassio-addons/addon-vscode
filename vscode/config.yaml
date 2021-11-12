@@ -1,8 +1,8 @@
 ---
-name: Visual Studio Code
+name: Studio Code Server
 version: dev
 slug: vscode
-description: Fully featured VSCode experience, to edit your HA config in the browser, including auto-completion!
+description: Fully featured Visual Studio Code (VSCode) experience integrated in the Home Assistant frontend.
 url: https://github.com/hassio-addons/addon-vscode
 ingress: true
 ingress_port: 1337

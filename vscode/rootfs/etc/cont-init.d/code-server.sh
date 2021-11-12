@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Home Assistant Community Add-on: Visual Studio Code
+# Home Assistant Community Add-on: Studio Code Server
 # Sets up code-server.
 # ==============================================================================
 declare config_path

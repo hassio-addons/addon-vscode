@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Home Assistant Community Add-on: Visual Studio Code
+# Home Assistant Community Add-on: Studio Code Server
 # Persists user settings and installs custom user packages.
 # ==============================================================================
 readonly -a DIRECTORIES=(addons backup config media share ssl)
