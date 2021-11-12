@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# Home Assistant Community Add-on: Visual Studio Code
+# Home Assistant Community Add-on: Studio Code Server
 # Runs the code server
 # ==============================================================================
 declare -a options
