@@ -53,7 +53,7 @@ RUN \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/v3.12.0/code-server-3.12.0-linux-${ARCH}.tar.gz" \
+        "https://github.com/cdr/code-server/releases/download/v4.0.1/code-server-4.0.1-linux-${ARCH}.tar.gz" \
     && mkdir -p /usr/local/lib/code-server \
     && tar zxvf \
         /tmp/code.tar.gz \
@@ -77,13 +77,13 @@ RUN \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" \
             -H "x-market-user-id: ${uuid}" \
             "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
-        mkdir -p "/root/.code-server/extensions/${extention}-${version}"; \
+        mkdir -p "/usr/local/lib/code-server/vendor/modules/code-oss-dev/extensions/${extention}-${version}"; \
         bsdtar --strip-components=1 -xf "/tmp/${extention}-${version}.vsix" \
-                    -C "/root/.code-server/extensions/${extention}-${version}" extension; \
+                    -C "/usr/local/lib/code-server/vendor/modules/code-oss-dev/extensions/${extention}-${version}" extension; \
         [ $? -ne 0 ] && exit 1; \
         sleep 1; \
     done < /root/vscode.extensions \
-    && ls -la /root/.code-server/extensions/ \
+    && ls -la /usr/local/lib/code-server/vendor/modules/code-oss-dev/extensions/ \
     \
     && curl -L -s -o /usr/bin/ha \
         "https://github.com/home-assistant/cli/releases/download/4.15.1/ha_${BUILD_ARCH}" \
