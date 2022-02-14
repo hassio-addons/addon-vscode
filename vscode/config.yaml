@@ -30,6 +30,10 @@ services:
 options:
   packages: []
   init_commands: []
+ports:
+  1337/tcp: null
+ports_description:
+  1337/tcp: Code Server HTTP service (requires a configured password)
 schema:
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   config_path: str?
@@ -37,3 +41,4 @@ schema:
     - str
   init_commands:
     - str
+  password: password?

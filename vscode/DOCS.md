@@ -80,6 +80,13 @@ Customize your VSCode environment even more with the `init_commands` option.
 Add one or more shell commands to the list, and they will be executed every
 single time this add-on starts.
 
+### Option: `password`
+
+Set a password to access Code Server. By default, your Code Server instance
+is protected by Home Assistant's authentication. If you choose to expose
+Code Server to your network by setting a port, this option will be
+required.
+
 ## Resetting your VSCode settings to the add-on defaults
 
 The add-on updates your settings to be optimized for use with Home Assistant.
