@@ -88,7 +88,7 @@ might be destructive. However, in case you changed some things, but want to
 return to the defaults as delivered by this add-on, do the following:
 
 1. Open the Visual Studio Code editor.
-1. Click on `Terminal` in the top menu bar and clik on `New Terminal`.
+1. Click on `Terminal` in the top menu bar and click on `New Terminal`.
 1. Execute the following command in the terminal window: `reset-settings`.
 1. Done!
 
