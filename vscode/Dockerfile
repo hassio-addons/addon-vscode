@@ -90,13 +90,13 @@ RUN \
     && chmod a+x /usr/bin/ha \
     \
     && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
+        "https://github.com/robbyrussell/oh-my-zsh.git" ~/.oh-my-zsh \
     \
     && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/zsh-users/zsh-autosuggestions" \
+        "https://github.com/zsh-users/zsh-autosuggestions" \
         ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions \
     && git clone --branch master --single-branch --depth 1 \
-        "git://github.com/zsh-users/zsh-syntax-highlighting.git" \
+        "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
         ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting \
     \
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd \
