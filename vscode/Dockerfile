@@ -83,7 +83,7 @@ RUN \
         [ $? -ne 0 ] && exit 1; \
         sleep 1; \
     done < /root/vscode.extensions \
-    && ls -la //usr/local/lib/code-server/lib/vscode/extensions/extensions/ \
+    && ls -la /usr/local/lib/code-server/lib/vscode/extensions/ \
     \
     && curl -L -s -o /usr/bin/ha \
         "https://github.com/home-assistant/cli/releases/download/4.15.1/ha_${BUILD_ARCH}" \
