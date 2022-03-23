@@ -77,13 +77,13 @@ RUN \
             -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" \
             -H "x-market-user-id: ${uuid}" \
             "https://marketplace.visualstudio.com/_apis/public/gallery/publishers/${vendor}/vsextensions/${slug}/${version}/vspackage"; \
-        mkdir -p "/usr/local/lib/code-server/vendor/modules/code-oss-dev/extensions/${extention}-${version}"; \
+        mkdir -p "/usr/local/lib/code-server/lib/vscode/extensions/${extention}-${version}"; \
         bsdtar --strip-components=1 -xf "/tmp/${extention}-${version}.vsix" \
-                    -C "/usr/local/lib/code-server/vendor/modules/code-oss-dev/extensions/${extention}-${version}" extension; \
+                    -C "/usr/local/lib/code-server/lib/vscode/extensions/${extention}-${version}" extension; \
         [ $? -ne 0 ] && exit 1; \
         sleep 1; \
     done < /root/vscode.extensions \
-    && ls -la /usr/local/lib/code-server/vendor/modules/code-oss-dev/extensions/ \
+    && ls -la /usr/local/lib/code-server/lib/vscode/extensions/ \
     \
     && curl -L -s -o /usr/bin/ha \
         "https://github.com/home-assistant/cli/releases/download/4.15.1/ha_${BUILD_ARCH}" \
