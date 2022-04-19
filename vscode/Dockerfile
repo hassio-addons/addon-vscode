@@ -40,7 +40,7 @@ RUN \
         python3-dev=3.9.2-3 \
         python3=3.9.2-3 \
         unzip=6.0-26 \
-        uuid-runtime=2.36.1-8 \
+        uuid-runtime=2.36.1-8+deb11u1 \
         wget=1.21-1+deb11u1 \
         zip=3.0-12 \
         zsh>=5.8-6 \
