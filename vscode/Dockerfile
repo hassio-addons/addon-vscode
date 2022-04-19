@@ -30,7 +30,7 @@ RUN \
         colordiff=1.0.18-1.1 \
         git=1:2.30.2-1 \
         iputils-ping=3:20210202-1 \
-        locales=2.31-13+deb11u2 \
+        locales=2.31-13+deb11u3 \
         mariadb-client=1:10.5.12-0+deb11u1 \
         mosquitto-clients=2.0.11-1 \
         net-tools=1.60+git20181103.0eebece-1 \
