@@ -25,7 +25,7 @@ RUN \
     \
     && apt-get install -y --no-install-recommends \
         ack=3.4.0-1 \
-        libarchive-tools=3.4.3-2+b1 \
+        libarchive-tools=3.4.3-2+deb11u1 \
         build-essential=12.9 \
         colordiff=1.0.18-1.1 \
         git=1:2.30.2-1 \
