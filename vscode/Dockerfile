@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.3.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:5.3.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -43,7 +43,7 @@ RUN \
         uuid-runtime=2.36.1-8+deb11u1 \
         wget=1.21-1+deb11u1 \
         zip=3.0-12 \
-        zsh>=5.8-6 \
+        zsh=5.8-6+deb11u1 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
