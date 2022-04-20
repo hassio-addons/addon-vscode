@@ -1,1 +1,2 @@
+esphome==2022.3.2
 yamllint==1.26.3
