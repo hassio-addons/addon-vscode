@@ -81,8 +81,7 @@
     "editor.formatOnPaste": true
   },
   "editor.renderWhitespace": "boundary",
-  "esphome.dashboardUri": "15ef4d2f-esphome.local.hass.io:6052",
-  "esphome.validator": "dashboard",
+  "esphome.validator": "local",
   "telemetry.enableTelemetry": false,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.shell.linux": "/usr/bin/zsh",
