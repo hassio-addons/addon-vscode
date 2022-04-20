@@ -96,9 +96,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias reset-settings="cp /root/.code-server/settings.json /data/vscode/User/settings.json && echo 'Setting restored!'"
 
-# Home Assistant Core CLI
-eval "$(_HASS_CLI_COMPLETE=source_zsh hass-cli)"
-
 # Home Assistant CLI
 source <(ha completion --zsh)
 
