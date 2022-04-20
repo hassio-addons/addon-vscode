@@ -118,6 +118,7 @@ RUN \
         -exec rm -rf '{}' + \
     \
     && rm -fr \
+        /root/.cache \
         /tmp/* \
         /var/{cache,log}/* \
         /var/lib/apt/lists/*
