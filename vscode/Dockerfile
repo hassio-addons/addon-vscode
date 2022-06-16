@@ -44,7 +44,7 @@ RUN \
         wget=1.21-1+deb11u1 \
         zip=3.0-12 \
         zsh=5.8-6+deb11u1 \
-        less=551-2
+        less=551-2 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
