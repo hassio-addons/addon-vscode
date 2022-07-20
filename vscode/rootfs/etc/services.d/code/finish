@@ -5,7 +5,7 @@
 # ==============================================================================
 if [[ "${1}" -ne 0 ]] && [[ "${1}" -ne 256 ]]; then
   bashio::log.warning "code-server crashed, halting add-on"
-  /run/s6/basedir/bin/halt
+  exec /run/s6/basedir/bin/halt
 fi
 
 bashio::log.info "code-server stopped, restarting..."
