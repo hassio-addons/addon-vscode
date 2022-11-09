@@ -2,6 +2,7 @@
   "files.associations": {
     "*.dash": "yaml",
     "**/esphome/*.yaml": "esphome",
+    "**/esphome/**/*.yaml": "esphome",
     "*.yaml": "home-assistant"
   },
   "files.watcherExclude": {
