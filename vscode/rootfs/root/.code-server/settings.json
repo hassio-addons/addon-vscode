@@ -20,6 +20,7 @@
     "**/*.db": true,
     "**/*.log": true,
     "**/deps/**": true,
+    "**/node_modules": true,
     "**/OZW_Log.txt": true,
     "**/pyozw.sqlite": true
   },
@@ -38,6 +39,7 @@
     "**/*.db": true,
     "**/*.log": true,
     "**/deps/**": true,
+    "**/node_modules": true,
     "**/OZW_Log.txt": true,
     "**/pyozw.sqlite": true
   },
@@ -52,7 +54,8 @@
     "**/*.db-shm": true,
     "**/*.db-wal": true,
     "**/*.db": true,
-    "**/deps/**": true
+    "**/deps/**": true,
+    "**/node_modules": true
   },
   "yaml.customTags": [
     "!env_var scalar",
