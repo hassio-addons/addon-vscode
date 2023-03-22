@@ -1,2 +1,2 @@
-esphome==2023.3.0
+esphome==2023.3.1
 yamllint==1.29.0
