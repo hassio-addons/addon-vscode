@@ -19,6 +19,8 @@ COPY vscode.extensions /root/vscode.extensions
 
 # Setup base system
 ARG BUILD_ARCH=amd64
+ARG CODE_SERVER_VERSION="v4.11.0"
+ARG HA_CLI_VERSION="4.23.0"
 # hadolint ignore=SC2181, DL3008
 RUN \
     apt-get update \
@@ -54,7 +56,7 @@ RUN \
     && if [[ "${BUILD_ARCH}" = "aarch64" ]]; then ARCH="arm64"; fi \
     && if [[ "${BUILD_ARCH}" = "amd64" ]]; then ARCH="amd64"; fi \
     && curl -J -L -o /tmp/code.tar.gz \
-        "https://github.com/cdr/code-server/releases/download/v4.11.0/code-server-4.11.0-linux-${ARCH}.tar.gz" \
+        "https://github.com/cdr/code-server/releases/download/${CODE_SERVER_VERSION}/code-server-${CODE_SERVER_VERSION#v}-linux-${ARCH}.tar.gz" \
     && mkdir -p /usr/local/lib/code-server \
     && tar zxvf \
         /tmp/code.tar.gz \
@@ -86,7 +88,7 @@ RUN \
     && ls -la /usr/local/lib/code-server/lib/vscode/extensions/ \
     \
     && curl -L -s -o /usr/bin/ha \
-        "https://github.com/home-assistant/cli/releases/download/4.23.0/ha_${BUILD_ARCH}" \
+        "https://github.com/home-assistant/cli/releases/download/${HA_CLI_VERSION}/ha_${BUILD_ARCH}" \
     && chmod a+x /usr/bin/ha \
     \
     && git clone --branch master --single-branch --depth 1 \
