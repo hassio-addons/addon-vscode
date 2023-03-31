@@ -52,7 +52,8 @@
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["esbenp\\.prettier-vscode#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "prettier/prettier-vscode"
+      "depNameTemplate": "prettier/prettier-vscode",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
       "fileMatch": ["vscode/vscode.extensions$"],
@@ -67,7 +68,8 @@
         "keesschollaart\\.vscode-home-assistant#(?<currentValue>.+)\\s"
       ],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "keesschollaart81/vscode-home-assistant"
+      "depNameTemplate": "keesschollaart81/vscode-home-assistant",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
       "fileMatch": ["vscode/vscode.extensions$"],
@@ -75,7 +77,8 @@
         "lukas-tr\\.materialdesignicons-intellisense#(?<currentValue>.+)\\s"
       ],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "lukas-tr/vscode-materialdesignicons-intellisense"
+      "depNameTemplate": "lukas-tr/vscode-materialdesignicons-intellisense",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
       "fileMatch": ["vscode/vscode.extensions$"],
@@ -87,7 +90,8 @@
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["usernamehw\\.errorlens#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
-      "depNameTemplate": "usernamehw/vscode-error-lens"
+      "depNameTemplate": "usernamehw/vscode-error-lens",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ],
   "packageRules": [
