@@ -102,12 +102,12 @@
     {
       "groupName": "Add-on base image",
       "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["patch"],
+      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     },
     {
       "matchDatasources": ["github-releases"],
-      "matchDepNames": ["cdr/code-server"],
+      "matchDepNames": ["coder/code-server"],
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
     },
