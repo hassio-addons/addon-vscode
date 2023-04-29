@@ -33,7 +33,7 @@ RUN \
         git=1:2.30.2-1+deb11u2 \
         iputils-ping=3:20210202-1 \
         locales=2.31-13+deb11u5 \
-        mariadb-client=1:10.5.18-0+deb11u1 \
+        mariadb-client=1:10.5.19-0+deb11u2 \
         mosquitto-clients=2.0.11-1 \
         net-tools=1.60+git20181103.0eebece-1 \
         nmap=7.91+dfsg1+really7.80+dfsg1-2 \
