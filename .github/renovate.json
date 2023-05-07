@@ -60,7 +60,8 @@
       "matchStrings": ["ESPHome\\.esphome-vscode#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "esphome/esphome-vscode",
-      "versioningTemplate": "loose"
+      "versioningTemplate": "loose",
+      "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
       "fileMatch": ["vscode/vscode.extensions$"],
