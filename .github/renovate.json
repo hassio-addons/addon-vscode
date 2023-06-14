@@ -23,7 +23,7 @@
       ],
       "versioningTemplate": "deb",
       "datasourceTemplate": "repology",
-      "depNameTemplate": "debian_11/{{{replace 'openssh-client' 'openssh' package}}}"
+      "depNameTemplate": "debian_12/{{{replace 'openssh-client' 'openssh' package}}}"
     },
     {
       "fileMatch": ["/Dockerfile$"],
