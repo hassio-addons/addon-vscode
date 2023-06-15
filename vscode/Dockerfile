@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:6.2.7
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.0.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -6,7 +6,8 @@ FROM ${BUILD_FROM}
 ENV \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
-    LC_ALL=en_US.UTF-8
+    LC_ALL=en_US.UTF-8 \
+    PIP_BREAK_SYSTEM_PACKAGES=1
 
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -26,27 +27,27 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        ack=3.4.0-1 \
-        libarchive-tools=3.4.3-2+deb11u1 \
+        ack=3.6.0-1 \
+        libarchive-tools=3.6.2-1 \
         build-essential=12.9 \
-        colordiff=1.0.18-1.1 \
-        git=1:2.30.2-1+deb11u2 \
-        iputils-ping=3:20210202-1 \
-        locales=2.31-13+deb11u5 \
-        mariadb-client=1:10.5.19-0+deb11u2 \
-        mosquitto-clients=2.0.11-1 \
-        net-tools=1.60+git20181103.0eebece-1 \
-        nmap=7.91+dfsg1+really7.80+dfsg1-2 \
-        openssh-client=1:8.4p1-5+deb11u1 \
-        openssl=1.1.1n-0+deb11u5 \
-        python3-dev=3.9.2-3 \
-        python3=3.9.2-3 \
-        unzip=6.0-26+deb11u1 \
-        uuid-runtime=2.36.1-8+deb11u1 \
-        wget=1.21-1+deb11u1 \
-        zip=3.0-12 \
-        zsh=5.8-6+deb11u1 \
-        less=551-2 \
+        colordiff=1.0.20-1 \
+        git=1:2.39.2-1.1 \
+        iputils-ping=3:20221126-1 \
+        locales=2.36-9 \
+        mariadb-client=1:10.11.3-1 \
+        mosquitto-clients=2.0.11-1.2 \
+        net-tools=2.10-0.1 \
+        nmap=7.93+dfsg1-1 \
+        openssh-client=1:9.2p1-2 \
+        openssl=3.0.9-1 \
+        python3-dev=3.11.2-1+b1 \
+        python3=3.11.2-1+b1 \
+        unzip=6.0-28 \
+        uuid-runtime=2.38.1-5+b1 \
+        wget>=1.21.3-1+b2 \
+        zip=3.0-13 \
+        zsh=5.9-4+b2 \
+        less=590-2 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
@@ -109,8 +110,8 @@ RUN \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     \
     && apt-get purge -y --auto-remove \
-        bsdtar \
         build-essential \
+        libarchive-tools \
         python3-dev \
         uuid-runtime \
     \
