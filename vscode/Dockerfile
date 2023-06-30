@@ -131,9 +131,7 @@ COPY rootfs /
 
 # Health check
 HEALTHCHECK \
-    CMD curl --fail http://127.0.0.1:1337/healthz \
-        | jq --exit-status '.status == "alive"' \
-        || exit 1
+    CMD curl --fail http://127.0.0.1:1337/healthz || exit 1
 
 # Build arguments
 ARG BUILD_ARCH
