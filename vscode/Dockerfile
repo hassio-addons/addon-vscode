@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.1.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.2.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -33,9 +33,9 @@ RUN \
         colordiff=1.0.20-1 \
         git=1:2.39.2-1.1 \
         iputils-ping=3:20221126-1 \
-        locales=2.36-9+deb12u1 \
+        locales=2.36-9+deb12u3 \
         mariadb-client=1:10.11.4-1~deb12u1 \
-        mosquitto-clients=2.0.11-1.2 \
+        mosquitto-clients=2.0.11-1.2+deb12u1 \
         net-tools=2.10-0.1 \
         nmap=7.93+dfsg1-1 \
         openssh-client=1:9.2p1-2+deb12u1 \
