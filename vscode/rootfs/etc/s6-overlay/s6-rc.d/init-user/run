@@ -18,9 +18,9 @@ done
 
 # Some links to old locations, to not mess with the user's muscle memory
 ln -s "/homeassistant" "/config" \
-    || bashio::log.warning "Failed linking common directory: ${dir}"
+    || bashio::log.warning "Failed linking common directory: /config"
 ln -s "/homeassistant" "${HOME}/config" \
-    || bashio::log.warning "Failed linking common directory: ${dir}"
+    || bashio::log.warning "Failed linking common directory: ${HOME}/config"
 
 # Store SSH settings in add-on data folder
 if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
