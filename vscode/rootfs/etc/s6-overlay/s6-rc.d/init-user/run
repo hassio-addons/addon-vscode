@@ -20,7 +20,7 @@ done
 ln -s "/homeassistant" "/config" \
     || bashio::log.warning "Failed linking common directory: ${dir}"
 ln -s "/homeassistant" "${HOME}/config" \
-    || bashio::log.warning "Failed linking common directory: ${dir}
+    || bashio::log.warning "Failed linking common directory: ${dir}"
 
 # Store SSH settings in add-on data folder
 if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
