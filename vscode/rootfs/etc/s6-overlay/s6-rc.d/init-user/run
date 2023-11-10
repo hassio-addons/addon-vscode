@@ -4,7 +4,7 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Persists user settings and installs custom user packages.
 # ==============================================================================
-readonly -a DIRECTORIES=(addons backup config media share ssl)
+readonly -a DIRECTORIES=(addon_configs addons backup homeassistant media share ssl)
 readonly GIT_USER_PATH=/data/git
 readonly SSH_USER_PATH=/data/.ssh
 readonly ZSH_HISTORY_FILE=/root/.zsh_history
@@ -15,6 +15,12 @@ for dir in "${DIRECTORIES[@]}"; do
     ln -s "/${dir}" "${HOME}/${dir}" \
         || bashio::log.warning "Failed linking common directory: ${dir}"
 done
+
+# Some links to old locations, to not mess with the user's muscle memory
+ln -s "/homeassistant" "/config" \
+    || bashio::log.warning "Failed linking common directory: ${dir}"
+ln -s "/homeassistant" "${HOME}/config" \
+    || bashio::log.warning "Failed linking common directory: ${dir}
 
 # Store SSH settings in add-on data folder
 if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
