@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.3.3
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.3.4
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -28,7 +28,7 @@ RUN \
     \
     && apt-get install -y --no-install-recommends \
         ack=3.6.0-1 \
-        libarchive-tools=3.6.2-1 \
+        libarchive-tools=3.6.2-1+deb12u1 \
         build-essential=12.9 \
         colordiff=1.0.20-1 \
         git=1:2.39.2-1.1 \
