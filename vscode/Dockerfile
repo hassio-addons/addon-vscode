@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.3.4
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.4.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -33,20 +33,20 @@ RUN \
         colordiff=1.0.20-1 \
         git=1:2.39.2-1.1 \
         iputils-ping=3:20221126-1 \
-        locales=2.36-9+deb12u4 \
+        locales=2.36-9+deb12u7 \
         mariadb-client=1:10.11.6-0+deb12u1 \
         mosquitto-clients=2.0.11-1.2+deb12u1 \
         net-tools=2.10-0.1 \
         nmap=7.93+dfsg1-1 \
-        openssh-client=1:9.2p1-2+deb12u2 \
-        openssl=3.0.11-1~deb12u2 \
+        openssh-client=1:9.2p1-2+deb12u3 \
+        openssl=3.0.13-1~deb12u1 \
         python3-dev=3.11.2-1+b1 \
         python3=3.11.2-1+b1 \
         unzip=6.0-28 \
-        uuid-runtime=2.38.1-5+b1 \
+        uuid-runtime=2.38.1-5+deb12u1 \
         wget>=1.21.3-1+b2 \
         zip=3.0-13 \
-        zsh=5.9-4+b2 \
+        zsh=5.9-4+b5 \
         less=590-2.1~deb12u2 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
