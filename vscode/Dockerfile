@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.4.0
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.5.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
