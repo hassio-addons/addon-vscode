@@ -31,7 +31,7 @@ RUN \
         libarchive-tools=3.6.2-1+deb12u1 \
         build-essential=12.9 \
         colordiff=1.0.20-1 \
-        git=1:2.39.2-1.1 \
+        git=1:2.39.5-0+deb12u1 \
         iputils-ping=3:20221126-1 \
         locales=2.36-9+deb12u7 \
         mariadb-client=1:10.11.6-0+deb12u1 \
