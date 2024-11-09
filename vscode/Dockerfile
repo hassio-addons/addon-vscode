@@ -39,7 +39,7 @@ RUN \
         net-tools=2.10-0.1 \
         nmap=7.93+dfsg1-1 \
         openssh-client=1:9.2p1-2+deb12u3 \
-        openssl=3.0.14-1~deb12u2 \
+        openssl=3.0.15-1~deb12u1 \
         python3-dev=3.11.2-1+b1 \
         python3=3.11.2-1+b1 \
         unzip=6.0-28 \
