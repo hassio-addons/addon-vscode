@@ -5,8 +5,9 @@
   "labels": ["dependencies", "no-stale"],
   "commitMessagePrefix": "⬆️",
   "commitMessageTopic": "{{depName}}",
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": ["/Dockerfile$", "/build.yaml$"],
       "matchStringsStrategy": "any",
       "matchStrings": [
@@ -16,6 +17,7 @@
       "datasourceTemplate": "docker"
     },
     {
+      "customType": "regex",
       "fileMatch": ["/Dockerfile$"],
       "matchStringsStrategy": "any",
       "matchStrings": [
@@ -26,6 +28,7 @@
       "depNameTemplate": "debian_12/{{{replace 'openssh-client' 'openssh' package}}}"
     },
     {
+      "customType": "regex",
       "fileMatch": ["/Dockerfile$"],
       "matchStrings": [
         "ARG CODE_SERVER_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
@@ -34,6 +37,7 @@
       "depNameTemplate": "cdr/code-server"
     },
     {
+      "customType": "regex",
       "fileMatch": ["/Dockerfile$"],
       "matchStrings": [
         "ARG HA_CLI_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
@@ -43,12 +47,14 @@
       "versioningTemplate": "loose"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["emilast\\.LogFileHighlighter#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "emilast/vscode-logfile-highlighter"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["esbenp\\.prettier-vscode#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
@@ -56,6 +62,7 @@
       "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["ESPHome\\.esphome-vscode#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
@@ -64,6 +71,7 @@
       "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": [
         "keesschollaart\\.vscode-home-assistant#(?<currentValue>.+)\\s"
@@ -73,6 +81,7 @@
       "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": [
         "lukas-tr\\.materialdesignicons-intellisense#(?<currentValue>.+)\\s"
@@ -82,12 +91,14 @@
       "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["netcorext\\.uuid-generator#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "arenchen/vscode-uuid-generator"
     },
     {
+      "customType": "regex",
       "fileMatch": ["vscode/vscode.extensions$"],
       "matchStrings": ["usernamehw\\.errorlens#(?<currentValue>.+)\\s"],
       "datasourceTemplate": "github-releases",
