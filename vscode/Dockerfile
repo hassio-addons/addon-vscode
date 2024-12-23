@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.5.1
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.6.2
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -20,7 +20,7 @@ COPY vscode.extensions /root/vscode.extensions
 
 # Setup base system
 ARG BUILD_ARCH=amd64
-ARG CODE_SERVER_VERSION="v4.95.1"
+ARG CODE_SERVER_VERSION="v4.96.2"
 ARG HA_CLI_VERSION="4.36.0"
 # hadolint ignore=SC2181, DL3008
 RUN \
