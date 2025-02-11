@@ -12,14 +12,14 @@ readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
 
 # Links some common directories to the user's home folder for convenience
 for dir in "${DIRECTORIES[@]}"; do
-    ln -s "/${dir}" "${HOME}/${dir}" \
+    ln -sn "/${dir}" "${HOME}/${dir}" \
         || bashio::log.warning "Failed linking common directory: ${dir}"
 done
 
 # Some links to old locations, to not mess with the user's muscle memory
-ln -s "/config" "${HOME}/config" \
+ln -sn "/config" "${HOME}/config" \
     || bashio::log.warning "Failed linking common directory: ${HOME}/config"
-ln -s "/config" "/homeassistant" \
+ln -sn "/config" "/homeassistant" \
     || bashio::log.warning "Failed linking common directory: /homeassistant"
 
 # Store SSH settings in add-on data folder
@@ -31,7 +31,7 @@ if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
         || bashio::exit.nok \
             'Failed setting permissions on persistent .ssh folder'
 fi
-ln -s "${SSH_USER_PATH}" ~/.ssh
+ln -sn "${SSH_USER_PATH}" ~/.ssh || bashio::log.warning "Failed linking .ssh"
 
 # Sets up ZSH shell
 touch "${ZSH_HISTORY_PERSISTANT_FILE}" \
@@ -58,7 +58,7 @@ if ! bashio::fs.file_exists "${GIT_USER_PATH}/.gitconfig"; then
     touch "${GIT_USER_PATH}/.gitconfig" \
         || bashio::exit.nok 'Failed to create .gitconfig'
 fi
-ln -s "${GIT_USER_PATH}/.gitconfig" ~/.gitconfig
+ln -s "${GIT_USER_PATH}/.gitconfig" ~/.gitconfig || bashio::log.warning "Failed linking .gitconfig"
 
 # Install user configured/requested packages
 if bashio::config.has_value 'packages'; then
