@@ -1,2 +1,2 @@
 esphome==2025.2.2
-yamllint==1.35.1
+yamllint==1.36.0
