@@ -63,6 +63,7 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
 
 #Copy root file system
 COPY rootfs /
+
 # Install Oh My ZSH
 # hadolint ignore=SC2086
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  \
