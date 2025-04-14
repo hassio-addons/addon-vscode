@@ -4,8 +4,7 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Sets up code-server.
 # ==============================================================================
-declare config_path
-bashio::log.info "Initalizing code-server configs"
+#bashio::log.info "Initalizing code-server configs"
 
 # # List of previous config hashes, to allow upgrade "default" configs.
 # readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
