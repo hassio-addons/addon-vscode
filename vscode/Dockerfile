@@ -63,7 +63,7 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
 
 #Copy root file system
 COPY rootfs /
-WORKDIR /root/.config/code-server
+
 
 # Install Oh My ZSH
 # hadolint ignore=SC2086

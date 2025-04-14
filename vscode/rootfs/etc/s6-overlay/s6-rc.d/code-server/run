@@ -29,5 +29,5 @@ export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 # Run the code server
 cd "${CODE_SERVER_CONFIG_PATH}" || bashio::exit.nok "Could not change working directory"
-exec code-server --config="$CODE_SERVER_CONFIG_PATH/config.yaml" "/config"
+exec code-server "/config"
 

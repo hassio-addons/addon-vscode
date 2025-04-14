@@ -26,6 +26,7 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 
 readonly DEFAULT_FILES_PATH="/usr/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/config/addons_config/vscode"
+readonly CODE_SERVER_CONFIG="/root/.config/code-server/config.yaml"
 
 # Ensure config path exists
 if bashio::config.has_value 'config_path'; then
@@ -43,15 +44,14 @@ else
         || bashio::exit.nok "Could not create persistent storage folder."
 fi
 
-export CODE_SERVER_CONFIG_PATH=$config_path
 bashio::log.info "using code-server config path: $config_path"
 
 # Ensure code-server config
-if ! bashio::fs.file_exists $config_path/config.yaml; then
-    cp "$DEFAULT_FILES_PATH/config.yaml" "$config_path/config.yaml"
+if ! bashio::fs.file_exists $CODE_SERVER_CONFIG; then
+    cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
 fi
 if bashio::config.has_value 'log_level'; then
-    sed -i "/log_level=/c log_level=\"$log_level\"" "$config_path/config.yaml"
+    sed -i "/log_level=/c log_level=\"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
 
@@ -69,7 +69,7 @@ if  [ ! -d "$ext_path" ]; then
         fi;
     done < "$DEFAULT_FILES_PATH/vscode.extensions"
 fi
-sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$config_path/config.yaml"
+sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
 
 # Ensure User settings path
 user_path="$config_path/user"
@@ -77,7 +77,7 @@ if  [ ! -d "$user_path" ]; then
     mkdir -p $user_path \
         || bashio::exit.nok "Could not create persistent User folder."
 fi
-sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$config_path/config.yaml"
+sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$CODE_SERVER_CONFIG"
 
 # Sets up default user settings on first start.
 if ! bashio::fs.file_exists $user_path/settings.json; then
