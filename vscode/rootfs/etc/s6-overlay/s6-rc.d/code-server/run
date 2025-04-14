@@ -4,8 +4,6 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Runs the code-server
 # ==============================================================================
-declare -a options
-declare config_path
 
 bashio::log.info 'Starting code-server...'
 
@@ -15,4 +13,3 @@ export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 # Run the code server
 exec code-server "/config"
-
