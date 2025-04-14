@@ -7,91 +7,91 @@
 declare config_path
 bashio::log.info "Initalizing code-server configs"
 
-# List of previous config hashes, to allow upgrade "default" configs.
-readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
-    86776df88391c3d94f79f62b430f9ff8538960628d5e04fb660165a5a46640d2e74f89cd68b3e6985dc59101ae2dda00a1e25aa48381acfd4736858c5f23878b
-    2be4c50575c05711d30121c3a1320698d3dbb034523c481be3aad3b638af3e0a46113d8c3f8cfc1b0f01e4cc10f32da3a30feca161c31b5b27177aeb7231bf70
-    d4745002643a0168f65bc5b465a9baff59af0fb4783b50553e1a4e8b3f1a569fc4905df19b7743f7f313a5809a5128d997fc4b5e0a0e5db0a01f47b3b7bec39d
-    6ed36f832778926fa614fc12eec97b8f813bbb1a04f709769c9e5f54bc8e3cfc05a110155921a3b2ae47fc8389d24fa2bd385e4ce5a6c94850813791a6ac1c82
-    944d9ba57968666353df7e9dc78ec5d94b9b052e1abf863b51bc1f372d9f35cb2d93259f153e9ab3b3dd1b520bfcd7bddb54803bcfd9eb65975ae8fb5553663c
-    4ef960e3d6e795adda51d5cbeb18d309fee87ba5cd177292a21b5a70a71a4726ae7053c3793cddc6d63d3b4dacc180ad3ea12d005fc8d63a1bc4cb29f9a17f18
-    c5b8acf06ef6d9a2435e9ddb92cb9fce7cfbfe4a2206b0e0c3c4ed514cc926f8d3c662e694a995d102b5ba939056f93201c220558e06e1cd0872bfb1995ba148
-    08d86c84a0d80720b22712e878963e90cbb34b659330dad8a823f3c5c7f0ae043d197a5e3020dd7ab4fda3625e17f794675ec074984951e7107db2488898a8d0
-    5243d7664d30b5aa0c45fbe1089cccdf85c5ade17cddd97e21b3a29ccb37b20d20bdfecc141ad6e1a7aa5ea8ee61695a79a43140a2d53f9f91687bc61f7e496c
-    e5106aaaff5f67a693fd49deb7dd52f1cc0f7ba542b33c99c0099bf58f1a33c789d1c5e3803dea2942540c07c734f3ca317c3cc91673aff388cb79ee7112db0b
-    b28a299111ac74cc9498f76ce2cb437b2cf5e8e7bb9388d9929347e2948bd56591bd499d5de04638553f6e12fa77c53320a046e96cffce9fa4f8c924d5c91581
-    dbe905f0935b2fea8bb5ba379bff78db9d056ea6d0965c68aa9b07938a52cbbf117186452b2b6c766aa4cf93cc3494ad91b763e8500e515e41d8cde31a3821ae
-    2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
-)
+# # List of previous config hashes, to allow upgrade "default" configs.
+# readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
+#     86776df88391c3d94f79f62b430f9ff8538960628d5e04fb660165a5a46640d2e74f89cd68b3e6985dc59101ae2dda00a1e25aa48381acfd4736858c5f23878b
+#     2be4c50575c05711d30121c3a1320698d3dbb034523c481be3aad3b638af3e0a46113d8c3f8cfc1b0f01e4cc10f32da3a30feca161c31b5b27177aeb7231bf70
+#     d4745002643a0168f65bc5b465a9baff59af0fb4783b50553e1a4e8b3f1a569fc4905df19b7743f7f313a5809a5128d997fc4b5e0a0e5db0a01f47b3b7bec39d
+#     6ed36f832778926fa614fc12eec97b8f813bbb1a04f709769c9e5f54bc8e3cfc05a110155921a3b2ae47fc8389d24fa2bd385e4ce5a6c94850813791a6ac1c82
+#     944d9ba57968666353df7e9dc78ec5d94b9b052e1abf863b51bc1f372d9f35cb2d93259f153e9ab3b3dd1b520bfcd7bddb54803bcfd9eb65975ae8fb5553663c
+#     4ef960e3d6e795adda51d5cbeb18d309fee87ba5cd177292a21b5a70a71a4726ae7053c3793cddc6d63d3b4dacc180ad3ea12d005fc8d63a1bc4cb29f9a17f18
+#     c5b8acf06ef6d9a2435e9ddb92cb9fce7cfbfe4a2206b0e0c3c4ed514cc926f8d3c662e694a995d102b5ba939056f93201c220558e06e1cd0872bfb1995ba148
+#     08d86c84a0d80720b22712e878963e90cbb34b659330dad8a823f3c5c7f0ae043d197a5e3020dd7ab4fda3625e17f794675ec074984951e7107db2488898a8d0
+#     5243d7664d30b5aa0c45fbe1089cccdf85c5ade17cddd97e21b3a29ccb37b20d20bdfecc141ad6e1a7aa5ea8ee61695a79a43140a2d53f9f91687bc61f7e496c
+#     e5106aaaff5f67a693fd49deb7dd52f1cc0f7ba542b33c99c0099bf58f1a33c789d1c5e3803dea2942540c07c734f3ca317c3cc91673aff388cb79ee7112db0b
+#     b28a299111ac74cc9498f76ce2cb437b2cf5e8e7bb9388d9929347e2948bd56591bd499d5de04638553f6e12fa77c53320a046e96cffce9fa4f8c924d5c91581
+#     dbe905f0935b2fea8bb5ba379bff78db9d056ea6d0965c68aa9b07938a52cbbf117186452b2b6c766aa4cf93cc3494ad91b763e8500e515e41d8cde31a3821ae
+#     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
+# )
 
-readonly DEFAULT_FILES_PATH="/usr/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/config/addons_config/"
-readonly CODE_SERVER_CONFIG="/root/.config/code-server/config.yaml"
+# readonly DEFAULT_FILES_PATH="/usr/lib/code-server/defaults"
+# readonly DEFAULT_CONFIG_PATH="/config/addons_config/"
+# readonly CODE_SERVER_CONFIG="/root/.config/code-server/config.yaml"
 
-# Ensure config path exists
-if [ bashio::config.has_value "config_path" ]; then
-    config_path=$(bashio::config 'config_path')
-    if ! bashio::fs.directory_exists "${config_path}"; then
-        bashio::exit.nok "Configured config path does not exists"
-    fi
-else
-    # otherwise set to local dir
-    config_path="$DEFAULT_CONFIG_PATH"
-    if ! bashio::fs.directory_exists "$config_path"; then
-        bashio::log.info "Config path did not exist, createing $config_path"
-        mkdir -p $config_path ||
-            bashio::exit.nok "Could not create persistent storage folder."
-    fi
-fi
+# # Ensure config path exists
+# if [ bashio::config.has_value "config_path" ]; then
+#     config_path=$(bashio::config 'config_path')
+#     if ! bashio::fs.directory_exists "${config_path}"; then
+#         bashio::exit.nok "Configured config path does not exists"
+#     fi
+# else
+#     # otherwise set to local dir
+#     config_path="$DEFAULT_CONFIG_PATH"
+#     if ! bashio::fs.directory_exists "$config_path"; then
+#         bashio::log.info "Config path did not exist, createing $config_path"
+#         mkdir -p $config_path ||
+#             bashio::exit.nok "Could not create persistent storage folder."
+#     fi
+# fi
 
-bashio::log.info "using code-server config path: $config_path"
+# bashio::log.info "using code-server config path: $config_path"
 
-# Ensure code-server config
-if ! bashio::fs.file_exists $CODE_SERVER_CONFIG; then
-    cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
-fi
-if bashio::config.has_value 'log_level'; then
-    sed -i "/log_level=/c log_level=\"$log_level\"" "$CODE_SERVER_CONFIG"
-fi
+# # Ensure code-server config
+# if ! bashio::fs.file_exists $CODE_SERVER_CONFIG; then
+#     cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
+# fi
+# if bashio::config.has_value 'log_level'; then
+#     sed -i "/log_level=/c log_level=\"$log_level\"" "$CODE_SERVER_CONFIG"
+# fi
 
-# Ensure extensions path
-ext_path="$config_path/extensions"
-if [ ! -d "$ext_path" ]; then
-    mkdir -p $ext_path ||
-        bashio::exit.nok "Could not create persistent extensions folder."
+# # Ensure extensions path
+# ext_path="$config_path/extensions"
+# if [ ! -d "$ext_path" ]; then
+#     mkdir -p $ext_path ||
+#         bashio::exit.nok "Could not create persistent extensions folder."
 
-    # Only do this on folder create so users can remove faulty extentions.
-    # Install code-server extensions via code-server so terminate is aware of them.
-    while read -r extention; do
-        if [ ! -e $ext_path/$extention* ]; then
-            code-server --install-extension="$extention"
-        fi
-    done <"$DEFAULT_FILES_PATH/vscode.extensions"
-fi
-sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
+#     # Only do this on folder create so users can remove faulty extentions.
+#     # Install code-server extensions via code-server so terminate is aware of them.
+#     while read -r extention; do
+#         if [ ! -e $ext_path/$extention* ]; then
+#             code-server --install-extension="$extention"
+#         fi
+#     done <"$DEFAULT_FILES_PATH/vscode.extensions"
+# fi
+# sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
 
-# Ensure User settings path
-user_path="$config_path/user"
-if [ ! -d "$user_path" ]; then
-    mkdir -p $user_path ||
-        bashio::exit.nok "Could not create persistent User folder."
-fi
-sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$CODE_SERVER_CONFIG"
+# # Ensure User settings path
+# user_path="$config_path/user"
+# if [ ! -d "$user_path" ]; then
+#     mkdir -p $user_path ||
+#         bashio::exit.nok "Could not create persistent User folder."
+# fi
+# sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$CODE_SERVER_CONFIG"
 
-# Sets up default user settings on first start.
-if ! bashio::fs.file_exists $user_path/settings.json; then
-    cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
-else
-    # Upgrade if settings.json is still default from previous version.
-    current=$(sha512sum $user_path/settings.json | cut -d " " -f 1)
-    if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
+# # Sets up default user settings on first start.
+# if ! bashio::fs.file_exists $user_path/settings.json; then
+#     cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+# else
+#     # Upgrade if settings.json is still default from previous version.
+#     current=$(sha512sum $user_path/settings.json | cut -d " " -f 1)
+#     if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
 
-        cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
-    fi
-fi
+#         cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+#     fi
+# fi
 
-if ! bashio::fs.file_exists $user_path/workspaces.json; then
-    cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
-fi
+# if ! bashio::fs.file_exists $user_path/workspaces.json; then
+#     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
+# fi
 
-exit 0
+# exit 0
