@@ -7,6 +7,7 @@
 declare config_path
 bashio::log.info "Initalizing code-server configs"
 
+
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     86776df88391c3d94f79f62b430f9ff8538960628d5e04fb660165a5a46640d2e74f89cd68b3e6985dc59101ae2dda00a1e25aa48381acfd4736858c5f23878b
