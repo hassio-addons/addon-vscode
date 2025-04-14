@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"yaml.schemas": {
+			"https://json.schemastore.org/yamllint.json": "file:///f%3A/repos/addon-vscode/vscode/rootfs/usr/lib/code-server/defaults/config.yaml"
+		}
+	}
+}
