@@ -29,9 +29,8 @@ readonly DEFAULT_CONFIG_PATH="/config/addons_config/"
 readonly CODE_SERVER_CONFIG="/root/.config/code-server/config.yaml"
 
 # Ensure config path exists
-if bashio::config.has_value 'config_path'; then
-    # If a path is set in HA, then try or fail addon start
-    config_path=$(bashio::config 'config_path')
+if [ bashio::config.has_value "config_path" ]; then
+    config_path=$(bashio::config "config_path")
     if ! bashio::fs.directory_exists "${config_path}"; then
         bashio::exit.nok "Configured config path does not exists"
     fi
@@ -39,9 +38,10 @@ else
     # otherwise set to local dir
     config_path="$DEFAULT_CONFIG_PATH"
     if ! bashio::fs.directory_exists "$config_path"; then
-    bashio::log.info "Config path did not exist, createing $config_path"
-    mkdir -p $config_path \
-        || bashio::exit.nok "Could not create persistent storage folder."
+        bashio::log.info "Config path did not exist, createing $config_path"
+        mkdir -p $config_path ||
+            bashio::exit.nok "Could not create persistent storage folder."
+    fi
 fi
 
 bashio::log.info "using code-server config path: $config_path"
@@ -54,28 +54,27 @@ if bashio::config.has_value 'log_level'; then
     sed -i "/log_level=/c log_level=\"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
-
 # Ensure extensions path
 ext_path="$config_path/extensions"
-if  [ ! -d "$ext_path" ]; then
-    mkdir -p $ext_path \
-        || bashio::exit.nok "Could not create persistent extensions folder."
+if [ ! -d "$ext_path" ]; then
+    mkdir -p $ext_path ||
+        bashio::exit.nok "Could not create persistent extensions folder."
 
     # Only do this on folder create so users can remove faulty extentions.
     # Install code-server extensions via code-server so terminate is aware of them.
     while read -r extention; do
         if [ ! -e $ext_path/$extention* ]; then
-            code-server --install-extension="$extention" ;
-        fi;
-    done < "$DEFAULT_FILES_PATH/vscode.extensions"
+            code-server --install-extension="$extention"
+        fi
+    done <"$DEFAULT_FILES_PATH/vscode.extensions"
 fi
 sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
 
 # Ensure User settings path
 user_path="$config_path/user"
-if  [ ! -d "$user_path" ]; then
-    mkdir -p $user_path \
-        || bashio::exit.nok "Could not create persistent User folder."
+if [ ! -d "$user_path" ]; then
+    mkdir -p $user_path ||
+        bashio::exit.nok "Could not create persistent User folder."
 fi
 sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$CODE_SERVER_CONFIG"
 
@@ -84,7 +83,7 @@ if ! bashio::fs.file_exists $user_path/settings.json; then
     cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
 else
     # Upgrade if settings.json is still default from previous version.
-    current=$(sha512sum $user_path/settings.json|cut -d " " -f 1)
+    current=$(sha512sum $user_path/settings.json | cut -d " " -f 1)
     if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
 
         cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
@@ -94,5 +93,3 @@ fi
 if ! bashio::fs.file_exists $user_path/workspaces.json; then
     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
 fi
-
-
