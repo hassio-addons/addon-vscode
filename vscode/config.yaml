@@ -47,3 +47,4 @@ schema:
     - str
   init_commands:
     - str
+
