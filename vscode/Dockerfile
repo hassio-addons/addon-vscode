@@ -63,6 +63,7 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
 
 #Copy root file system
 COPY rootfs /
+RUN chown -R root:root /root
 
 
 # Install Oh My ZSH

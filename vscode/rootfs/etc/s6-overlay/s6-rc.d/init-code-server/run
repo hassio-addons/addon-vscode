@@ -65,7 +65,7 @@ if  [ ! -d "$ext_path" ]; then
     # Install code-server extensions via code-server so terminate is aware of them.
     while read -r extention; do
         if [ ! -e $ext_path/$extention* ]; then
-            code-server --install-extension="$extention" --extensions-dir="$ext_path" --user-data-dir  "$config_path";
+            code-server --install-extension="$extention" ;
         fi;
     done < "$DEFAULT_FILES_PATH/vscode.extensions"
 fi
