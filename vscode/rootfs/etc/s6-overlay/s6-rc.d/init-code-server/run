@@ -94,3 +94,7 @@ fi
 if ! bashio::fs.file_exists $user_path/workspaces.json; then
     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
 fi
+
+
+
+echo exit
