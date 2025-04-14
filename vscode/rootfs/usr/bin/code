@@ -1,3 +1,2 @@
 #!/bin/sh
-
-exec /usr/local/lib/code-server/bin/code-server "${@}"
+exec code-server "${@}"
