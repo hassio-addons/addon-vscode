@@ -52,6 +52,7 @@ fi
 
 
 if bashio::config.has_value 'log_level'; then
+    # shellcheck disable=SC2154
     sed -i "/log_level=/c log_level=\"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
@@ -94,5 +95,3 @@ fi
 if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
 fi
-
-exit 0
