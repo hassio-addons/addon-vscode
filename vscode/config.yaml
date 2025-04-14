@@ -41,7 +41,7 @@ options:
   packages: []
   init_commands: []
 schema:
-  log_level: list(trace|debug|info|notice|warning|error|fatal)?
+  log_level: list(trace|debug|info|warn|error)?
   config_path: str?
   packages:
     - str

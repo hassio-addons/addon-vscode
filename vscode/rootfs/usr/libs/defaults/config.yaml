@@ -1,0 +1,10 @@
+bind-addr: 0.0.0.0
+port: 1337
+auth: none
+cert: false
+disable-getting-started-override: true
+disable-update-check: true
+disable-telemetry: true
+log_level: warn
+user-data-dir: /data/vscode/user
+extensions-dir: /data/vscode/extentions

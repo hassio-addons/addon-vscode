@@ -1,0 +1,99 @@
+{
+  "files.associations": {
+    "*.dash": "yaml",
+    "**/esphome/*.yaml": "esphome",
+    "**/esphome/**/*.yaml": "esphome",
+    "*.yaml": "home-assistant"
+  },
+  "files.watcherExclude": {
+    ".nfs**": true,
+    ".Trash-0/**": true,
+    "**/__pycache__/**": true,
+    "**/._*": true,
+    "**/.cloud": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.HA_VERSION": true,
+    "**/.storage": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
+    "**/*.log": true,
+    "**/deps/**": true,
+    "**/node_modules": true,
+    "**/OZW_Log.txt": true,
+    "**/pyozw.sqlite": true
+  },
+  "search.exclude": {
+    ".Trash-0/**": true,
+    "**/__pycache__/**": true,
+    "**/._*": true,
+    "**/.cloud": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.git": true,
+    "**/.HA_VERSION": true,
+    "**/.storage": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
+    "**/*.log": true,
+    "**/deps/**": true,
+    "**/node_modules": true,
+    "**/OZW_Log.txt": true,
+    "**/pyozw.sqlite": true
+  },
+  "files.exclude": {
+    ".Trash-0/**": true,
+    "**/__pycache__": true,
+    "**/.cloud": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.HA_VERSION": true,
+    "**/.storage": true,
+    "**/*.db-shm": true,
+    "**/*.db-wal": true,
+    "**/*.db": true,
+    "**/deps/**": true,
+    "**/node_modules": true
+  },
+  "yaml.customTags": [
+    "!env_var scalar",
+    "!include_dir_list scalar",
+    "!include_dir_merge_list scalar",
+    "!include_dir_merge_named scalar",
+    "!include_dir_named scalar",
+    "!include scalar",
+    "!secret scalar"
+  ],
+  "[yaml]": {
+    "editor.autoIndent": "full",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  },
+  "[home-assistant]": {
+    "editor.autoIndent": "full",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "editor.renderWhitespace": "boundary",
+  "esphome.validator": "local",
+  "telemetry.enableTelemetry": false,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "update.mode": "none",
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.projectDetection.disableDetect": true,
+  "workbench.iconTheme": "vs-seti",
+  "yaml.format.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80, 88, 100, 120]
+}

@@ -1,0 +1,5 @@
+cli 
+https://github.com/coder/code-server/blob/e3c09efcbcdfd632cbeac6044692d7ea9f493386/src/node/cli.ts#L35
+
+conf
+https://github.com/coder/code-server/blob/e3c09efcbcdfd632cbeac6044692d7ea9f493386/src/node/cli.ts#L65

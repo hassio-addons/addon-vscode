@@ -9,25 +9,25 @@ declare config_path
 
 bashio::log.info 'Starting code-server...'
 
-config_path="/config"
-if bashio::config.has_value 'config_path'; then
-    config_path=$(bashio::config 'config_path')
-fi
+options+=(--config="$CODE_SERVER_CONFIG_PATH/config.yaml")
+# options+=(--user-data-dir="$CODE_SERVER_CONFIG_PATH/User")
+# options+=(--extensions-dir="$CODE_SERVER_CONFIG_PATH/extensions")
 
-options+=(--port 1337)
-options+=(--user-data-dir "/data/vscode")
-options+=(--extensions-dir "/data/vscode/extensions")
-options+=(--host 0.0.0.0)
-options+=(--disable-telemetry)
-options+=(--disable-update-check)
+# options+=(--disable-telemetry)
+# options+=(--disable-update-check)
+# options+=(--disable-getting-started-override)
+# options+=(--auth none)
 
+config
 # Disable code authentication, we use HA authentication
-options+=(--auth none)
+options+=(--disable-workspace-trust)
+
 
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 # Run the code server
-cd "${config_path}" || bashio::exit.nok "Could not change working directory"
-exec code-server "${options[@]}" "${config_path}"
+cd "${CODE_SERVER_CONFIG_PATH}" || bashio::exit.nok "Could not change working directory"
+exec code-server "${options[@]}" "/config"
+

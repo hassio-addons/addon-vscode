@@ -5,6 +5,7 @@
 # Sets up code-server.
 # ==============================================================================
 declare config_path
+bashio::log.info "Initalizing code-server configs"
 
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
@@ -23,39 +24,75 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
 
+readonly DEFAULT_FILES_PATH="/usr/lib/code-server/defaults"
+readonly DEFAULT_CONFIG_PATH="/config/addons_config/vscode"
+
+# Ensure config path exists
 if bashio::config.has_value 'config_path'; then
+    # If a path is set in HA, then try or fail addon start
     config_path=$(bashio::config 'config_path')
     if ! bashio::fs.directory_exists "${config_path}"; then
         bashio::exit.nok "Configured config path does not exists"
     fi
-fi
-
-# Ensure persistent data folder exists.
-if ! bashio::fs.directory_exists '/data/vscode'; then
-    mkdir -p /data/vscode/extensions \
+else
+    # otherwise set to local dir
+    config_path="$DEFAULT_CONFIG_PATH"
+    if ! bashio::fs.directory_exists "$config_path"; then
+    bashio::log.info "Config path did not exist, createing $config_path"
+    mkdir -p $config_path \
         || bashio::exit.nok "Could not create persistent storage folder."
 fi
 
-# Clean up copies of extensions we deliver from the persistent storage
-while read -r ext; do
-    extension="${ext%%#*}"
-    # shellcheck disable=SC2086
-    rm -f -r /data/vscode/extensions/${extension,,}*
-done < /root/vscode.extensions
+export CODE_SERVER_CONFIG_PATH=$config_path
+bashio::log.info "using code-server config path: $config_path"
 
-# Ensure user extensions folder exists
-mkdir -p /data/vscode/extensions
+# Ensure code-server config
+if ! bashio::fs.file_exists $config_path/config.yaml; then
+    cp "$DEFAULT_FILES_PATH/config.yaml" "$config_path/config.yaml"
+fi
+if bashio::config.has_value 'log_level'; then
+    sed -i "/log_level=/c log_level=\"$log_level\"" "$config_path/config.yaml"
+fi
+
+
+# Ensure extensions path
+ext_path="$config_path/extensions"
+if  [ ! -d "$ext_path" ]; then
+    mkdir -p $ext_path \
+        || bashio::exit.nok "Could not create persistent extensions folder."
+
+    # Only do this on folder create so users can remove faulty extentions.
+    # Install code-server extensions via code-server so terminate is aware of them.
+    while read -r extention; do
+        if [ ! -e $ext_path/$extention* ]; then
+            code-server --install-extension="$extention" --extensions-dir="$ext_path" --user-data-dir  "$config_path";
+        fi;
+    done < "$DEFAULT_FILES_PATH/vscode.extensions"
+fi
+sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$config_path/config.yaml"
+
+# Ensure User settings path
+user_path="$config_path/user"
+if  [ ! -d "$user_path" ]; then
+    mkdir -p $user_path \
+        || bashio::exit.nok "Could not create persistent User folder."
+fi
+sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$config_path/config.yaml"
 
 # Sets up default user settings on first start.
-if ! bashio::fs.file_exists '/data/vscode/User/settings.json'; then
-    mkdir -p /data/vscode/User \
-        || bashio::exit.nok "Could not create persistent storage folder."
+if ! bashio::fs.file_exists $user_path/settings.json; then
+    cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+else
+    # Upgrade if settings.json is still default from previous version.
+    current=$(sha512sum $user_path/settings.json|cut -d " " -f 1)
+    if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
 
-    cp /root/.code-server/settings.json /data/vscode/User/settings.json
+        cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+    fi
 fi
 
-# Upgrade settings.json is still default from previous version.
-current=$(sha512sum /data/vscode/User/settings.json|cut -d " " -f 1)
-if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
-    cp /root/.code-server/settings.json /data/vscode/User/settings.json
+if ! bashio::fs.file_exists $user_path/workspaces.json; then
+    cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
 fi
+
+
