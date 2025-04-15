@@ -25,7 +25,8 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 
 readonly DEFAULT_FILES_PATH="/usr/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/config/addon_configs/vscode"
-readonly CODE_SERVER_CONFIG="/root/.config/code-server/config.yaml"
+readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
+readonly CODE_SERVER_CONFIG="$CODE_SERVER_CONFIG_DIR/config.yaml"
 
 # Ensure config path exists
 if bashio::config.has_value "config_path"; then
@@ -49,7 +50,7 @@ bashio::log.info "using code-server config path: $config_path"
 if ! bashio::fs.file_exists "$CODE_SERVER_CONFIG"; then
     # TODO check for correct perms
     bashio::log.error "CODE_SERVER_CONFIG does not exist.."
-    mkdir -p "/root/.config/code-server"
+    mkdir -p "$CODE_SERVER_CONFIG_DIR"
     cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
 else
     bashio::log.info "CODE_SERVER_CONFIG does exist"
