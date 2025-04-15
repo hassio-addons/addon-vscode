@@ -44,6 +44,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 #System configuration
+WORKDIR /data
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && \
     update-locale LANG=en_US.UTF-8 && \
     curl https://bootstrap.pypa.io/get-pip.py | python3
@@ -66,8 +67,10 @@ COPY rootfs /
 RUN chown -R root:root /root \
 && chown -R root:root /etc/s6-overlay/s6-rc.d/ \
 && chmod 755 -R /etc/s6-overlay/s6-rc.d/
-WORKDIR /root/.config/code-server
-COPY  "rootfs/usr/lib/code-server/defaults/config.yaml" "/root/.config/code-server/config.yaml"
+
+# Copy default config
+WORKDIR /root/.config/code-server/defaults
+COPY  "rootfs/usr/lib/code-server/defaults/config.yaml" "config.yaml"
 
 # Install Oh My ZSH
 # hadolint ignore=SC2086
