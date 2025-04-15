@@ -38,9 +38,9 @@ services:
   - mysql:want
   - mqtt:want
 options:
-  log_level: warn
+  log_level: Warn
 schema:
-  log_level: list(trace|debug|info|warn|error)
+  log_level: list(Trace|Debug|Info|Warn|Error)
   config_path: str?
   packages:
     - str?
