@@ -37,7 +37,7 @@ else
     # otherwise set to local dir
     config_path="$DEFAULT_CONFIG_PATH"
     if ! bashio::fs.directory_exists "$config_path"; then
-        bashio::log.info "Config path did not exist, createing $config_path"
+        bashio::log.info "Config path did not exist, creating $config_path"
         mkdir -p "$config_path" ||
             bashio::exit.nok "Could not create persistent storage folder."
     fi
@@ -48,7 +48,7 @@ bashio::log.info "using code-server config path: $config_path"
 # Ensure code-server config
 if ! bashio::fs.file_exists "$CODE_SERVER_CONFIG"; then
     # TODO check for correct perms
-    install -m 755 -o root -g root "$DEFAULT_FILES_PATH/config.yaml" "$DEFAULT_CONFIG_PATH"
+    cp "$DEFAULT_FILES_PATH/config.yaml" "$DEFAULT_CONFIG_PATH"
 fi
 
 if bashio::config.has_value 'log_level'; then
