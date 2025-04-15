@@ -32,7 +32,7 @@ RUN apt-get update \
     locales  \
     mariadb-client  \
     mosquitto-clients \
-    net-tools=2.10-0.1 \
+    net-tools \
     openssh-client  \
     openssl  \
     python3-dev  \

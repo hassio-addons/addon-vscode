@@ -1,0 +1,12 @@
+# Look for 'source'd files relative to the checked script,
+# and also look for absolute paths in /mnt/chroot
+source-path=source
+
+# Allow opening any 'source'd file, even if not specified as input
+external-sources=true
+
+# Turn on warnings for unquoted variables with safe values
+enable=quote-safe-variables
+
+# Turn on warnings for unassigned uppercase variables
+enable=check-unassigned-uppercase
