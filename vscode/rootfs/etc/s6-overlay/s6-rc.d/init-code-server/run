@@ -47,13 +47,15 @@ fi
 bashio::log.info "using code-server config path: $config_path"
 
 # Ensure code-server config
-if [ ! -e "$CODE_SERVER_CONFIG" ]; then
+if [ ! -d "$CODE_SERVER_CONFIG_DIR" ]; then
     # TODO check for correct perms
-    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
+    bashio::log.error "CODE_SERVER_CONFIG_DIR does not exist.."
     mkdir -p "$CODE_SERVER_CONFIG_DIR"
+fi
+
+if [ ! -e "$CODE_SERVER_CONFIG" ]; then
+    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
     cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
-else
-    bashio::log.info "CODE_SERVER_CONFIG does exist"
 fi
 
 if bashio::config.has_value 'log_level'; then
