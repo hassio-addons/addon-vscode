@@ -1,0 +1,80 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant Community Add-on: Studio Code Server
+# Persists user settings and installs custom user packages.
+# ==============================================================================
+readonly -a DIRECTORIES=(addon_configs addons backup homeassistant media share ssl)
+readonly GIT_USER_PATH=/data/git
+readonly SSH_USER_PATH=/data/.ssh
+readonly ZSH_HISTORY_FILE=/root/.zsh_history
+readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
+
+# Links some common directories to the user's home folder for convenience
+for dir in "${DIRECTORIES[@]}"; do
+    ln -sn "/${dir}" "${HOME}/${dir}" \
+        || bashio::log.warning "Failed linking common directory: ${dir}"
+done
+
+# Some links to old locations, to not mess with the user's muscle memory
+ln -sn "/config" "${HOME}/config" \
+    || bashio::log.warning "Failed linking common directory: ${HOME}/config"
+ln -sn "/config" "/homeassistant" \
+    || bashio::log.warning "Failed linking common directory: /homeassistant"
+
+# Store SSH settings in add-on data folder
+if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
+    mkdir -p "${SSH_USER_PATH}" \
+        || bashio::exit.nok 'Failed to create a persistent .ssh folder'
+
+    chmod 700 "${SSH_USER_PATH}" \
+        || bashio::exit.nok \
+            'Failed setting permissions on persistent .ssh folder'
+fi
+ln -sn "${SSH_USER_PATH}" ~/.ssh || bashio::log.warning "Failed linking .ssh"
+
+# Sets up ZSH shell
+touch "${ZSH_HISTORY_PERSISTANT_FILE}" \
+    || bashio::exit.nok 'Failed creating a persistent ZSH history file'
+
+chmod 600 "$ZSH_HISTORY_PERSISTANT_FILE" \
+    || bashio::exit.nok \
+        'Failed setting the correct permissions to the ZSH history file'
+
+ln -s -f "$ZSH_HISTORY_PERSISTANT_FILE" "$ZSH_HISTORY_FILE" \
+    || bashio::exit.nok 'Failed linking the persistant ZSH history file'
+
+# Store user GIT settings in add-on data folder
+if ! bashio::fs.directory_exists "${GIT_USER_PATH}"; then
+    mkdir -p "${GIT_USER_PATH}" \
+        || bashio::exit.nok 'Failed to create a persistent git folder'
+
+    chmod 700 "${GIT_USER_PATH}" \
+        || bashio::exit.nok \
+            'Failed setting permissions on persistent git folder'
+fi
+
+if ! bashio::fs.file_exists "${GIT_USER_PATH}/.gitconfig"; then
+    touch "${GIT_USER_PATH}/.gitconfig" \
+        || bashio::exit.nok 'Failed to create .gitconfig'
+fi
+ln -s "${GIT_USER_PATH}/.gitconfig" ~/.gitconfig || bashio::log.warning "Failed linking .gitconfig"
+
+# Install user configured/requested packages
+if bashio::config.has_value 'packages'; then
+    apt update \
+        || bashio::exit.nok 'Failed updating Ubuntu packages repository indexes'
+
+    for package in $(bashio::config 'packages'); do
+        apt-get install -y "$package" \
+            || bashio::exit.nok "Failed installing package ${package}"
+    done
+fi
+
+# Executes user configured/requested commands on startup
+if bashio::config.has_value 'init_commands'; then
+    while read -r cmd; do
+        eval "${cmd}" \
+            || bashio::exit.nok "Failed executing init command: ${cmd}"
+    done <<< "$(bashio::config 'init_commands')"
+fi
