@@ -84,17 +84,19 @@ if [ ! -d "$ext_path" ]; then
     mkdir -p "$ext_path" ||
         bashio::exit.nok "Could not create persistent extensions folder."
     bashio::log.info "Initalizing code-server extentions..."
-    # Only do this on folder create so users can remove faulty extentions.
-    # Install code-server extensions via code-server so terminate is aware of them.
-    while read -r extention; do
-        if [ ! -e "$ext_path/$extention*" ]; then
-            code-server --install-extension="$extention"
-            bashio::log.info "Installed $extention"
-        else
-            bashio::log.info "Has $extention installed"
-        fi
-    done <"$CODE_SERVER_EXTENSIONS_LIST"
 fi
+
+# Install code-server extensions via code-server so terminate is aware of them.
+bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
+while read -r extention; do
+    if [ ! -e "$ext_path/$extention*" ]; then
+        code-server --install-extension="$extention"
+        bashio::log.info "Installed $extention"
+    else
+        bashio::log.info "Has $extention installed"
+    fi
+done <"$CODE_SERVER_EXTENSIONS_LIST"
+
 sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
 
 # Ensure User settings path
