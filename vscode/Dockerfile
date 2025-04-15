@@ -63,14 +63,11 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
     && chmod +x "/usr/bin/ha"
 
 #Copy root file system
-COPY rootfs /
-RUN chown -R root:root /root \
-&& chown -R root:root /etc/s6-overlay/s6-rc.d/ \
-&& chmod 755 -R /etc/s6-overlay/s6-rc.d/
+COPY --chown=root:root --chmod=755 rootfs /
 
 # Copy default config
 WORKDIR /root/.config/code-server/defaults
-COPY  "rootfs/usr/lib/code-server/defaults/config.yaml" "config.yaml"
+COPY --chown=root:root --chmod=600  "rootfs/usr/lib/code-server/defaults/config.yaml" "config.yaml"
 
 # Install Oh My ZSH
 # hadolint ignore=SC2086
@@ -80,9 +77,8 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 
 # Install Python packages
-COPY ./requirements.txt /tmp/requirements.txt
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
-    pip3 install --no-cache-dir -r /tmp/requirements.txt
+    pip3 install --no-cache-dir -r rootfs/usr/lib/code-server/defaults/requirements.txt
 
 # Cleanup apt cache
 RUN apt-get purge -y --auto-remove \
