@@ -3,3 +3,22 @@ https://github.com/coder/code-server/blob/e3c09efcbcdfd632cbeac6044692d7ea9f4933
 
 conf
 https://github.com/coder/code-server/blob/e3c09efcbcdfd632cbeac6044692d7ea9f493386/src/node/cli.ts#L65
+
+
+
+map:
+  - type: addons
+    read_only: false
+  - type: all_addon_configs
+    read_only: false
+  - type: backup
+    read_only: false
+  - type: homeassistant_config
+    read_only: false
+    path: /config
+  - type: media
+    read_only: false
+  - type: share
+    read_only: false
+  - type: ssl
+    read_only: false
