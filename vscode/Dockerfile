@@ -82,7 +82,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 # Install Python packages
 COPY ./requirements.txt /tmp/requirements.txt
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
-    pip3 install --no-cache-dir -r /tmp/requirements.txt
+    pip3 install --no-cache-dir -r rootfs/usr/lib/code-server/defaults/requirements.txt
 
 # Cleanup apt cache
 RUN apt-get purge -y --auto-remove \
