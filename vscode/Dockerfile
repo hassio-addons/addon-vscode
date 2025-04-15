@@ -80,7 +80,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 
 # Install Python packages
-COPY ./requirements.txt /tmp/requirements.txt
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
     pip3 install --no-cache-dir -r rootfs/usr/lib/code-server/defaults/requirements.txt
 
