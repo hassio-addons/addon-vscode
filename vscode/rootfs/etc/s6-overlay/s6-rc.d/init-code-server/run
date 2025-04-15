@@ -52,7 +52,7 @@ if ! bashio::fs.file_exists "$CODE_SERVER_CONFIG"; then
 fi
 
 if bashio::config.has_value 'log_level'; then
-    # shellcheck disable=SC2154
+    log_level=$(bashio::config 'log_level')
     sed -i "/log=/c log=\"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
