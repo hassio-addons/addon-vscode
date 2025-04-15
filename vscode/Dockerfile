@@ -65,9 +65,8 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
 #Copy root file system
 COPY rootfs /
 RUN chown -R root:root /root \
-&& chown -R root:root /etc/s6-overlay/s6-rc.d/ \
-&& chmod 755 -R /etc/s6-overlay/s6-rc.d/
-
+    && chown -R root:root /etc/s6-overlay/s6-rc.d/ \
+    && chmod 755 -R /etc/s6-overlay/s6-rc.d/
 
 # Install Oh My ZSH
 # hadolint ignore=SC2086
