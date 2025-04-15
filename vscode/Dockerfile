@@ -66,7 +66,7 @@ COPY rootfs /
 RUN chown -R root:root /root \
 && chown -R root:root /etc/s6-overlay/s6-rc.d/ \
 && chmod 755 -R /etc/s6-overlay/s6-rc.d/
-RUN install -m 600 -o root -g root "$DEFAULT_CONFIG_PATH" "/root/.config/code-server/config.yaml"
+RUN install -m 600 -o root -g root "/usr/lib/code-server/defaults/config.yaml" "/root/.config/code-server/config.yaml"
 
 # Install Oh My ZSH
 # hadolint ignore=SC2086
