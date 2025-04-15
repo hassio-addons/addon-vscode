@@ -40,9 +40,10 @@ services:
 options:
   log_level: Warn
 schema:
-  log_level: list(Trace|Debug|Info|Warn|Error)
+  log_level: list(trace|debug|info|Warn|error)
   config_path: str?
   packages:
     - str?
   init_commands:
     - str?
+
