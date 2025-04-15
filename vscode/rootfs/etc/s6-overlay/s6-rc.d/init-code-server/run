@@ -28,7 +28,7 @@ readonly DEFAULT_CONFIG_PATH="/config/addons_config/"
 readonly CODE_SERVER_CONFIG="/root/.config/code-server/config.yaml"
 
 # Ensure config path exists
-if bashio::config.has_value "config_path" ; then
+if bashio::config.has_value "config_path"; then
     config_path=$(bashio::config 'config_path')
     if ! bashio::fs.directory_exists "${config_path}"; then
         bashio::exit.nok "Configured config path does not exists"
