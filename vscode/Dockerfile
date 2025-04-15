@@ -41,6 +41,7 @@ RUN \
         openssh-client=1:9.2p1-2+deb12u5 \
         openssl=3.0.15-1~deb12u1 \
         python3-dev=3.11.2-1+b1 \
+        python3-venv=3.11.2-1+b1 \
         python3=3.11.2-1+b1 \
         unzip=6.0-28 \
         uuid-runtime=2.38.1-5+deb12u1 \
