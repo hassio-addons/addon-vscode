@@ -75,6 +75,9 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 
+WORKDIR /WORKDIR/
+
+
 # Install Python packages
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
     pip3 install --no-cache-dir -r /usr/lib/code-server/defaults/requirements.txt
@@ -94,7 +97,6 @@ RUN find /usr/local \
 # Health check
 HEALTHCHECK \
     CMD curl --fail http://127.0.0.1:1337/healthz || exit 1
-
 
 # Build Final image
 ARG BUILD_ARCH

@@ -19,13 +19,27 @@ hassio_api: true
 hassio_role: manager
 homeassistant_api: true
 map:
-  - addons:rw
-  - all_addon_configs:rw
-  - backup:rw
-  - homeassistant_config:rw
-  - media:rw
-  - share:rw
-  - ssl:rw
+  - type: addons
+    read_only: false
+    path: /WORKDIR/addons
+  - type: all_addon_configs
+    read_only: false
+    path: /WORKDIR/all_addon_configs
+  - type: backup
+    read_only: false
+    path: /WORKDIR/backup
+  - type: homeassistant_config
+    read_only: false
+    path: /WORKDIR/config
+  - type: media
+    read_only: false
+    path: /WORKDIR/media
+  - type: share
+    read_only: false
+    path: /WORKDIR/share
+  - type:
+    read_only: false
+    path: /WORKDIR/ssl
 services:
   - mysql:want
   - mqtt:want
