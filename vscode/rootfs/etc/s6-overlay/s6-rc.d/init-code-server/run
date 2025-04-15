@@ -27,6 +27,7 @@ readonly DEFAULT_FILES_PATH="/usr/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/WORKDIR/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
 readonly CODE_SERVER_CONFIG="$CODE_SERVER_CONFIG_DIR/config.yaml"
+readonly CODE_SERVER_EXTENSIONS_LIST="$CODE_SERVER_CONFIG_DIR/vscode.extensions"
 
 # Ensure config path exists
 if bashio::config.has_value "config_path"; then
@@ -58,6 +59,11 @@ if [ ! -e "$CODE_SERVER_CONFIG" ]; then
     cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
 fi
 
+if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
+    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
+    cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
+fi
+
 if bashio::config.has_value 'log_level'; then
     log_level=$(bashio::config 'log_level')
     if [ "$log_level" = "warning" ] ; then
@@ -73,7 +79,7 @@ if bashio::config.has_value 'log_level'; then
 fi
 
 # Ensure extensions path
-ext_path="$config_path/extensions"
+ext_path="$CODE_SERVER_CONFIG_DIR/extensions"
 if [ ! -d "$ext_path" ]; then
     mkdir -p "$ext_path" ||
         bashio::exit.nok "Could not create persistent extensions folder."
@@ -87,7 +93,7 @@ if [ ! -d "$ext_path" ]; then
         else
             bashio::log.info "Has $extention installed"
         fi
-    done <"$DEFAULT_FILES_PATH/vscode.extensions"
+    done <"$CODE_SERVER_EXTENSIONS_LIST"
 fi
 sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
 
