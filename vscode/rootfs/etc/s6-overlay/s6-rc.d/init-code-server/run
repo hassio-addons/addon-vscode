@@ -47,7 +47,8 @@ bashio::log.info "using code-server config path: $config_path"
 
 # Ensure code-server config
 if ! bashio::fs.file_exists "$CODE_SERVER_CONFIG"; then
-    cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
+    # TODO check for correct perms
+    install -m 755 -o root -g root "$DEFAULT_FILES_PATH/config.yaml" "$DEFAULT_CONFIG_PATH"
 fi
 
 if bashio::config.has_value 'log_level'; then
