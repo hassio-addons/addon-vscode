@@ -53,7 +53,7 @@ fi
 
 if bashio::config.has_value 'log_level'; then
     # shellcheck disable=SC2154
-    sed -i "/log_level=/c log_level= $log_level" "$CODE_SERVER_CONFIG"
+    sed -i "/log=/c log= $log_level" "$CODE_SERVER_CONFIG"
 fi
 
 # Ensure extensions path
