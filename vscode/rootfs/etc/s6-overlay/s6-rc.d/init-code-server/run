@@ -53,8 +53,15 @@ fi
 
 if bashio::config.has_value 'log_level'; then
     log_level=$(bashio::config 'log_level')
-    # shellcheck disable=SC2001
-    log_level="$(echo "$log_level" | sed 's/.*/\u&/')"
+    if [ "$log_level" = "warning" ] ; then
+        log_level="warn"
+    fi
+    if [ "$log_level" = "notice" ] ; then
+        log_level="warn"
+    fi
+    if [ "$log_level" = "fatal" ] ; then
+        log_level="error"
+    fi
     sed -i "/log=/c log=\"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
