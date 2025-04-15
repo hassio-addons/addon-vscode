@@ -48,8 +48,13 @@ bashio::log.info "using code-server config path: $config_path"
 # Ensure code-server config
 if ! bashio::fs.file_exists "$CODE_SERVER_CONFIG"; then
     # TODO check for correct perms
+
+    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
     cp "$DEFAULT_FILES_PATH/config.yaml" "$DEFAULT_CONFIG_PATH"
+else
+    bashio::log.info "CODE_SERVER_CONFIG does exist"
 fi
+
 
 if bashio::config.has_value 'log_level'; then
     log_level=$(bashio::config 'log_level')
