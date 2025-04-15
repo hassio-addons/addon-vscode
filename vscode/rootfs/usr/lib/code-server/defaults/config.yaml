@@ -6,6 +6,6 @@ cert: false
 disable-getting-started-override: true
 disable-update-check: true
 disable-telemetry: true
-log_level: "warn"
+log_level: warn
 user-data-dir: "/data/vscode/user"
 extensions-dir: "/data/vscode/extentions"
