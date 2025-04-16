@@ -39,14 +39,13 @@ done
 
 # Ensure config path exists
 if bashio::config.has_value "vscode_config_path"; then
-    CODE_SERVER_CONFIG=$(bashio::config 'vscode_config_path')
-    if ! bashio::fs.directory_exists "${CODE_SERVER_CONFIG}"; then
+    DEFAULT_CONFIG_PATH=$(bashio::config 'vscode_config_path')
+    if ! bashio::fs.directory_exists "${DEFAULT_CONFIG_PATH}"; then
         bashio::exit.nok "Configured config path does not exists"
     fi
 else
     # otherwise set to local dir
-    CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH"
-    if ! bashio::fs.directory_exists "$CODE_SERVER_CONFIG"; then
+    if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
         bashio::log.info "Config path did not exist, creating $CODE_SERVER_CONFIG"
         mkdir -p "$CODE_SERVER_CONFIG" ||
             bashio::exit.nok "Could not create persistent storage folder."
