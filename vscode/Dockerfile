@@ -68,6 +68,7 @@ RUN chown -R root:root /root \
     && chmod 755 -R /etc/s6-overlay/s6-rc.d/
 
 COPY data /data
+RUN chown -R root:root /data
 
 # Install Oh My ZSH
 # hadolint ignore=SC2086
