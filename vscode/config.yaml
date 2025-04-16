@@ -22,7 +22,6 @@ homeassistant_api: true
 map:
   - type: data
     read_only: false
-    path: /code-server-config
 services:
   - mysql:want
   - mqtt:want

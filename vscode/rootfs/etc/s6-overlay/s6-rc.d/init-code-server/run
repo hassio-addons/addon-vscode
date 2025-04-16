@@ -23,109 +23,135 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/code-server-config/vscode"
+readonly DEFAULT_CONFIG_PATH="/data/vscode"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
-readonly -a DIRECTORIES=(addons addon_configs data backup config media share ssl)
+readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
 CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
-# Links some common directories to the user's home folder for convenience
-for dir in "${DIRECTORIES[@]}"; do
-    ln -sn "/${dir}" "/SERVER/${dir}" ||
+run() {
+    setup_clean_view
+    setup_config_path
+    setup_config_files
+    set_log_level
+    set_user_settings
+    setup_extensions
+}
+
+setup_clean_view() {
+    # Links some common directories to the user's home folder for convenience
+    for dir in "${DIRECTORIES[@]}"; do
+        ln -sn "/${dir}" "/SERVER/${dir}" ||
+            bashio::log.warning "Failed linking common directory: ${dir}"
+    done
+
+    ln -sn "/data" "/SERVER/code-server-config" ||
         bashio::log.warning "Failed linking common directory: ${dir}"
-done
+}
 
-# Ensure config path exists
-if bashio::config.has_value "vscode_config_path"; then
-    DEFAULT_CONFIG_PATH=$(bashio::config 'vscode_config_path')
-    if ! bashio::fs.directory_exists "${DEFAULT_CONFIG_PATH}"; then
-        bashio::exit.nok "Configured config path does not exists"
-    fi
-else
-    # otherwise set to local dir
-    if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
-        bashio::log.warning "Config path did not exist, creating $CODE_SERVER_CONFIG"
-        mkdir -p "$DEFAULT_CONFIG_PATH" ||
-            bashio::exit.nok "Could not create persistent storage folder."
-    fi
-fi
-
-bashio::log.info "using code-server config path: $CODE_SERVER_CONFIG"
-
-# Ensure code-server config
-if [ ! -e "$CODE_SERVER_CONFIG" ]; then
-    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
-    cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
-
-fi
-
-# Set a link to where code-server expects the config to be
-if [ ! -d "$ROOT_CODE_SERVER_CONFIG_PATH" ]; then
-    mkdir -p "$ROOT_CODE_SERVER_CONFIG_PATH"
-    ln -s "$CODE_SERVER_CONFIG" "$ROOT_CODE_SERVER_CONFIG_PATH/config.yaml"
-fi
-
-if bashio::config.has_value 'log_level'; then
-    log_level=$(bashio::config 'log_level')
-    if [ "$log_level" = "warning" ]; then
-        log_level="warn"
-    fi
-    if [ "$log_level" = "notice" ]; then
-        log_level="warn"
-    fi
-    if [ "$log_level" = "fatal" ]; then
-        log_level="error"
-    fi
-    sed -i "/log:/c log: \"$log_level\"" "$CODE_SERVER_CONFIG"
-fi
-
-# Ensure User settings path
-user_path="$DEFAULT_CONFIG_PATH/user"
-if [ ! -d "$user_path" ]; then
-    mkdir -p "$user_path" ||
-        bashio::exit.nok "Could not create persistent User folder."
-fi
-
-# Sets up default user settings on first start.
-if ! bashio::fs.file_exists "$user_path"/settings.json; then
-    cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
-else
-    # Upgrade if settings.json is still default from previous version.
-    current=$(sha512sum "$user_path"/settings.json | cut -d " " -f 1)
-    if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
-        cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
-    fi
-fi
-
-sed -i "/user-data-dir:/c user-data-dir: \"$user_path\"" "$CODE_SERVER_CONFIG"
-
-if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
-    cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
-fi
-
-# Ensure extensions path
-if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
-    bashio::log.warning "CODE_SERVER_EXTENSIONS_LIST does not exist.."
-    cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
-fi
-
-if [ ! -d "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ]; then
-    bashio::log.warning "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
-    mkdir -p "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ||
-        bashio::exit.nok "Could not create persistent extensions folder."
-
-fi
-sed -i "/extensions-dir:/c extensions-dir: \"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
-
-# Install code-server extensions via code-server so terminate is aware of them.
-bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
-while read -r extention; do
-    if [ ! -e "$CODE_SERVER_EXTENSIONS_INSTALL_PATH/$extention*" ]; then
-        code-server --install-extension="$extention"
-        bashio::log.info "Installed $extention"
+setup_config_path() {
+    # Ensure config path exists
+    if bashio::config.has_value "vscode_config_path"; then
+        DEFAULT_CONFIG_PATH=$(bashio::config 'vscode_config_path')
+        if ! bashio::fs.directory_exists "${DEFAULT_CONFIG_PATH}"; then
+            bashio::exit.nok "Configured config path does not exists"
+        fi
     else
-        bashio::log.info "Has $extention installed"
+        # otherwise set to local dir
+        if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
+            bashio::log.warning "Config path did not exist, creating $CODE_SERVER_CONFIG"
+            mkdir -p "$DEFAULT_CONFIG_PATH" ||
+                bashio::exit.nok "Could not create persistent storage folder."
+        fi
     fi
-done <"$CODE_SERVER_EXTENSIONS_LIST"
+
+    bashio::log.info "using code-server config path: $CODE_SERVER_CONFIG"
+}
+
+setup_config_files() {
+    # Ensure code-server config
+    if [ ! -e "$CODE_SERVER_CONFIG" ]; then
+        bashio::log.error "CODE_SERVER_CONFIG does not exist.."
+        cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
+    fi
+
+    # Set a link to where code-server expects the config to be
+    if [ ! -d "$ROOT_CODE_SERVER_CONFIG_PATH" ]; then
+        mkdir -p "$ROOT_CODE_SERVER_CONFIG_PATH"
+        ln -s "$CODE_SERVER_CONFIG" "$ROOT_CODE_SERVER_CONFIG_PATH/config.yaml"
+    fi
+}
+
+setup_extensions() {
+    # Ensure extensions path
+    if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
+        bashio::log.warning "CODE_SERVER_EXTENSIONS_LIST does not exist.."
+        cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
+    fi
+
+    if [ ! -d "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ]; then
+        bashio::log.warning "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
+        mkdir -p "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ||
+            bashio::exit.nok "Could not create persistent extensions folder."
+
+    fi
+    sed -i "/extensions-dir:/c extensions-dir: \"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
+
+    # Install code-server extensions via code-server so terminate is aware of them.
+    bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
+    while read -r extention; do
+        if [ ! -e "$CODE_SERVER_EXTENSIONS_INSTALL_PATH/$extention*" ]; then
+            code-server --install-extension="$extention"
+            bashio::log.info "Installed $extention"
+        else
+            bashio::log.info "Has $extention installed"
+        fi
+    done <"$CODE_SERVER_EXTENSIONS_LIST"
+}
+
+set_log_level() {
+    if bashio::config.has_value 'log_level'; then
+        log_level=$(bashio::config 'log_level')
+        if [ "$log_level" = "warning" ]; then
+            log_level="warn"
+        fi
+        if [ "$log_level" = "notice" ]; then
+            log_level="warn"
+        fi
+        if [ "$log_level" = "fatal" ]; then
+            log_level="error"
+        fi
+        sed -i "/log:/c log: \"$log_level\"" "$CODE_SERVER_CONFIG"
+    fi
+}
+
+set_user_settings() {
+    # Ensure User settings path
+    user_path="$DEFAULT_CONFIG_PATH/user"
+    if [ ! -d "$user_path" ]; then
+        mkdir -p "$user_path" ||
+            bashio::exit.nok "Could not create persistent User folder."
+    fi
+
+    # Sets up default user settings on first start.
+    if ! bashio::fs.file_exists "$user_path"/settings.json; then
+        cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+    else
+        # Upgrade if settings.json is still default from previous version.
+        current=$(sha512sum "$user_path"/settings.json | cut -d " " -f 1)
+        if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
+            cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+        fi
+    fi
+
+    sed -i "/user-data-dir:/c user-data-dir: \"$user_path\"" "$CODE_SERVER_CONFIG"
+
+    if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
+        cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
+    fi
+
+}
+
+run
