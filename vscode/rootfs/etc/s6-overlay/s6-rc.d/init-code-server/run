@@ -95,6 +95,7 @@ setup_extensions() {
         bashio::log.warning "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
         mkdir -p "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ||
             bashio::exit.nok "Could not create persistent extensions folder."
+            touch "$CODE_SERVER_EXTENSIONS_INSTALL_PATH"/extensions.json
 
     fi
     sed -i "/extensions-dir:/c extensions-dir: \"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
