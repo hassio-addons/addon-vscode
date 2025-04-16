@@ -26,10 +26,10 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 readonly -a DIRECTORIES=(addon_configs addons backup config media share ssl)
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/config/addon_configs/vscode"
-readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
+readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/"
 
 CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
-readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
+readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 
 
@@ -64,9 +64,9 @@ if [ ! -e "$CODE_SERVER_CONFIG" ]; then
 fi
 
 # Set a link to where code-server expects the config to be
-if [ ! -d "$CODE_SERVER_CONFIG_DIR" ]; then
-    mkdir -p "$CODE_SERVER_CONFIG_DIR"
-    ln -s "$CODE_SERVER_CONFIG" "$CODE_SERVER_CONFIG_DIR/config.yaml"
+if [ ! -d "$ROOT_CODE_SERVER_CONFIG_PATH" ]; then
+    mkdir -p "$ROOT_CODE_SERVER_CONFIG_PATH"
+    ln -s "$CODE_SERVER_CONFIG" "$ROOT_CODE_SERVER_CONFIG_PATH/config.yaml"
 fi
 
 if bashio::config.has_value 'log_level'; then
@@ -80,7 +80,7 @@ if bashio::config.has_value 'log_level'; then
     if [ "$log_level" = "fatal" ]; then
         log_level="error"
     fi
-    sed -i "/log=/c log=\"$log_level\"" "$CODE_SERVER_CONFIG"
+    sed -i "/log:/c log: \"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
 # Ensure User settings path
@@ -102,7 +102,7 @@ else
     fi
 fi
 
-sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$CODE_SERVER_CONFIG"
+sed -i "/user-data-dir:/c user-data-dir: \"$user_path\"" "$CODE_SERVER_CONFIG"
 
 if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
@@ -110,6 +110,7 @@ fi
 
 # Ensure extensions path
 if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
+    bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
     bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
     cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
 fi
@@ -120,6 +121,7 @@ if [ ! -d "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ]; then
         bashio::exit.nok "Could not create persistent extensions folder."
 
 fi
+sed -i "/extensions-dir:/c extensions-dir: \"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
 
 # Install code-server extensions via code-server so terminate is aware of them.
 bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"

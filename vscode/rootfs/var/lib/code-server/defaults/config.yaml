@@ -1,7 +1,7 @@
 bind-addr: 0.0.0.0
 port: 1337
 auth: none
-password: "none"
+password: none
 cert: false
 disable-getting-started-override: true
 disable-update-check: true

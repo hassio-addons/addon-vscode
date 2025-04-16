@@ -30,7 +30,7 @@ map:
     read_only: false
   - type: backup
     read_only: false
-  - type: homeassistant_config
+  - type: config
     read_only: false
   - type: media
     read_only: false
