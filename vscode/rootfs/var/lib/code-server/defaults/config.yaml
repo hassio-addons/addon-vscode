@@ -7,5 +7,4 @@ disable-getting-started-override: true
 disable-update-check: true
 disable-telemetry: true
 user-data-dir: "/config/addon_configs/vscode"
-extensions-dir: "/data/vscode/extentions"
 log: warn

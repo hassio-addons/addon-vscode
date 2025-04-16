@@ -57,13 +57,9 @@ fi
 
 # Set a link to where code-server expects the config to be
 if [ ! -d "$CODE_SERVER_CONFIG_DIR" ]; then
-    # TODO check for correct perms
-    bashio::log.error "CODE_SERVER_CONFIG_DIR does not exist.."
     mkdir -p "$CODE_SERVER_CONFIG_DIR"
     ln -s "$CODE_SERVER_CONFIG" "$CODE_SERVER_CONFIG_DIR/config.yaml"
 fi
-
-
 
 if bashio::config.has_value 'log_level'; then
     log_level=$(bashio::config 'log_level')
@@ -116,9 +112,7 @@ if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
 fi
 
-
 # Install code-server extensions via code-server so terminate is aware of them.
-sed -i "/extensions-dir=/c extensions-dir=\"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
 bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
 while read -r extention; do
     if [ ! -e "$CODE_SERVER_EXTENSIONS_INSTALL_PATH/$extention*" ]; then
