@@ -28,7 +28,6 @@ map:
     read_only: false
   - type: ssl
     read_only: false
-
 services:
   - mysql:want
   - mqtt:want
