@@ -20,8 +20,15 @@ hassio_api: true
 hassio_role: manager
 homeassistant_api: true
 map:
+  - type: backup
+    read_only: false
   - type: data
     read_only: false
+  - type: media
+    read_only: false
+  - type: ssl
+    read_only: false
+
 services:
   - mysql:want
   - mqtt:want
