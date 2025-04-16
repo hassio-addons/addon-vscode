@@ -62,12 +62,12 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
     && chmod +x "/usr/bin/ha"
 
 #Copy root file system
-COPY rootfs /
+COPY rootfs/ /
 RUN chown -R root:root /root \
     && chown -R root:root /etc/s6-overlay/s6-rc.d/ \
     && chmod 755 -R /etc/s6-overlay/s6-rc.d/
 
-COPY data /data
+COPY data/ /data
 RUN chown -R root:root /data
 
 # Install Oh My ZSH
