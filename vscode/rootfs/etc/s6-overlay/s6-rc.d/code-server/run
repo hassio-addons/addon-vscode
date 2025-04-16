@@ -4,7 +4,6 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Runs the code-server
 # ==============================================================================
-
 bashio::log.info 'Starting code-server...'
 
 # Export env variables for the Home Assistant extension
@@ -12,4 +11,4 @@ export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 # Run the code server
-exec code-server /config
+exec code-server /SERVER

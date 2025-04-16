@@ -24,7 +24,7 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 )
 
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/config/addon_configs/vscode"
+readonly DEFAULT_CONFIG_PATH="/SERVER/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
 readonly CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
@@ -52,7 +52,6 @@ if [ ! -e "$CODE_SERVER_CONFIG" ]; then
     bashio::log.error "CODE_SERVER_CONFIG does not exist.."
     cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
 
-
 fi
 
 # Set a link to where code-server expects the config to be
@@ -70,13 +69,13 @@ fi
 
 if bashio::config.has_value 'log_level'; then
     log_level=$(bashio::config 'log_level')
-    if [ "$log_level" = "warning" ] ; then
+    if [ "$log_level" = "warning" ]; then
         log_level="warn"
     fi
-    if [ "$log_level" = "notice" ] ; then
+    if [ "$log_level" = "notice" ]; then
         log_level="warn"
     fi
-    if [ "$log_level" = "fatal" ] ; then
+    if [ "$log_level" = "fatal" ]; then
         log_level="error"
     fi
     sed -i "/log=/c log=\"$log_level\"" "$CODE_SERVER_CONFIG"
