@@ -24,7 +24,7 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 )
 
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/SERVER/config/addon_configs/vscode"
+readonly DEFAULT_CONFIG_PATH="/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
 readonly CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
