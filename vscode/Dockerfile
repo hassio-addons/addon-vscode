@@ -75,7 +75,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 
-WORKDIR /WORKDIR/
+WORKDIR /SERVER/
 
 
 # Install Python packages
