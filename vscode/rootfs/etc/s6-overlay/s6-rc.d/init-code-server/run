@@ -24,7 +24,7 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 )
 readonly -a DIRECTORIES=(addon_configs addons backup config media share ssl)
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/SERVER/config/vscode"
+readonly DEFAULT_CONFIG_PATH="/SERVER/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
 
 CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
@@ -47,7 +47,7 @@ else
     # otherwise set to local dir
     if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
         bashio::log.info "Config path did not exist, creating $CODE_SERVER_CONFIG"
-        mkdir -p "$CODE_SERVER_CONFIG" ||
+        mkdir -p "$DEFAULT_CONFIG_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
     fi
 fi
