@@ -12,4 +12,4 @@ export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 # Run the code server
-exec code-server /SERVER
+exec code-server /config
