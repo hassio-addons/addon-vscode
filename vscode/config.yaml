@@ -20,23 +20,7 @@ hassio_api: true
 hassio_role: manager
 homeassistant_api: true
 map:
-  - type: homeassistant
-    read_only: false
-  - type: addons
-    read_only: false
-  - type: addon_config
-    read_only: false
   - type: data
-    read_only: false
-  - type: backup
-    read_only: false
-  - type: config
-    read_only: false
-  - type: media
-    read_only: false
-  - type: share
-    read_only: false
-  - type: ssl
     read_only: false
 services:
   - mysql:want

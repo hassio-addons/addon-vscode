@@ -5,17 +5,18 @@ conf
 https://github.com/coder/code-server/blob/e3c09efcbcdfd632cbeac6044692d7ea9f493386/src/node/cli.ts#L65
 
 
-
-map:
+ - type: homeassistant
+    read_only: false
   - type: addons
     read_only: false
-  - type: all_addon_configs
+  - type: addon_config
+    read_only: false
+  - type: data
     read_only: false
   - type: backup
     read_only: false
-  - type: homeassistant_config
+  - type: config
     read_only: false
-    path: /config
   - type: media
     read_only: false
   - type: share
