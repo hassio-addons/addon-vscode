@@ -23,7 +23,7 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/data/vscode"
+readonly DEFAULT_CONFIG_PATH="/code-server-config/vscode"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
@@ -46,7 +46,7 @@ if bashio::config.has_value "vscode_config_path"; then
 else
     # otherwise set to local dir
     if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
-        bashio::log.info "Config path did not exist, creating $CODE_SERVER_CONFIG"
+        bashio::log.warning "Config path did not exist, creating $CODE_SERVER_CONFIG"
         mkdir -p "$DEFAULT_CONFIG_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
     fi
@@ -95,7 +95,6 @@ else
     # Upgrade if settings.json is still default from previous version.
     current=$(sha512sum "$user_path"/settings.json | cut -d " " -f 1)
     if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
-
         cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
     fi
 fi
@@ -108,12 +107,12 @@ fi
 
 # Ensure extensions path
 if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
-    bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
+    bashio::log.warning "CODE_SERVER_EXTENSIONS_LIST does not exist.."
     cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
 fi
 
 if [ ! -d "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ]; then
-    bashio::log.error "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
+    bashio::log.warning "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
     mkdir -p "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ||
         bashio::exit.nok "Could not create persistent extensions folder."
 
