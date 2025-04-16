@@ -109,7 +109,6 @@ fi
 # Ensure extensions path
 if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
     bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
-    bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
     cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
 fi
 
