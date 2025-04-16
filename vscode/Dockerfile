@@ -77,8 +77,8 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 WORKDIR /SERVER/
 WORKDIR /data/vscode/
-COPY rootfs/var/lib/code-server/defaults/vscode.extentions /data/vscode/
-COPY rootfs/var/lib/code-server/defaults/vscode.extentions /data/vscode/extentions
+COPY /var/lib/code-server/defaults/vscode.extentions /data/vscode/
+COPY /var/lib/code-server/defaults/vscode.extentions /data/vscode/extentions
 
 # Install Python packages
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
