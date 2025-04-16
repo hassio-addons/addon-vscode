@@ -44,7 +44,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 #System configuration
-WORKDIR /data/vscode
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && \
     update-locale LANG=en_US.UTF-8 && \
     curl https://bootstrap.pypa.io/get-pip.py | python3
@@ -75,6 +74,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 
+# The folder we are going to link Server folders to, as to give a clean view of only the server files and not the addons files.
 WORKDIR /SERVER/
 
 # Install Python packages
