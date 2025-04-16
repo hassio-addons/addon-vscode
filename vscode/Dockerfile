@@ -76,7 +76,9 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 
 WORKDIR /SERVER/
-WORKDIR /data/vscode/extentions
+WORKDIR /data/vscode/
+COPY rootfs/var/lib/code-server/defaults/vscode.extentions /data/vscode/
+COPY rootfs/var/lib/code-server/defaults/vscode.extentions /data/vscode/extentions
 
 # Install Python packages
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
