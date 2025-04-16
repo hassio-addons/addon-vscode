@@ -32,7 +32,7 @@ CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 
-ls /|  bashio::log.warning
+ls / | tee
 # Links some common directories to the user's home folder for convenience
 for dir in "${DIRECTORIES[@]}"; do
     ln -sn "/${dir}" "/SERVER/${dir}" ||
