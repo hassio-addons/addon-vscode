@@ -1,38 +1,41 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
 {
-	"name": "Existing Docker Compose (Extend)",
-
-
-	// Sets the run context to one level up instead of the .devcontainer folder.
-	"context": "../vscode",
-
-	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-	"dockerFile": "../vscode/Dockerfile",
-
-	// The optional 'workspaceFolder' property is the path VS Code should open by default when
-	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Uncomment the next line if you want start specific services in your Docker Compose config.
-	// "runServices": [],
-
-	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
-	// "shutdownAction": "none",
-
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
-
-	// Configure tool-specific properties.root
-	// "customizations": {},
-
-	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "devcontainer"
+	"name": "Example devcontainer for add-on repositories",
+	"image": "ghcr.io/home-assistant/devcontainer:2-addons",
+	"appPort": [
+		"7123:8123",
+		"7357:4357"
+	],
+	"postStartCommand": "bash devcontainer_bootstrap",
+	"runArgs": [
+		"-e",
+		"GIT_EDITOR=code --wait",
+		"--privileged"
+	],
+	"containerEnv": {
+		"WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"timonwong.shellcheck",
+				"esbenp.prettier-vscode"
+			],
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/usr/bin/zsh"
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"editor.formatOnPaste": false,
+				"editor.formatOnSave": true,
+				"editor.formatOnType": true,
+				"files.trimTrailingWhitespace": true
+			}
+		}
+	},
+	"mounts": [
+		"type=volume,target=/var/lib/docker",
+		"type=volume,target=/mnt/supervisor"
+	]
 }
-
