@@ -22,25 +22,18 @@ homeassistant_api: true
 map:
   - type: addons
     read_only: false
-    path: /SERVER/addons
   - type: all_addon_configs
     read_only: false
-    path: /SERVER/all_addon_configs
   - type: backup
     read_only: false
-    path: /SERVER/backup
   - type: homeassistant_config
     read_only: false
-    path: /SERVER/config
   - type: media
     read_only: false
-    path: /SERVER/media
   - type: share
     read_only: false
-    path: /SERVER/share
   - type: ssl
     read_only: false
-    path: /SERVER/ssl
 
 services:
   - mysql:want

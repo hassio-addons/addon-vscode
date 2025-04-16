@@ -12,15 +12,15 @@ readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
 
 # Links some common directories to the user's home folder for convenience
 for dir in "${DIRECTORIES[@]}"; do
-    ln -sn "/${dir}" "${HOME}/${dir}" ||
+    ln -sn "/${dir}" "/SERVER/${dir}" ||
         bashio::log.warning "Failed linking common directory: ${dir}"
 done
 
 # Some links to old locations, to not mess with the user's muscle memory
-# ln -sn "/config" "${HOME}/config" \
-#     || bashio::log.warning "Failed linking common directory: ${HOME}/config"
-# ln -sn "/config" "/homeassistant" \
-#     || bashio::log.warning "Failed linking common directory: /homeassistant"
+ln -sn "/config" "${HOME}/config" ||
+    bashio::log.warning "Failed linking common directory: ${HOME}/config"
+ln -sn "/config" "/homeassistant" ||
+    bashio::log.warning "Failed linking common directory: /homeassistant"
 
 # Store SSH settings in add-on data folder
 if ! bashio::fs.directory_exists "${SSH_USER_PATH}"; then
