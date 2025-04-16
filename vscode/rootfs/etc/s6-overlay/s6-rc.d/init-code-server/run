@@ -26,8 +26,8 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/WORKDIR/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
-readonly CODE_SERVER_CONFIG="$CODE_SERVER_CONFIG_DIR/config.yaml"
-readonly CODE_SERVER_EXTENSIONS_LIST="$CODE_SERVER_CONFIG_DIR/vscode.extensions"
+readonly CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 
 # Ensure config path exists
 if bashio::config.has_value "vscode_config_path"; then
@@ -48,19 +48,23 @@ fi
 bashio::log.info "using code-server config path: $config_path"
 
 # Ensure code-server config
+if [ ! -e "$CODE_SERVER_CONFIG" ]; then
+    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
+    cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
+
+
+fi
+
+# Set a link to where code-server expects the config to be
 if [ ! -d "$CODE_SERVER_CONFIG_DIR" ]; then
     # TODO check for correct perms
     bashio::log.error "CODE_SERVER_CONFIG_DIR does not exist.."
     mkdir -p "$CODE_SERVER_CONFIG_DIR"
-fi
-
-if [ ! -e "$CODE_SERVER_CONFIG" ]; then
-    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
-    cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
+    ln -s "$CODE_SERVER_CONFIG" "$CODE_SERVER_CONFIG_DIR/config.yaml"
 fi
 
 if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
-    bashio::log.error "CODE_SERVER_CONFIG does not exist.."
+    bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
     cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
 fi
 
