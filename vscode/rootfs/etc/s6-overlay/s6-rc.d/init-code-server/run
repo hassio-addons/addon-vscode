@@ -26,27 +26,27 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="$addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
-readonly CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
-readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
-readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
+ CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+ CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
+ CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 
 # Ensure config path exists
 if bashio::config.has_value "vscode_config_path"; then
-    config_path=$(bashio::config 'vscode_config_path')
-    if ! bashio::fs.directory_exists "${config_path}"; then
+    CODE_SERVER_CONFIG=$(bashio::config 'vscode_config_path')
+    if ! bashio::fs.directory_exists "${CODE_SERVER_CONFIG}"; then
         bashio::exit.nok "Configured config path does not exists"
     fi
 else
     # otherwise set to local dir
-    config_path="$DEFAULT_CONFIG_PATH"
-    if ! bashio::fs.directory_exists "$config_path"; then
-        bashio::log.info "Config path did not exist, creating $config_path"
-        mkdir -p "$config_path" ||
+    CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH"
+    if ! bashio::fs.directory_exists "$CODE_SERVER_CONFIG"; then
+        bashio::log.info "Config path did not exist, creating $CODE_SERVER_CONFIG"
+        mkdir -p "$CODE_SERVER_CONFIG" ||
             bashio::exit.nok "Could not create persistent storage folder."
     fi
 fi
 
-bashio::log.info "using code-server config path: $config_path"
+bashio::log.info "using code-server config path: $CODE_SERVER_CONFIG"
 
 # Ensure code-server config
 if [ ! -e "$CODE_SERVER_CONFIG" ]; then
@@ -80,7 +80,7 @@ if bashio::config.has_value 'log_level'; then
 fi
 
 # Ensure User settings path
-user_path="$config_path/user"
+user_path="$CODE_SERVER_CONFIG/user"
 if [ ! -d "$user_path" ]; then
     mkdir -p "$user_path" ||
         bashio::exit.nok "Could not create persistent User folder."
@@ -121,7 +121,7 @@ fi
 sed -i "/extensions-dir=/c extensions-dir=\"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
 bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
 while read -r extention; do
-    if [ ! -e "$ext_path/$extention*" ]; then
+    if [ ! -e "$CODE_SERVER_EXTENSIONS_INSTALL_PATH/$extention*" ]; then
         code-server --install-extension="$extention"
         bashio::log.info "Installed $extention"
     else
