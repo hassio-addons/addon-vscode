@@ -67,9 +67,6 @@ RUN chown -R root:root /root \
     && chown -R root:root /etc/s6-overlay/s6-rc.d/ \
     && chmod 755 -R /etc/s6-overlay/s6-rc.d/
 
-COPY data/ /data
-RUN chown -R root:root /data
-
 # Install Oh My ZSH
 # hadolint ignore=SC2086
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  \
