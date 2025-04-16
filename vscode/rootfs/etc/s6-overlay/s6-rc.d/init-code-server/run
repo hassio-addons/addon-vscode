@@ -37,7 +37,10 @@ for dir in "${DIRECTORIES[@]}"; do
         bashio::log.warning "Failed linking common directory: ${dir}"
 done
 
-# Ensure config path exists
+ln -sn "/config" "/SERVER/config" ||
+    bashio::log.warning "Failed linking common directory: /homeassistant"
+Ensure config path exists
+
 if bashio::config.has_value "vscode_config_path"; then
     CODE_SERVER_CONFIG=$(bashio::config 'vscode_config_path')
     if ! bashio::fs.directory_exists "${CODE_SERVER_CONFIG}"; then
