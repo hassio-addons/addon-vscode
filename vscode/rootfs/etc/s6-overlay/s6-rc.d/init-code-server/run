@@ -27,6 +27,7 @@ readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
 readonly CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="/data/vscode/extentions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 
 # Ensure config path exists
@@ -62,10 +63,7 @@ if [ ! -d "$CODE_SERVER_CONFIG_DIR" ]; then
     ln -s "$CODE_SERVER_CONFIG" "$CODE_SERVER_CONFIG_DIR/config.yaml"
 fi
 
-if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
-    bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
-    cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
-fi
+
 
 if bashio::config.has_value 'log_level'; then
     log_level=$(bashio::config 'log_level')
@@ -81,27 +79,6 @@ if bashio::config.has_value 'log_level'; then
     sed -i "/log=/c log=\"$log_level\"" "$CODE_SERVER_CONFIG"
 fi
 
-# Ensure extensions path
-ext_path="$CODE_SERVER_CONFIG_DIR/extensions"
-if [ ! -d "$ext_path" ]; then
-    mkdir -p "$ext_path" ||
-        bashio::exit.nok "Could not create persistent extensions folder."
-    bashio::log.info "Initalizing code-server extentions..."
-fi
-
-# Install code-server extensions via code-server so terminate is aware of them.
-bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
-while read -r extention; do
-    if [ ! -e "$ext_path/$extention*" ]; then
-        code-server --install-extension="$extention"
-        bashio::log.info "Installed $extention"
-    else
-        bashio::log.info "Has $extention installed"
-    fi
-done <"$CODE_SERVER_EXTENSIONS_LIST"
-
-sed -i "/extensions-dir=/c extensions-dir=\"$ext_path\"" "$CODE_SERVER_CONFIG"
-
 # Ensure User settings path
 user_path="$config_path/user"
 if [ ! -d "$user_path" ]; then
@@ -109,6 +86,19 @@ if [ ! -d "$user_path" ]; then
         bashio::exit.nok "Could not create persistent User folder."
 fi
 sed -i "/user-data-dir=/c user-data-dir=\"$user_path\"" "$CODE_SERVER_CONFIG"
+
+# Ensure extensions path
+if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
+    bashio::log.error "CODE_SERVER_EXTENSIONS_LIST does not exist.."
+    cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
+fi
+
+if [ ! -d "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ]; then
+    bashio::log.error "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
+    mkdir -p "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ||
+        bashio::exit.nok "Could not create persistent extensions folder."
+    bashio::log.info "Initalizing code-server extentions..."
+fi
 
 # Sets up default user settings on first start.
 if ! bashio::fs.file_exists "$user_path"/settings.json; then
@@ -125,3 +115,16 @@ fi
 if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
     cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
 fi
+
+
+# Install code-server extensions via code-server so terminate is aware of them.
+sed -i "/extensions-dir=/c extensions-dir=\"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
+bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
+while read -r extention; do
+    if [ ! -e "$ext_path/$extention*" ]; then
+        code-server --install-extension="$extention"
+        bashio::log.info "Installed $extention"
+    else
+        bashio::log.info "Has $extention installed"
+    fi
+done <"$CODE_SERVER_EXTENSIONS_LIST"
