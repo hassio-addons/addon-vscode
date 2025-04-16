@@ -1,2 +1,5 @@
 .devcontainer/docker-compose.yml
 todo.txt
+.devcontainer
+.vscode
+
