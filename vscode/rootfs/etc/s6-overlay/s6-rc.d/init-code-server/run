@@ -25,14 +25,14 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 
 readonly -a DIRECTORIES=(addon_configs addons backup homeassistant media share ssl)
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/SERVER/homeassistant/addon_configs/vscode"
+readonly DEFAULT_CONFIG_PATH="/config/addon_configs/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
 
 CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 
-ls / | tee
+ls /SERVER | tee
 # Links some common directories to the user's home folder for convenience
 for dir in "${DIRECTORIES[@]}"; do
     ln -sn "/${dir}" "/SERVER/${dir}" ||
