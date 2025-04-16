@@ -26,6 +26,8 @@ map:
     read_only: false
   - type: media
     read_only: false
+  - type: share
+    read_only: false
   - type: ssl
     read_only: false
 services:
