@@ -28,6 +28,7 @@ map:
     read_only: false
   - type: homeassistant_config
     read_only: false
+    path: /config
   - type: media
     read_only: false
   - type: share

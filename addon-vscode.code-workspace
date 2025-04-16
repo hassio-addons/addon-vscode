@@ -6,7 +6,10 @@
 	],
 	"settings": {
 		"yaml.schemas": {
-			"https://json.schemastore.org/yamllint.json": "file:///f%3A/repos/addon-vscode/vscode/rootfs/usr/lib/code-server/defaults/config.yaml"
+			"https://json.schemastore.org/yamllint.json": [
+				"file:///f%3A/repos/addon-vscode/vscode/rootfs/usr/lib/code-server/defaults/config.yaml",
+				"file:///f%3A/repos/addon-vscode/vscode/rootfs/var/lib/code-server/defaults/config.yaml"
+			]
 		}
 	}
 }

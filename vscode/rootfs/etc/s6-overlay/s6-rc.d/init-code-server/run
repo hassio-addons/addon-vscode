@@ -22,13 +22,20 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     dbe905f0935b2fea8bb5ba379bff78db9d056ea6d0965c68aa9b07938a52cbbf117186452b2b6c766aa4cf93cc3494ad91b763e8500e515e41d8cde31a3821ae
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
-
+readonly -a DIRECTORIES=(addon_configs addons backup config media share ssl)
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="$addon_configs/vscode"
+readonly DEFAULT_CONFIG_PATH="/SERVER/config/vscode"
 readonly CODE_SERVER_CONFIG_DIR="/root/.config/code-server/"
- CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
- CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
- CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
+
+CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extentions"
+readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
+
+# Links some common directories to the user's home folder for convenience
+for dir in "${DIRECTORIES[@]}"; do
+    ln -sn "/${dir}" "/SERVER/${dir}" ||
+        bashio::log.warning "Failed linking common directory: ${dir}"
+done
 
 # Ensure config path exists
 if bashio::config.has_value "vscode_config_path"; then
