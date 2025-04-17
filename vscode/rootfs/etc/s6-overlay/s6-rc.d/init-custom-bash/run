@@ -7,8 +7,9 @@
 bashio::log.info "Initalizing code-server configs"
 
 caller_dir=$(dirname "$(readlink -f "$0")")
+parent_path=../../$caller_dir
 # shellcheck source=../paths.sh
-source "../$caller_dir/paths.sh"
+source "$parent_path/paths.sh"
 
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/custom"
