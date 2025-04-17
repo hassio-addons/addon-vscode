@@ -27,6 +27,7 @@ CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 # shellcheck source=../paths.sh
 source "/etc/s6-overlay/s6-rc.d/paths.sh"
+
 run() {
     setup_config_path
     setup_config_files
