@@ -23,12 +23,15 @@ run() {
         cp "$DEFAULT_FILES_PATH"/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"/custom-template.sh
     fi
 
-    for script in "${CUSTOM_BASH_SCRIPTS_PATH}"/*.sh
-    do
-        echo "Config script: $script"
-        chmod +x "$script"
-        "$script"
-    done
+    if [ "$(ls -A "$CUSTOM_BASH_SCRIPTS_PATH")" ]; then
+        for script in "${CUSTOM_BASH_SCRIPTS_PATH}"/*.sh; do
+            echo "Config script: $script"
+            chmod +x "$script"
+            "$script"
+        done
+
+    fi
+
 }
 
 run
