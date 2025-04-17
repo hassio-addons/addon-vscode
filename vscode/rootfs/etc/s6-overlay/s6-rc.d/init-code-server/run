@@ -31,7 +31,7 @@ readonly CODE_SERVER_WORKSPACE_FILE="$DEFAULT_CONFIG_PATH/SERVER.code-workspace"
 
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
-CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+export CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 run() {
     setup_clean_view
