@@ -35,7 +35,10 @@ run() {
     fi
 
     if [ "$(ls -A "$CUSTOM_BASH_SCRIPTS_PATH")" ]; then
-        for script in "${CUSTOM_BASH_SCRIPTS_PATH}"/*.sh/!"$pathsfile"; do
+        for script in "${CUSTOM_BASH_SCRIPTS_PATH}"/*.sh; do
+            if  [ "$script" = "$pathsfile" ]; then
+                continue
+            fi
             echo "Running custom script: $script"
             chmod +x "$script"
             "$script"
