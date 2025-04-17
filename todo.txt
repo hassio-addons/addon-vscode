@@ -2,6 +2,7 @@ persist SERVER
 add workspace persistant file
 ? add new custom service to run linking, store in data
 
+https://developers.home-assistant.io/docs/add-ons/
 
 cli 
 https://github.com/coder/code-server/blob/e3c09efcbcdfd632cbeac6044692d7ea9f493386/src/node/cli.ts#L35

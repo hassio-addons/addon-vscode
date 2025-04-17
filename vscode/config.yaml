@@ -20,7 +20,8 @@ hassio_api: true
 hassio_role: manager
 homeassistant_api: true
 privileged:
-  - "SYS_ADMIN"
+  - SYS_ADMIN
+full_access: true
 map:
   - backup:rw
   - data:rw
@@ -31,6 +32,7 @@ map:
 services:
   - mysql:want
   - mqtt:want
+journald: true
 options:
   log_level: warning
 schema:
