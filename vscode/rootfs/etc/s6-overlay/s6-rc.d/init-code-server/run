@@ -44,17 +44,18 @@ setup_clean_view() {
     # Links some common directories to the user's home folder for convenience
     for dir in "${DIRECTORIES[@]}"; do
         current="${CODE_SERVER_WORKSPACE_DIR}"/"${dir}"
-        if [ -L "${current}" ] && [ -e "${current}" ]; then
-            bashio::log.info "${dir} has good link."
-        elif [ ! -e "${current}" ]; then
+
+        if [ ! -e "${current}" ]; then
+            bashio::log.warning "Creating link for: ${dir}..."
+            ln -sn "/${dir}" "$current" ||
+                bashio::log.warning "Failed linking common directory: ${dir}"
+        elif [ ! -L "${current}" ]; then
             bashio::log.warning "Failed link: ${dir}. Removing and recreating..."
             rm -f "${current}"
             ln -sn "/${dir}" "$current" ||
                 bashio::log.warning "Failed linking common directory: ${dir}"
         else
-            bashio::log.warning "Creating link for: ${dir}..."
-            ln -sn "/${dir}" "$current" ||
-                bashio::log.warning "Failed linking common directory: ${dir}"
+            bashio::log.info "${dir} has good link."
         fi
     done
 
