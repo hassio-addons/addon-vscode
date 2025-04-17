@@ -5,11 +5,11 @@
 # Runs the code-server
 # ==============================================================================
 bashio::log.info 'Starting code-server...'
-parent_dir=$(dirname "$(readlink -f "$0")"
-echo "$parent_dir"
-)
+
+caller_dir=$(dirname "$(readlink -f "$0")")
 # shellcheck source=../paths.sh
-source "$parent_dir/paths.sh"
+source "../$caller_dir/paths.sh"
+
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
