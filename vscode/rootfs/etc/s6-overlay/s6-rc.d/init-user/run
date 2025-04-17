@@ -4,10 +4,9 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Persists user settings and installs custom user packages.
 # ==============================================================================
-readonly GIT_USER_PATH=/data/git
-readonly SSH_USER_PATH=/data/.ssh
-readonly ZSH_HISTORY_FILE=/root/.zsh_history
-readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
+
+# shellcheck source=../paths.sh
+source "/etc/s6-overlay/s6-rc.d/paths.sh"
 
 run() {
     setup_ssh
