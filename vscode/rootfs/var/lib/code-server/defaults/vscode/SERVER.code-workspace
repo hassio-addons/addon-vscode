@@ -4,7 +4,12 @@
 			"path": "."
 		}
 	],
-	"settings": {},
+	"settings": {
+		"files.associations": {
+			"*.yaml": "home-assistant"
+		},
+		"window.autoDetectColorScheme": true
+	},
 	"extensions": {
 		"recommendations": [
 			"aaaaronzhou.vscode-auto-light-dark-theme",
