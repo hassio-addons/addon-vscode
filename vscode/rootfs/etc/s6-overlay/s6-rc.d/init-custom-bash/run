@@ -8,19 +8,20 @@ bashio::log.info "Initalizing code-server configs"
 
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom"
+readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 
 run() {
     if [ ! -d "$CUSTOM_BASH_SCRIPTS_PATH" ]; then
         bashio::log.warning "Config path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
         mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
+        cp "$DEFAULT_FILES_PATH"/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"
     fi
 
     for script in "$CUSTOM_BASH_SCRIPTS_PATH"/*.sh; do
         chmod +x "$script"
         "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
     done
-
 }
 
 run
