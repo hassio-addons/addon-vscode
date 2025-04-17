@@ -22,13 +22,18 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     dbe905f0935b2fea8bb5ba379bff78db9d056ea6d0965c68aa9b07938a52cbbf117186452b2b6c766aa4cf93cc3494ad91b763e8500e515e41d8cde31a3821ae
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
+DEFAULT_CONFIG_PATH="/data/vscode"
+CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
-source "../paths.sh"
+# shellcheck source=../paths.sh
+source "/etc/s6-overlay/s6-rc.d/paths.sh"
 run() {
-    setup_code_workspace
-    setup_clean_view
     setup_config_path
     setup_config_files
+
+    setup_code_workspace
+    setup_clean_view
+
     set_log_level
     set_user_settings
     setup_extensions
@@ -49,6 +54,7 @@ setup_clean_view() {
 setup_code_workspace() {
     # Create the workspace dir
     if [ ! -d "$CODE_SERVER_WORKSPACE_DIR" ]; then
+        bashio::log.warning "CODE_SERVER_WORKSPACE_DIR does not exist. Creating..."
         mkdir -p "$CODE_SERVER_WORKSPACE_DIR"
     fi
 
@@ -60,12 +66,13 @@ setup_code_workspace() {
 
     # .vscode dir
     if [ ! -d "$CODE_SERVER_VSCODE_DIR" ]; then
+        bashio::log.warning "CODE_SERVER_VSCODE_DIR does not exist. Creating..."
         mkdir -p "$CODE_SERVER_VSCODE_DIR"
     fi
 
     # tasks.json
     if [ ! -e "$CODE_SERVER_VSCODE_TASKS" ]; then
-        bashio::log.warning "CODE_SERVER_WORKSPACE_FILE does not exist. Creating..."
+        bashio::log.warning "CODE_SERVER_VSCODE_TASKS does not exist. Creating..."
         cp "$DEFAULT_FILES_PATH/vscode/tasks.json" "$CODE_SERVER_VSCODE_TASKS"
     fi
 }

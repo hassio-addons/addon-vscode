@@ -2,8 +2,6 @@
 # this file is to prevent spagetti paths
 # shellcheck disable=SC2034
 
-DEFAULT_CONFIG_PATH="/data/vscode"
-CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly

@@ -12,5 +12,4 @@ export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
 
 # Run the code server
-cd "$CODE_SERVER_WORKSPACE_DIR" || bashio::exit.nok "Workspace path does not exist"
 exec code-server "$CODE_SERVER_WORKSPACE_FILE"
