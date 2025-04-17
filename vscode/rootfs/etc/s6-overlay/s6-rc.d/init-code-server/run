@@ -27,6 +27,8 @@ readonly DEFAULT_CONFIG_PATH="/data/vscode"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
+readonly CODE_SERVER_WORKSPACE_FILE="$DEFAULT_CONFIG_PATH/SERVER.code-workspace"
+
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
 CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
@@ -38,6 +40,7 @@ run() {
     set_log_level
     set_user_settings
     setup_extensions
+    setup_code_workspace
 }
 
 setup_clean_view() {
@@ -49,6 +52,16 @@ setup_clean_view() {
 
     ln -sn "/data" "/SERVER/code-server-config" ||
         bashio::log.warning "Failed linking common directory: ${dir}"
+}
+
+setup_code_workspace() {
+    # Copies the default workspace
+    if [ ! -e "$CODE_SERVER_WORKSPACE_FILE" ]; then
+        bashio::log.warning "CODE_SERVER_CONFIG does not exist.."
+        cp "$DEFAULT_FILES_PATH/SERVER.code-workspace" "$CODE_SERVER_WORKSPACE_FILE"
+    fi
+
+    export CODE_SERVER_WORKSPACE_FILE=$CODE_SERVER_WORKSPACE_FILE
 }
 
 setup_config_path() {

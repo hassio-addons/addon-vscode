@@ -1,0 +1,26 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant Community Add-on: Studio Code Server
+# Sets up code-server.
+# ==============================================================================
+bashio::log.info "Initalizing code-server configs"
+
+# List of previous config hashes, to allow upgrade "default" configs.
+readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom"
+
+run() {
+    if [ ! -d "$CUSTOM_BASH_SCRIPTS_PATH" ]; then
+        bashio::log.warning "Config path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
+        mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
+            bashio::exit.nok "Could not create persistent storage folder."
+    fi
+
+    for script in "$CUSTOM_BASH_SCRIPTS_PATH"/*.sh; do
+        chmod +x "$script"
+        "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
+    done
+
+}
+
+run
