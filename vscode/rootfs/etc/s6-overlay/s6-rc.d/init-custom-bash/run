@@ -15,7 +15,6 @@ run() {
         bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
         mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
-
     fi
 
     if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/custom-template.sh ]]; then
@@ -31,7 +30,6 @@ run() {
         done
 
     fi
-
 }
 
 run

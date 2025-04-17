@@ -56,15 +56,14 @@ setup_clean_view() {
 }
 
 setup_code_workspace() {
-    # Set a link to where code-server expects the config to be
-    if [ ! -d "$ROOT_CODE_SERVER_CONFIG_PATH" ]; then
-        mkdir -p "$ROOT_CODE_SERVER_CONFIG_PATH"
-        ln -s "$CODE_SERVER_CONFIG" "$ROOT_CODE_SERVER_CONFIG_PATH/config.yaml"
+    # Create the workspace dir
+    if [ ! -d "$CODE_SERVER_WORKSPACE_DIR" ]; then
+        mkdir -p "$CODE_SERVER_WORKSPACE_DIR"
     fi
 
     # Copies the default workspace
     if [ ! -e "$CODE_SERVER_WORKSPACE_FILE" ]; then
-        bashio::log.warning "CODE_SERVER_CONFIG does not exist.."
+        bashio::log.warning "CODE_SERVER_WORKSPACE_FILE does not exist.."
         cp "$DEFAULT_FILES_PATH/SERVER.code-workspace" "$CODE_SERVER_WORKSPACE_FILE"
     fi
 
@@ -76,7 +75,7 @@ setup_config_path() {
     if bashio::config.has_value "vscode_config_path"; then
         DEFAULT_CONFIG_PATH=$(bashio::config 'vscode_config_path')
         if ! bashio::fs.directory_exists "${DEFAULT_CONFIG_PATH}"; then
-            bashio::exit.nok "Configured config path does not exists"
+            bashio::exit.nok "Configured config path does not exist"
         fi
     else
         # otherwise set to local dir
