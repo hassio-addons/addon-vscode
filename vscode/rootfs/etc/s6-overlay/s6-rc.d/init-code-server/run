@@ -6,6 +6,9 @@
 # ==============================================================================
 bashio::log.info "Initalizing code-server configs"
 
+# shellcheck source=../paths.sh
+source "/etc/s6-overlay/s6-rc.d/paths.sh"
+
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     86776df88391c3d94f79f62b430f9ff8538960628d5e04fb660165a5a46640d2e74f89cd68b3e6985dc59101ae2dda00a1e25aa48381acfd4736858c5f23878b
@@ -23,10 +26,6 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
 
-
-# shellcheck source=../paths.sh
-source "/etc/s6-overlay/s6-rc.d/paths.sh"
-
 CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 run() {
@@ -36,10 +35,9 @@ run() {
     setup_code_workspace
     setup_clean_view
 
-    set_log_level
-    set_user_settings
+    setup_log_level
+    setup_user_settings
     setup_extensions
-
 }
 
 setup_clean_view() {
@@ -91,7 +89,7 @@ setup_config_path() {
     else
         # otherwise set to local dir
         if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
-            bashio::log.warning "Config path does not exist. Creating... "
+            bashio::log.warning "DEFAULT_CONFIG_PATH path does not exist. Creating... "
             mkdir -p "$DEFAULT_CONFIG_PATH" ||
                 bashio::exit.nok "Could not create persistent storage folder."
         fi
@@ -141,7 +139,7 @@ setup_extensions() {
     done <"$CODE_SERVER_EXTENSIONS_LIST"
 }
 
-set_log_level() {
+setup_log_level() {
     if bashio::config.has_value 'log_level'; then
         log_level=$(bashio::config 'log_level')
         if [ "$log_level" = "warning" ]; then
@@ -157,7 +155,7 @@ set_log_level() {
     fi
 }
 
-set_user_settings() {
+setup_user_settings() {
     # Ensure User settings path
     user_path="$DEFAULT_CONFIG_PATH/user"
     if [ ! -d "$user_path" ]; then
