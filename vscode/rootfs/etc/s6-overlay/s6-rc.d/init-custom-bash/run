@@ -5,7 +5,7 @@
 # Sets up code-server.
 # ==============================================================================
 bashio::log.info "Initalizing code-server configs"
-
+source "../paths.sh"
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/custom"
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults/core"

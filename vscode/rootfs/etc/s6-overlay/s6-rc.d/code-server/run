@@ -5,14 +5,11 @@
 # Runs the code-server
 # ==============================================================================
 bashio::log.info 'Starting code-server...'
-
+source "../paths.sh"
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
-readonly DEFAULT_CONFIG_PATH="/data/vscode"
-readonly CODE_SERVER_WORKSPACE_DIR="$DEFAULT_CONFIG_PATH/workspace"
-readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-workspace"
 
 # Run the code server
 cd "$CODE_SERVER_WORKSPACE_DIR" || bashio::exit.nok "Workspace path does not exist"

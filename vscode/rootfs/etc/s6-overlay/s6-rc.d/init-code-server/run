@@ -22,20 +22,8 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     dbe905f0935b2fea8bb5ba379bff78db9d056ea6d0965c68aa9b07938a52cbbf117186452b2b6c766aa4cf93cc3494ad91b763e8500e515e41d8cde31a3821ae
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
-readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
-readonly DEFAULT_CONFIG_PATH="/data/vscode"
-readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
-readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
-readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
-readonly CODE_SERVER_WORKSPACE_DIR="/data/workspace"
-readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-workspace"
-readonly CODE_SERVER_VSCODE_DIR="$CODE_SERVER_WORKSPACE_DIR/.vscode"
 
-readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
-readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
-
-CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
-
+source "../paths.sh"
 run() {
     setup_code_workspace
     setup_clean_view
@@ -80,8 +68,6 @@ setup_code_workspace() {
         bashio::log.warning "CODE_SERVER_WORKSPACE_FILE does not exist. Creating..."
         cp "$DEFAULT_FILES_PATH/vscode/tasks.json" "$CODE_SERVER_VSCODE_TASKS"
     fi
-
-    export CODE_SERVER_WORKSPACE_FILE
 }
 
 setup_config_path() {
