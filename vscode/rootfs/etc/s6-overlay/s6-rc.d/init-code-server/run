@@ -33,16 +33,17 @@ readonly CODE_SERVER_VSCODE_DIR="$DEFAULT_CONFIG_PATH/workspace"
 readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
-CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/core/config.yaml"
+CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 run() {
+    setup_code_workspace
     setup_clean_view
     setup_config_path
     setup_config_files
     set_log_level
     set_user_settings
     setup_extensions
-    setup_code_workspace
+
 }
 
 setup_clean_view() {
