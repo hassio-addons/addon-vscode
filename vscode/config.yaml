@@ -22,12 +22,15 @@ homeassistant_api: true
 map:
   - type: addons
     read_only: false
+  - type: all_addon_configs
+    read_only: false
   - type: backup
     read_only: false
   - type: data
     read_only: false
   - type: homeassistant_config
     read_only: false
+    path: /config
   - type: media
     read_only: false
   - type: share
