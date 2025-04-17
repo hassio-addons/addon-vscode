@@ -19,7 +19,7 @@ run() {
     fi
 
     for script in "$CUSTOM_BASH_SCRIPTS_PATH"/*.sh; do
-        chmod +x "$script"
+        chmod +x "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
         "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
     done
 }
