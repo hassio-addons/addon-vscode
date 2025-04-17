@@ -6,8 +6,9 @@
 # ==============================================================================
 bashio::log.info "Initalizing code-server configs"
 
+parent_dir=$(dirname "$(readlink -f "$0")")
 # shellcheck source=../paths.sh
-source "/etc/s6-overlay/s6-rc.d/paths.sh"
+source "$parent_dir/paths.sh"
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/custom"
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults/core"
