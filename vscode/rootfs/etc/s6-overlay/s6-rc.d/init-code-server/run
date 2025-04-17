@@ -27,11 +27,11 @@ readonly DEFAULT_CONFIG_PATH="/data/vscode"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
-readonly CODE_SERVER_WORKSPACE_FILE="$DEFAULT_CONFIG_PATH/SERVER.code-workspace"
+export CODE_SERVER_WORKSPACE_FILE="$DEFAULT_CONFIG_PATH/SERVER.code-workspace"
 
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
-export CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 run() {
     setup_clean_view
