@@ -55,7 +55,7 @@ setup_clean_view() {
             bashio::log.warning "Failed linking common directory: ${dir}"
     done
 
-    ln -sn "/data" "${CODE_SERVER_WORKSPACE_DIR}"/code-server-config ||
+    ln -sn "$DEFAULT_CONFIG_PATH" "${CODE_SERVER_WORKSPACE_DIR}"/code-server-config ||
         bashio::log.warning "Failed linking common directory: ${dir}"
 }
 
