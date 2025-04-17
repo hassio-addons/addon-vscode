@@ -61,7 +61,7 @@ setup_code_workspace() {
         cp "$DEFAULT_FILES_PATH/SERVER.code-workspace" "$CODE_SERVER_WORKSPACE_FILE"
     fi
 
-    export CODE_SERVER_WORKSPACE_FILE=$CODE_SERVER_WORKSPACE_FILE
+    export CODE_SERVER_WORKSPACE_FILE
 }
 
 setup_config_path() {
