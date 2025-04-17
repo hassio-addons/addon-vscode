@@ -21,7 +21,7 @@ show_vars() {
     bashio::log.info "BASH VARS:"
     set -o posix ; set | while IFS='' read -r line
     do
-        bashio::log.info "$line"
+        echo "$line"
     done
 }
 
