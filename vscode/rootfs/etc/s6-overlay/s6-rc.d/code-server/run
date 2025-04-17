@@ -5,7 +5,8 @@
 # Runs the code-server
 # ==============================================================================
 bashio::log.info 'Starting code-server...'
-source "../paths.sh"
+# shellcheck source=../paths.sh
+source "/etc/s6-overlay/s6-rc.d/paths.sh"
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
