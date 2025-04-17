@@ -19,10 +19,10 @@ run() {
 
     if [[ ! -e "$DEFAULT_FILES_PATH"/custom-template.sh ]]; then
         bashio::log.warning "custom-template.sh does not exist."
-        cp "$DEFAULT_FILES_PATH"/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"
+        cp "$DEFAULT_FILES_PATH"/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"/custom-template.sh
     fi
 
-    for script in $CUSTOM_BASH_SCRIPTS_PATH/*.sh; do
+    for script in "$CUSTOM_BASH_SCRIPTS_PATH"/*.sh; do
         bashio::log.info "Config script: $script"
         chmod +x "$script"
         "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
