@@ -21,9 +21,7 @@ hassio_role: manager
 homeassistant_api: true
 privileged:
   - "SYS_ADMIN"
-full_access: true
 map:
-  - all_addon_configs:rw
   - backup:rw
   - data:rw
   - homeassistant_config:rw
