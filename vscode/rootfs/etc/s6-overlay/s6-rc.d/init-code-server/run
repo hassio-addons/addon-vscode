@@ -43,9 +43,8 @@ run() {
 setup_clean_view() {
     # Links some common directories to the user's home folder for convenience
     for dir in "${DIRECTORIES[@]}"; do
-        if [  -e /"${dir}" ]; then
-            current="${CODE_SERVER_WORKSPACE_DIR}"/"${dir}"
-
+        current="${CODE_SERVER_WORKSPACE_DIR}"/"${dir}"
+        if [ -e /"${dir}" ]; then
             if [ ! -e "${current}" ]; then
                 bashio::log.warning "Creating link for: ${dir}..."
                 ln -sn "/${dir}" "$current" ||
@@ -59,7 +58,12 @@ setup_clean_view() {
                 bashio::log.info "${dir} has good link."
             fi
         else
-             bashio::log.warning "${dir} does not exist, cannot link..."
+            if [ -e "${current}" ]; then
+                rm "${current}"
+                bashio::log.warning "${dir} does not exist, cannot link, removed existing link..."
+            else
+                bashio::log.warning "${dir} does not exist, cannot link..."
+            fi
         fi
     done
 
