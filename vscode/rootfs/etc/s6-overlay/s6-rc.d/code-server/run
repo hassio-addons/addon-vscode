@@ -9,6 +9,8 @@ bashio::log.info 'Starting code-server...'
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
+readonly DEFAULT_CONFIG_PATH="/data/vscode"
+readonly CODE_SERVER_WORKSPACE_FILE="$DEFAULT_CONFIG_PATH/SERVER.code-workspace"
 
 # Run the code server
-exec code-server $CODE_SERVER_WORKSPACE_FILE
+exec code-server "$CODE_SERVER_WORKSPACE_FILE"
