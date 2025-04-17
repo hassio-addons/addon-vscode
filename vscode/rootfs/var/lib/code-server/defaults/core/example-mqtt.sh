@@ -16,6 +16,7 @@ run (){
     fi
 
     git_src
+    show_vars
     export -f mqtt_push
 }
 
@@ -50,7 +51,7 @@ mqtt_push() {
 }
 
 show_vars() {
-    # echos all env vars
+    # echos all env vars to the log
     bashio::log.info "ENV VARS:"
     set -o posix ; set | while IFS='' read -r line
     do
