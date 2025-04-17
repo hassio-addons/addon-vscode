@@ -24,12 +24,14 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
 )
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly DEFAULT_CONFIG_PATH="/data/vscode"
+readonly DEFAULT_WORKSPACE_PATH="/data/workspace"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 readonly CODE_SERVER_WORKSPACE_DIR="$DEFAULT_CONFIG_PATH/workspace"
 readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-workspace"
-readonly CODE_SERVER_VSCODE_DIR="$DEFAULT_CONFIG_PATH/workspace"
+readonly CODE_SERVER_VSCODE_DIR="$DEFAULT_WORKSPACE_PATH/.vscode"
+
 readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
