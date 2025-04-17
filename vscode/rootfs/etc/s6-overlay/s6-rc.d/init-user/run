@@ -9,11 +9,20 @@
 source "/etc/s6-overlay/s6-rc.d/paths.sh"
 
 run() {
+    show_vars
     setup_ssh
     setup_zsh
     setup_git
     setup_config_packages
     exec_config_cmds
+}
+
+show_vars() {
+    bashio::log.info "BASH VARS:"
+    set -o posix ; set | while IFS='' read -r line
+    do
+        bashio::log.info "$line"
+    done
 }
 
 setup_ssh() {

@@ -6,6 +6,7 @@ cert: false
 disable-getting-started-override: true
 disable-update-check: true
 disable-telemetry: true
-user-data-dir: "/config/addon_configs/vscode"
-extensions-dir: "/var/lib/code-server/config/"
+# /data is persistant storage on the HA host
+user-data-dir: "/data/vscode/user"
+extensions-dir: "/data/vscode/extensions"
 log: warn

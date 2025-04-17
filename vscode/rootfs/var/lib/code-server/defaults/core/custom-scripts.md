@@ -6,4 +6,8 @@ This directory is for shell scripts to be ran at boot time so you can add functi
 ## custom-template.sh
 
 This script is an example of a script that has an on/off switch that can allow you to add extra functionality when needed. To run it,
-change ENABLED to true and restart the VS Code server instance.
+change ENABLE to true and restart the VS Code server instance.
+
+## PATHS.sh
+
+This shows all paths used at boot time. USER_CUSTOM_DIR is for storage of build sources, etc.
