@@ -16,5 +16,5 @@ readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-work
 
 # Run the code server
 echo CODE_SERVER_WORKSPACE_FILE "$CODE_SERVER_WORKSPACE_FILE"
-cd "$CODE_SERVER_WORKSPACE_DIR" ||     bashio::exit.nok "Workspace path does not exist"
+cd "$CODE_SERVER_WORKSPACE_DIR" || bashio::exit.nok "Workspace path does not exist"
 exec code-server "$CODE_SERVER_WORKSPACE_FILE"

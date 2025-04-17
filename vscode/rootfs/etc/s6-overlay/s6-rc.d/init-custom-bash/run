@@ -7,7 +7,7 @@
 bashio::log.info "Initalizing code-server configs"
 
 # List of previous config hashes, to allow upgrade "default" configs.
-readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom"
+readonly CUSTOM_BASH_SCRIPTS_PATH="/data/custom"
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 
 run() {
@@ -28,7 +28,6 @@ run() {
             chmod +x "$script"
             "$script"
         done
-
     fi
 }
 
