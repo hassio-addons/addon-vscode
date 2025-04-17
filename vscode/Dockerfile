@@ -42,6 +42,8 @@ RUN apt-get update \
     unzip \
     htop \
     nano \
+    npm \
+    && npm install -g @vscode/vsce \
     && rm -rf /var/lib/apt/lists/*
 
 #System configuration
