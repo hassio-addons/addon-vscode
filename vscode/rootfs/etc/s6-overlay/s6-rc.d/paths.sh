@@ -13,7 +13,7 @@ readonly CODE_SERVER_VSCODE_DIR="$CODE_SERVER_WORKSPACE_DIR/.vscode"
 readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
 
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom_boot_scripts"
-readonly -a DIRECTORIES=(backup homeassistant media share ssl)
+readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
 readonly GIT_USER_PATH=/data/git
 readonly SSH_USER_PATH=/data/.ssh
