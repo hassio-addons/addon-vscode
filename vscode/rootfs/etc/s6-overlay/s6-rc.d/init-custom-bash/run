@@ -25,7 +25,7 @@ run() {
 
     if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.sh ]]; then
         bashio::log.warning "example-mqtt.sh does not exist."
-        cp "$DEFAULT_FILES_PATH"/core/example-mqt.sh "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.sh
+        cp "$DEFAULT_FILES_PATH"/core/example-mqtt.sh "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.sh
     fi
 
     if [ ! -e "$USER_CUSTOM_DIR" ]; then
