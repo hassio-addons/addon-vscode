@@ -12,12 +12,13 @@ readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 
 run() {
     if [ ! -d "$CUSTOM_BASH_SCRIPTS_PATH" ]; then
-        bashio::log.warning "Config path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
+        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
         mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
     fi
 
     if [[ ! -e "$DEFAULT_FILES_PATH"/custom-template.sh ]]; then
+        bashio::log.warning "custom-template.sh does not exist."
         cp "$DEFAULT_FILES_PATH"/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"
     fi
 
