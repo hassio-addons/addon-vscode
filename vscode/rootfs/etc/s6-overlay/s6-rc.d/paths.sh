@@ -14,3 +14,8 @@ readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
 
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom_boot_scripts"
 readonly -a DIRECTORIES=(backup config media share ssl)
+
+readonly GIT_USER_PATH=/data/git
+readonly SSH_USER_PATH=/data/.ssh
+readonly ZSH_HISTORY_FILE=/root/.zsh_history
+readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history

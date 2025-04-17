@@ -97,6 +97,21 @@ setup_code_workspace() {
         bashio::log.warning "CODE_SERVER_VSCODE_TASKS does not exist. Creating..."
         cp "$DEFAULT_FILES_PATH/vscode/tasks.json" "$CODE_SERVER_VSCODE_TASKS"
     fi
+
+    # custom tasks paths file
+    CUSTOM_BASH_SCRIPTS_PATH_SYMLINK="$CUSTOM_BASH_SCRIPTS_PATH/PATHS.sh"
+    if [ ! -e "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ]; then
+        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH_ does not exist. Creating..."
+        ln -sn "/etc/s6-overlay/s6-rc.d/paths.sh" "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ||
+            bashio::log.warning "Failed linking PATHS.sh"
+    elif [ ! -L "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ]; then
+        bashio::log.warning "Failed path.sh link: Removing and recreating..."
+        rm -f"$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK"
+        ln -sn "/etc/s6-overlay/s6-rc.d/paths.sh" "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ||
+            bashio::log.warning "Failed linking PATHS.sh"
+    else
+        bashio::log.info "Custom scripts symlink has a good link..."
+    fi
 }
 
 setup_config_path() {
@@ -201,7 +216,6 @@ setup_user_settings() {
     if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
         cp "$DEFAULT_FILES_PATH/vscode/workspaces.json" "$user_path/workspaces.json"
     fi
-
 }
 
 run
