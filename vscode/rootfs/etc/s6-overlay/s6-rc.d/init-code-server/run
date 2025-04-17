@@ -27,7 +27,8 @@ readonly DEFAULT_CONFIG_PATH="/data/vscode"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
-readonly CODE_SERVER_WORKSPACE_FILE="$DEFAULT_CONFIG_PATH/SERVER.code-workspace"
+readonly CODE_SERVER_WORKSPACE_DIR="$DEFAULT_CONFIG_PATH/workspace"
+readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-workspace"
 
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
@@ -55,6 +56,12 @@ setup_clean_view() {
 }
 
 setup_code_workspace() {
+    # Set a link to where code-server expects the config to be
+    if [ ! -d "$ROOT_CODE_SERVER_CONFIG_PATH" ]; then
+        mkdir -p "$ROOT_CODE_SERVER_CONFIG_PATH"
+        ln -s "$CODE_SERVER_CONFIG" "$ROOT_CODE_SERVER_CONFIG_PATH/config.yaml"
+    fi
+
     # Copies the default workspace
     if [ ! -e "$CODE_SERVER_WORKSPACE_FILE" ]; then
         bashio::log.warning "CODE_SERVER_CONFIG does not exist.."
