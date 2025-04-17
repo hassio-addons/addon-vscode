@@ -24,7 +24,9 @@ map:
   - all_addon_configs:rw
   - backup:rw
   - data:rw
-  - homeassistant_config:rw path: /config
+  - type: homeassistant_config
+    read_only: false
+    path: /config
   - media:rw
   - share:rw
   - ssl:rw
