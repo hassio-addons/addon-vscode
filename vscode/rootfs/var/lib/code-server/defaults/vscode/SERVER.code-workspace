@@ -4,5 +4,11 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"aaaaronzhou.vscode-auto-light-dark-theme",
+			"pinage404.bash-extension-pack"
+		]
+	}
 }

@@ -13,3 +13,5 @@ change ENABLE to true and restart the VS Code server instance.
 ## PATHS.sh
 
 This shows all paths used at boot time. USER_CUSTOM_DIR is for storage of build sources, etc.
+
+## TASK_HELPER.sh

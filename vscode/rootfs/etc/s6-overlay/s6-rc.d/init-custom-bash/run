@@ -4,36 +4,27 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Sets up code-server.
 # ==============================================================================
-bashio::log.info "Initalizing code-server configs"
+bashio::log.info "Initalizing custom-bash"
+
 pathsfile="/etc/s6-overlay/s6-rc.d/paths.sh"
 # shellcheck source=../paths.sh
 source "${pathsfile}"
 
-# List of previous config hashes, to allow upgrade "default" configs.
-
 run() {
-    if [ ! -d "$CUSTOM_BASH_SCRIPTS_PATH" ]; then
-        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH path does not exist. Creating..."
-        mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
-            bashio::exit.nok "Could not create persistent storage folder."
-    fi
+    setup
+    run_boot_scripts
+}
 
-    if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/custom-scripts.md ]]; then
-        bashio::log.warning "custom-scripts.md does not exist."
-        cp "$DEFAULT_FILES_PATH"/core/custom-scripts.md "$CUSTOM_BASH_SCRIPTS_PATH"/custom-scripts.md
-    fi
+core_file_copy() {
+    local fname=${1}
 
-    if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.sh ]]; then
-        bashio::log.warning "example-mqtt.sh does not exist."
-        cp "$DEFAULT_FILES_PATH"/core/example-mqtt.sh "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.sh
+    if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/"$fname" ]]; then
+        bashio::log.warning "$fname does not exist."
+        cp "$DEFAULT_FILES_PATH"/core/"$fname" "$CUSTOM_BASH_SCRIPTS_PATH"/"$fname"
     fi
+}
 
-    if [ ! -e "$USER_CUSTOM_DIR" ]; then
-        bashio::log.warning "USER_CUSTOM_DIR path does not exist. Creating..."
-        mkdir -p "$USER_CUSTOM_DIR" ||
-            bashio::exit.nok "Could not create persistent storage folder."
-    fi
-
+run_boot_scripts() {
     if [ "$(ls -A "$CUSTOM_BASH_SCRIPTS_PATH")" ]; then
         for script in "${CUSTOM_BASH_SCRIPTS_PATH}"/*.sh; do
             if  [ "$script" = "$pathsfile" ]; then
@@ -43,6 +34,26 @@ run() {
             chmod +x "$script"
             "$script"
         done
+    fi
+}
+
+setup() {
+    # Base Dir
+    if [ ! -d "$CUSTOM_BASH_SCRIPTS_PATH" ]; then
+        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH path does not exist. Creating..."
+        mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
+            bashio::exit.nok "Could not create persistent storage folder."
+    fi
+
+    # Copy default files
+    core_file_copy "custom-scripts.md"
+    core_file_copy "example-mqtt.sh"
+    core_file_copy "TASK_HELPER.sh"
+
+    if [ ! -e "$USER_CUSTOM_DIR" ]; then
+        bashio::log.warning "USER_CUSTOM_DIR path does not exist. Creating..."
+        mkdir -p "$USER_CUSTOM_DIR" ||
+            bashio::exit.nok "Could not create persistent storage folder."
     fi
 }
 

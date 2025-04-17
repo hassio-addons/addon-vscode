@@ -25,6 +25,7 @@ RUN apt-get update \
     && apt-get full-upgrade -y \
     && apt-get install -y --no-install-recommends \
     ack \
+    direnv \
     libarchive-tools  \
     colordiff \
     git \
