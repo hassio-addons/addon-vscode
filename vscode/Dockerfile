@@ -46,7 +46,7 @@ RUN apt-get update \
     && npm install -g @vscode/vsce \
     && rm -rf /var/lib/apt/lists/*
 
-#System configuration
+# System configuration
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && \
     update-locale LANG=en_US.UTF-8 && \
     curl https://bootstrap.pypa.io/get-pip.py | python3
