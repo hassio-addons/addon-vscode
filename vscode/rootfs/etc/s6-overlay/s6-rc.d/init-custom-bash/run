@@ -20,12 +20,12 @@ run() {
 
     if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/custom-scripts.md ]]; then
         bashio::log.warning "custom-scripts.md does not exist."
-        cp "$DEFAULT_FILES_PATH"/core/custom-scripts.md "$CUSTOM_BASH_SCRIPTS_PATH"/custom-scripts.md
+        cp "$DEFAULT_FILES_PATH"/core/custom-scripts.md "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.md
     fi
 
     if [[ ! -e "$CUSTOM_BASH_SCRIPTS_PATH"/custom-template.sh ]]; then
         bashio::log.warning "custom-template.sh does not exist."
-        cp "$DEFAULT_FILES_PATH"/core/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"/custom-template.sh
+        cp "$DEFAULT_FILES_PATH"/core/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"/example-mqtt.sh
     fi
 
     if [ ! -e "$USER_CUSTOM_DIR" ]; then
