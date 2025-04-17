@@ -7,6 +7,7 @@
 bashio::log.info "Initalizing code-server configs"
 
 parent_dir=$(dirname "$(readlink -f "$0")")
+echo "$parent_dir"
 # shellcheck source=../paths.sh
 source "$parent_dir/paths.sh"
 # List of previous config hashes, to allow upgrade "default" configs.
