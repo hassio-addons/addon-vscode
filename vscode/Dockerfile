@@ -79,7 +79,7 @@ WORKDIR /SERVER/
 
 # Install Python packages
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \
-    pip3 install --no-cache-dir -r /var/lib/code-server/defaults/requirements.txt
+    pip3 install --no-cache-dir -r /var/lib/code-server/defaults/core/requirements.txt
 
 # Cleanup apt cache
 RUN apt-get purge -y --auto-remove \

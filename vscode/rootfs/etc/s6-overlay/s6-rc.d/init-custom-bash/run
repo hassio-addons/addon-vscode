@@ -8,11 +8,11 @@ bashio::log.info "Initalizing code-server configs"
 
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/custom"
-readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
+readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults/core"
 
 run() {
     if [ ! -d "$CUSTOM_BASH_SCRIPTS_PATH" ]; then
-        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
+        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH path does not exist. Creating..."
         mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
     fi

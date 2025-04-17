@@ -29,10 +29,11 @@ readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 readonly CODE_SERVER_WORKSPACE_DIR="$DEFAULT_CONFIG_PATH/workspace"
 readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-workspace"
-
+readonly CODE_SERVER_VSCODE_DIR="$DEFAULT_CONFIG_PATH/workspace"
+readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 
-CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
+CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/core/config.yaml"
 
 run() {
     setup_clean_view
@@ -47,11 +48,11 @@ run() {
 setup_clean_view() {
     # Links some common directories to the user's home folder for convenience
     for dir in "${DIRECTORIES[@]}"; do
-        ln -sn "/${dir}" "/SERVER/${dir}" ||
+        ln -sn "/${dir}" "${CODE_SERVER_WORKSPACE_DIR}"/"${dir}" ||
             bashio::log.warning "Failed linking common directory: ${dir}"
     done
 
-    ln -sn "/data" "/SERVER/code-server-config" ||
+    ln -sn "/data" "${CODE_SERVER_WORKSPACE_DIR}"/code-server-config ||
         bashio::log.warning "Failed linking common directory: ${dir}"
 }
 
@@ -63,8 +64,19 @@ setup_code_workspace() {
 
     # Copies the default workspace
     if [ ! -e "$CODE_SERVER_WORKSPACE_FILE" ]; then
-        bashio::log.warning "CODE_SERVER_WORKSPACE_FILE does not exist.."
-        cp "$DEFAULT_FILES_PATH/SERVER.code-workspace" "$CODE_SERVER_WORKSPACE_FILE"
+        bashio::log.warning "CODE_SERVER_WORKSPACE_FILE does not exist. Creating..."
+        cp "$DEFAULT_FILES_PATH/vscode/SERVER.code-workspace" "$CODE_SERVER_WORKSPACE_FILE"
+    fi
+
+    # .vscode dir
+    if [ ! -d "$CODE_SERVER_VSCODE_DIR" ]; then
+        mkdir -p "$CODE_SERVER_VSCODE_DIR"
+    fi
+
+    # tasks.json
+    if [ ! -e "$CODE_SERVER_VSCODE_TASKS" ]; then
+        bashio::log.warning "CODE_SERVER_WORKSPACE_FILE does not exist. Creating..."
+        cp "$DEFAULT_FILES_PATH/vscode/tasks.json" "$CODE_SERVER_VSCODE_TASKS"
     fi
 
     export CODE_SERVER_WORKSPACE_FILE
@@ -80,7 +92,7 @@ setup_config_path() {
     else
         # otherwise set to local dir
         if ! bashio::fs.directory_exists "$DEFAULT_CONFIG_PATH"; then
-            bashio::log.warning "Config path did not exist, creating $DEFAULT_CONFIG_PATH"
+            bashio::log.warning "Config path does not exist. Creating... "
             mkdir -p "$DEFAULT_CONFIG_PATH" ||
                 bashio::exit.nok "Could not create persistent storage folder."
         fi
@@ -92,8 +104,8 @@ setup_config_path() {
 setup_config_files() {
     # Ensure code-server config
     if [ ! -e "$CODE_SERVER_CONFIG" ]; then
-        bashio::log.warning "CODE_SERVER_CONFIG does not exist.."
-        cp "$DEFAULT_FILES_PATH/config.yaml" "$CODE_SERVER_CONFIG"
+        bashio::log.warning "CODE_SERVER_CONFIG does not exist. Creating..."
+        cp "$DEFAULT_FILES_PATH/core/config.yaml" "$CODE_SERVER_CONFIG"
     fi
 
     # Set a link to where code-server expects the config to be
@@ -106,12 +118,12 @@ setup_config_files() {
 setup_extensions() {
     # Ensure extensions path
     if [ ! -e "$CODE_SERVER_EXTENSIONS_LIST" ]; then
-        bashio::log.warning "CODE_SERVER_EXTENSIONS_LIST does not exist.."
-        cp "$DEFAULT_FILES_PATH/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
+        bashio::log.warning "CODE_SERVER_EXTENSIONS_LIST does not exist. Creating...."
+        cp "$DEFAULT_FILES_PATH/vscode/vscode.extensions" "$CODE_SERVER_EXTENSIONS_LIST"
     fi
 
     if [ ! -d "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ]; then
-        bashio::log.warning "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist.."
+        bashio::log.warning "CODE_SERVER_EXTENSIONS_INSTALL_PATH does not exist. Creating..."
         mkdir -p "$CODE_SERVER_EXTENSIONS_INSTALL_PATH" ||
             bashio::exit.nok "Could not create persistent extensions folder."
         touch "$CODE_SERVER_EXTENSIONS_INSTALL_PATH"/extensions.json
@@ -157,19 +169,19 @@ set_user_settings() {
 
     # Sets up default user settings on first start.
     if ! bashio::fs.file_exists "$user_path"/settings.json; then
-        cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+        cp "$DEFAULT_FILES_PATH/vscode/settings.json" "$user_path/settings.json"
     else
         # Upgrade if settings.json is still default from previous version.
         current=$(sha512sum "$user_path"/settings.json | cut -d " " -f 1)
         if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
-            cp "$DEFAULT_FILES_PATH/settings.json" "$user_path/settings.json"
+            cp "$DEFAULT_FILES_PATH/vscode/settings.json" "$user_path/settings.json"
         fi
     fi
 
     sed -i "/user-data-dir:/c user-data-dir: \"$user_path\"" "$CODE_SERVER_CONFIG"
 
     if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
-        cp "$DEFAULT_FILES_PATH/workspaces.json" "$user_path/workspaces.json"
+        cp "$DEFAULT_FILES_PATH/vscode/workspaces.json" "$user_path/workspaces.json"
     fi
 
 }
