@@ -53,7 +53,6 @@ WORKDIR /tmp/
 RUN curl -fsSL https://code-server.dev/install.sh | sh  -s -- --version ${CODE_SERVER_VERSION}
 
 # Install Home Assistant CLI
-WORKDIR /tmp/
 # hadolint ignore=SC2086
 RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home-assistant/cli/releases/download/${HA_CLI_VERSION}/ha_arm64";  \
     elif  [ "${BUILD_ARCH}" = "amd64" ]; then  HA_CLI_URL="https://github.com/home-assistant/cli/releases/download/${HA_CLI_VERSION}/ha_amd64";  fi \
@@ -73,9 +72,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
     && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting \
     && sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
-
-# The folder we are going to link Server folders to, as to give a clean view of only the server files and not the addons files.
-WORKDIR /SERVER/
 
 # Install Python packages
 RUN  update-alternatives --install /usr/bin/python python /usr/bin/python3 10  && \

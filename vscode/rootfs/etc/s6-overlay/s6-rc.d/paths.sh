@@ -11,5 +11,6 @@ readonly CODE_SERVER_WORKSPACE_DIR="/data/workspace"
 readonly CODE_SERVER_WORKSPACE_FILE="$CODE_SERVER_WORKSPACE_DIR/SERVER.code-workspace"
 readonly CODE_SERVER_VSCODE_DIR="$CODE_SERVER_WORKSPACE_DIR/.vscode"
 readonly CODE_SERVER_VSCODE_TASKS="$CODE_SERVER_VSCODE_DIR/tasks.json"
+
+readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom_boot_scripts"
 readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
-readonly CUSTOM_BASH_SCRIPTS_PATH="/data/vscode/custom"
