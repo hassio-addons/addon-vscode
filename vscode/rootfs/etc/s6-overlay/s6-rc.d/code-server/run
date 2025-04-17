@@ -15,6 +15,5 @@ source "$parent_path/paths.sh"
 export HASS_SERVER="http://supervisor/core"
 export HASS_TOKEN="${SUPERVISOR_TOKEN:-}"
 
-
 # Run the code server
 exec code-server "$CODE_SERVER_WORKSPACE_FILE"
