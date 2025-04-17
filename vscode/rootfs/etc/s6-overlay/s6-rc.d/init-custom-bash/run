@@ -7,7 +7,7 @@
 bashio::log.info "Initalizing code-server configs"
 
 # shellcheck source=../paths.sh
-source "/etc/s6-overlay/s6-rc.d/init/paths.sh"
+source "/etc/s6-overlay/s6-rc.d/paths.sh"
 
 # List of previous config hashes, to allow upgrade "default" configs.
 readonly CUSTOM_BASH_SCRIPTS_PATH="/data/custom"

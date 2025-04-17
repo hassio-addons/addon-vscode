@@ -6,10 +6,8 @@
 # ==============================================================================
 bashio::log.info 'Starting code-server...'
 
-caller_dir=$(dirname "$(readlink -f "$0")")
-parent_path=../$caller_dir
 # shellcheck source=../paths.sh
-source "$parent_path/paths.sh"
+source "/etc/s6-overlay/s6-rc.d/paths.sh"
 
 # Export env variables for the Home Assistant extension
 export HASS_SERVER="http://supervisor/core"
