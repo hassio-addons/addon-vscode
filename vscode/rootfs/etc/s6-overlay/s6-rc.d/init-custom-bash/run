@@ -19,7 +19,8 @@ run() {
     fi
 
     for script in "$CUSTOM_BASH_SCRIPTS_PATH"/*.sh; do
-        chmod +x "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
+        bashio::log.info "Config script: $script"
+        chmod +x "$script"
         "$CUSTOM_BASH_SCRIPTS_PATH"/"$script"
     done
 }
