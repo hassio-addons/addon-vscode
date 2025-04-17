@@ -22,11 +22,9 @@ readonly -a PREVIOUS_DEFAULT_CONFIG_HASHES=(
     dbe905f0935b2fea8bb5ba379bff78db9d056ea6d0965c68aa9b07938a52cbbf117186452b2b6c766aa4cf93cc3494ad91b763e8500e515e41d8cde31a3821ae
     2212babaa9dc46d38ba239052c9c05151abe517cc8b493d0d351a96bf70c1efa4f7479f6ed0b75811429ba649906eb5657d73b0732b460e718a5c66603dcdbda
 )
-
-CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
-
 # shellcheck source=../paths.sh
 source "/etc/s6-overlay/s6-rc.d/paths.sh"
+CODE_SERVER_CONFIG="$DEFAULT_CONFIG_PATH/config.yaml"
 
 run() {
     setup_config_path
