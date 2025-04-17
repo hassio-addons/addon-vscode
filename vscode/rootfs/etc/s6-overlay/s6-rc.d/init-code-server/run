@@ -43,12 +43,16 @@ run() {
 setup_clean_view() {
     # Links some common directories to the user's home folder for convenience
     for dir in "${DIRECTORIES[@]}"; do
+        if [[ ! -d "${CODE_SERVER_WORKSPACE_DIR}"/"${dir}" ]]; then
         ln -sn "/${dir}" "${CODE_SERVER_WORKSPACE_DIR}"/"${dir}" ||
             bashio::log.warning "Failed linking common directory: ${dir}"
+        fi
     done
 
-    ln -sn "$DEFAULT_CONFIG_PATH" "${CODE_SERVER_WORKSPACE_DIR}"/code-server-config ||
-        bashio::log.warning "Failed linking common directory: ${dir}"
+    if [[ ! -d "${CODE_SERVER_WORKSPACE_DIR}"/code-server-config ]]; then
+        ln -sn "$DEFAULT_CONFIG_PATH" "${CODE_SERVER_WORKSPACE_DIR}"/code-server-config ||
+            bashio::log.warning "Failed linking common directory: ${dir}"
+    fi
 }
 
 setup_code_workspace() {
