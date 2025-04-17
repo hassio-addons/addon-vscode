@@ -49,4 +49,13 @@ mqtt_push() {
     cd "$CUSTOM_BASH_SCRIPTS_PATH" || "Failed to change dir back to boot scripts root"
 }
 
+show_vars() {
+    # echos all env vars
+    bashio::log.info "ENV VARS:"
+    set -o posix ; set | while IFS='' read -r line
+    do
+        echo "$line"
+    done
+}
+
 run
