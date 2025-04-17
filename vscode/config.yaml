@@ -19,7 +19,6 @@ uart: true
 hassio_api: true
 hassio_role: manager
 homeassistant_api: true
-full_access: true
 map:
   - addons:rw
   - all_addon_configs:rw
