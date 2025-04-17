@@ -212,10 +212,6 @@ setup_user_settings() {
     fi
 
     sed -i "/user-data-dir:/c user-data-dir: \"$user_path\"" "$CODE_SERVER_CONFIG"
-
-    if ! bashio::fs.file_exists "$user_path"/workspaces.json; then
-        cp "$DEFAULT_FILES_PATH/vscode/workspaces.json" "$user_path/workspaces.json"
-    fi
 }
 
 run
