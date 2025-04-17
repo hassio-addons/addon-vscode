@@ -15,6 +15,9 @@ run() {
         bashio::log.warning "Config path did not exist, creating $CUSTOM_BASH_SCRIPTS_PATH"
         mkdir -p "$CUSTOM_BASH_SCRIPTS_PATH" ||
             bashio::exit.nok "Could not create persistent storage folder."
+    fi
+
+    if [[ ! -e "$DEFAULT_FILES_PATH"/custom-template.sh ]]; then
         cp "$DEFAULT_FILES_PATH"/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"
     fi
 
