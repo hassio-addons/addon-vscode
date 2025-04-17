@@ -23,23 +23,13 @@ privileged:
   - "SYS_ADMIN"
 full_access: true
 map:
-  - type: addons
-    read_only: false
-  - type: all_addon_configs
-    read_only: false
-  - type: backup
-    read_only: false
-  - type: data
-    read_only: false
-  - type: homeassistant_config
-    read_only: false
-    path: /config
-  - type: media
-    read_only: false
-  - type: share
-    read_only: false
-  - type: ssl
-    read_only: false
+  - all_addon_configs:rw
+  - backup:rw
+  - data:rw
+  - homeassistant_config:rw
+  - media:rw
+  - share:rw
+  - ssl:rw
 services:
   - mysql:want
   - mqtt:want
