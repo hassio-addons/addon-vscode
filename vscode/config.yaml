@@ -19,6 +19,8 @@ uart: true
 hassio_api: true
 hassio_role: manager
 homeassistant_api: true
+privileged:
+  - "SYS_ADMIN"
 full_access: true
 map:
   - type: addons
