@@ -101,7 +101,7 @@ setup_code_workspace() {
     # custom tasks paths file
     CUSTOM_BASH_SCRIPTS_PATH_SYMLINK="$CUSTOM_BASH_SCRIPTS_PATH/PATHS.sh"
     if [ ! -e "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ]; then
-        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH_ does not exist. Creating..."
+        bashio::log.warning "CUSTOM_BASH_SCRIPTS_PATH does not exist. Creating..."
         ln -sn "/etc/s6-overlay/s6-rc.d/paths.sh" "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ||
             bashio::log.warning "Failed linking PATHS.sh"
     elif [ ! -L "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ]; then
