@@ -28,6 +28,12 @@ run() {
         cp "$DEFAULT_FILES_PATH"/core/custom-template.sh "$CUSTOM_BASH_SCRIPTS_PATH"/custom-template.sh
     fi
 
+    if [ ! -e "$USER_CUSTOM_DIR" ]; then
+        bashio::log.warning "USER_CUSTOM_DIR path does not exist. Creating..."
+        mkdir -p "$USER_CUSTOM_DIR" ||
+            bashio::exit.nok "Could not create persistent storage folder."
+    fi
+
     if [ "$(ls -A "$CUSTOM_BASH_SCRIPTS_PATH")" ]; then
         for script in "${CUSTOM_BASH_SCRIPTS_PATH}"/*.sh/!"$pathsfile"; do
             echo "Running custom script: $script"

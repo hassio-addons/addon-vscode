@@ -93,6 +93,7 @@ RUN find /usr/local \
 HEALTHCHECK \
     CMD curl --fail http://127.0.0.1:1337/healthz || exit 1
 
+
 # Build Final image
 ARG BUILD_ARCH
 ARG BUILD_DATE

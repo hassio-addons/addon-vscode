@@ -19,3 +19,5 @@ readonly GIT_USER_PATH=/data/git
 readonly SSH_USER_PATH=/data/.ssh
 readonly ZSH_HISTORY_FILE=/root/.zsh_history
 readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
+
+readonly USER_CUSTOM_DIR=$CUSTOM_BASH_SCRIPTS_PATH/storage
