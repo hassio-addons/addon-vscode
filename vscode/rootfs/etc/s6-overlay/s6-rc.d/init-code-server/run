@@ -43,7 +43,7 @@ run() {
 setup_clean_view() {
     # Links some common directories to the user's home folder for convenience
     for dir in "${DIRECTORIES[@]}"; do
-        if [  -e "${dir}" ]; then
+        if [  -e /"${dir}" ]; then
             current="${CODE_SERVER_WORKSPACE_DIR}"/"${dir}"
 
             if [ ! -e "${current}" ]; then
