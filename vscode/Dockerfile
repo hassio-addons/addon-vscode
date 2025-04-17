@@ -20,7 +20,7 @@ ARG HA_CLI_VERSION="4.37.0"
 # Install packages
 # TODO: If versions are set, will either run in devcontainers or HA but not both.
 # TODO: Check if all are needed
-# hadolint ignore=DL3008
+# hadolint ignore=DL3016, DL3008
 RUN apt-get update \
     && apt-get full-upgrade -y \
     && apt-get install -y --no-install-recommends \
