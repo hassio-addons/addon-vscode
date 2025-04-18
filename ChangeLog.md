@@ -24,7 +24,7 @@ added extra code-server config options to disable some unwanted things
 added code to convert the os log setting to code-server so logging is increased for debugging
 added npm and vsce to allow code-server to check extension signatures
 added a workspace to help cleanup the view to only HA files and not the local server
-added a folder for code-server config files, to distinguish from
+added a folder for code-server config files, to distinguish from ha config
 added a new init script to run user-added scripts at boot to enhance functionality
 added a tasks file for common tasks be in vs code.
 added a script in custom boot to allow tasks to be code-backed for extra convenience.
