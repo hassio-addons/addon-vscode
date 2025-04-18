@@ -19,7 +19,7 @@
 		"recommendations": [
 			"esphome.esphome-vscode", // moved here as not everyone has ESPhome
 			"ibm.output-colorizer", // colorize output
-			"pinage404.bash-extension-pack" // helps with bash scipts
+			"pinage404.bash-extension-pack" // helps with bash scripts
 		]
 	}
 }

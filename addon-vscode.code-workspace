@@ -11,6 +11,12 @@
 				"file:///f%3A/repos/addon-vscode/vscode/rootfs/var/lib/code-server/defaults/config.yaml",
 				"file:///f%3A/repos/addon-vscode/vscode/data/defaults/config.yaml"
 			]
-		}
+		},
+		"cSpell.words": [
+			"elif",
+			"pinage",
+			"robbyrussell",
+			"seti"
+		]
 	}
 }

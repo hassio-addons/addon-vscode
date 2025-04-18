@@ -4,7 +4,21 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
-        "bashio"
+        "bashio",
+        "colordiff",
+        "contenv",
+        "devcontainers",
+        "direnv",
+        "dpkg",
+        "esphome",
+        "hass",
+        "hassio",
+        "iputils",
+        "mosquitto",
+        "Nijhof",
+        "pipefail",
+        "pycache",
+        "rootfs"
     ],
     "ignoreWords": [],
     "import": []

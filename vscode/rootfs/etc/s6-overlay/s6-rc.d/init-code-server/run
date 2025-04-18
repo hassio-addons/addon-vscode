@@ -4,7 +4,7 @@
 # Home Assistant Community Add-on: Studio Code Server
 # Sets up code-server.
 # ==============================================================================
-bashio::log.info "Initalizing code-server configs"
+bashio::log.info "Initializing code-server configs"
 
 # shellcheck source=../paths.sh
 source "/etc/s6-overlay/s6-rc.d/paths.sh"
@@ -165,13 +165,13 @@ setup_extensions() {
     sed -i "/extensions-dir:/c extensions-dir: \"$CODE_SERVER_EXTENSIONS_INSTALL_PATH\"" "$CODE_SERVER_CONFIG"
 
     # Install code-server extensions via code-server so terminate is aware of them.
-    bashio::log.info "Installing extentions listed in addon_configs/vscode/vscode.extensions"
-    while read -r extention; do
-        if [ ! -e "$CODE_SERVER_EXTENSIONS_INSTALL_PATH/$extention*" ]; then
-            code-server --install-extension="$extention"
-            bashio::log.info "Installed $extention"
+    bashio::log.info "Installing extensions listed in addon_configs/vscode/vscode.extensions"
+    while read -r extension; do
+        if [ ! -e "$CODE_SERVER_EXTENSIONS_INSTALL_PATH/$extension*" ]; then
+            code-server --install-extension="$extension"
+            bashio::log.info "Installed $extension"
         else
-            bashio::log.info "Has $extention installed"
+            bashio::log.info "Has $extension installed"
         fi
     done <"$CODE_SERVER_EXTENSIONS_LIST"
 }

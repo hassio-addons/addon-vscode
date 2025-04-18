@@ -6,7 +6,7 @@ cert: false
 disable-getting-started-override: true
 disable-update-check: true
 disable-telemetry: true
-# /data is persistant storage on the HA host
+# /data is persistent storage on the HA host
 user-data-dir: "/data/vscode/user"
 extensions-dir: "/data/vscode/extensions"
 log: warn

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# this file is to prevent spagetti paths
+# this file is to prevent spaghetti paths
 # shellcheck disable=SC2034
 
 readonly DEFAULT_CONFIG_PATH="/data/vscode"
@@ -20,6 +20,6 @@ readonly -a DIRECTORIES=(addons addon_configs backup config media share ssl)
 readonly GIT_USER_PATH=/data/git
 readonly SSH_USER_PATH=/data/.ssh
 readonly ZSH_HISTORY_FILE=/root/.zsh_history
-readonly ZSH_HISTORY_PERSISTANT_FILE=/data/.zsh_history
+readonly ZSH_HISTORY_PERSISTENT_FILE=/data/.zsh_history
 
 readonly USER_CUSTOM_DIR=$CUSTOM_BASH_SCRIPTS_PATH/storage

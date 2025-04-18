@@ -55,7 +55,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(
     extract
     git
-    nmap
+    neap
     pip
     python
     rsync

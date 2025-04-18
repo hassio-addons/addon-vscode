@@ -2,7 +2,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base:7.8.1
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
-# Confiure locale
+# Configure locale
 ENV \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
@@ -16,6 +16,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG BUILD_ARCH=amd64
 ARG CODE_SERVER_VERSION="4.98.2"
 ARG HA_CLI_VERSION="4.37.0"
+ARG VERSION_ID="12"
 
 # Install packages
 # TODO: If versions are set, will either run in devcontainers or HA but not both.
@@ -47,6 +48,18 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 # npm and vsce allow code-server to check extensions signatures
 
+# Install Powershell
+WORKDIR /tmp/ps
+# hadolint ignore=DL3008
+RUN curl https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb --output packages-microsoft-prod.deb  \
+&& dpkg -i packages-microsoft-prod.deb \
+&& rm packages-microsoft-prod.deb \
+&& apt-get update \
+&& apt-get update \
+&&  apt-get install -y powershell -y --no-install-recommends \
+&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp
 # System configuration
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && \
     update-locale LANG=en_US.UTF-8 && \
@@ -92,6 +105,8 @@ RUN find /usr/local \
     -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
     -exec rm -rf '{}' + && \
     rm -fr /root/.cache /tmp/* /var/{cache,log}/* /var/lib/apt/lists/*
+
+
 
 # Health check
 HEALTHCHECK \

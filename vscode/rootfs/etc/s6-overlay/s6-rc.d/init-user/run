@@ -31,14 +31,14 @@ setup_ssh() {
 
 setup_zsh() {
     # Sets up ZSH shell
-    touch "${ZSH_HISTORY_PERSISTANT_FILE}" ||
+    touch "${ZSH_HISTORY_PERSISTENT_FILE}" ||
         bashio::exit.nok 'Failed creating a persistent ZSH history file'
 
-    chmod 600 "$ZSH_HISTORY_PERSISTANT_FILE" ||
+    chmod 600 "$ZSH_HISTORY_PERSISTENT_FILE" ||
         bashio::exit.nok 'Failed setting the correct permissions to the ZSH history file'
 
-    ln -s -f "$ZSH_HISTORY_PERSISTANT_FILE" "$ZSH_HISTORY_FILE" ||
-        bashio::exit.nok 'Failed linking the persistant ZSH history file'
+    ln -s -f "$ZSH_HISTORY_PERSISTENT_FILE" "$ZSH_HISTORY_FILE" ||
+        bashio::exit.nok 'Failed linking the persistent ZSH history file'
 }
 
 setup_git() {

@@ -1,4 +1,8 @@
-# Changes
+# Overview
+
+TODO
+
+## Changes
 
 Changed docker install to install via code-server the recommended way
 changed docker install for ZSH to be installed the recommended way
@@ -8,11 +12,11 @@ changed boot scripts for readability
 changed boot dependency order for stability
 changed default files path
 
-# Removed
+## Removed
 
 removed boot time removal of code-server extensions
 
-# Added
+## Added
 
 added a common paths file for all boot scripts to eliminate path issues
 added extra code-server config options to disable some unwanted things
@@ -24,10 +28,9 @@ added a new init script to run user-added scripts at boot to enhance functionali
 added a tasks file for common tasks be in vs code.
 added a script in custom boot to allow tasks to be code-backed for extra convenience.
 
-# TODO
+## TODO
 
 get code to auto-launch terminal to motd
-can settings.json inherit?
 fix settings reset
-check install pkgs for needed
+check install packages for needed
 
