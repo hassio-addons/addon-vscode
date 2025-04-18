@@ -44,7 +44,7 @@ RUN apt-get update \
     htop \
     nano \
     npm \
-    && npm install -g @vscode/vsce \
+    && npm install -g @vscode/vsce vsda \
     && rm -rf /var/lib/apt/lists/*
 # npm and vsce allow code-server to check extensions signatures
 

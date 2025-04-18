@@ -89,11 +89,40 @@
   "telemetry.enableTelemetry": false,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": [
+        "-l",
+        "-i"
+      ]
+    },
+    "fish": {
+      "path": "fish"
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    }
+  },
   "update.mode": "none",
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.projectDetection.disableDetect": true,
   "workbench.iconTheme": "vs-seti",
   "yaml.format.enable": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.rulers": [80, 88, 100, 120]
+  "editor.rulers": [
+    80,
+    88,
+    100,
+    120
+  ]
 }
