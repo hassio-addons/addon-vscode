@@ -13,6 +13,7 @@
 		"terminal.integrated.copyOnSelection": true,
 		"workbench.iconTheme": "vs-seti",
 		"yaml.format.enable": true,
+		"window.autoDetectColorScheme": true,
 	},
 	"extensions": {
 		"recommendations": [

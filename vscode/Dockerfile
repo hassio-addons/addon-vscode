@@ -43,10 +43,8 @@ RUN apt-get update \
     unzip \
     htop \
     nano \
-    npm \
-    && npm install -g @vscode/vsce \
+    npm  \
     && rm -rf /var/lib/apt/lists/*
-# npm and vsce allow code-server to check extensions signatures
 
 # Install Powershell
 WORKDIR /tmp/ps
@@ -76,7 +74,6 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
     && curl  -J -L  -o ha  ${HA_CLI_URL} \
     && mv ./ha "/usr/bin/ha" \
     && chmod +x "/usr/bin/ha"
-
 
 #Copy root file system
 COPY rootfs/ /

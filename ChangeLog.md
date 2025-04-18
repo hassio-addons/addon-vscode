@@ -34,4 +34,3 @@ added powershell
 
 get code to auto-launch terminal to motd
 check install packages for needed
-
