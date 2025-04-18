@@ -4,7 +4,7 @@
     {
       "label": "Show ENV Vars",
       "type": "shell",
-      "command": "show_vars",
+      "command": "$show_vars",
       "group": {
         "kind": "helpers",
         "isDefault": true
@@ -21,4 +21,3 @@
     }
   ]
 }
-

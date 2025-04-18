@@ -45,6 +45,7 @@ RUN apt-get update \
     npm \
     && npm install -g @vscode/vsce \
     && rm -rf /var/lib/apt/lists/*
+# npm and vsce allow code-server to check extensions signatures
 
 # System configuration
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen && \
