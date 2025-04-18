@@ -1,6 +1,6 @@
 # Overview
 
-TODO
+Fixed perf issues and few more things.
 
 ## Changes
 
@@ -33,6 +33,5 @@ added powershell
 ## TODO
 
 get code to auto-launch terminal to motd
-
 check install packages for needed
 
