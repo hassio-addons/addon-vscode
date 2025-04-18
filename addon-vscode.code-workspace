@@ -14,9 +14,11 @@
 		},
 		"cSpell.words": [
 			"elif",
+			"homeassistant",
 			"pinage",
 			"robbyrussell",
-			"seti"
+			"seti",
+			"uart"
 		]
 	}
 }
