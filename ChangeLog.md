@@ -19,11 +19,10 @@ removed boot time removal of code-server extensions
 
 ## Added
 
-added auto dark mode
+added auto dark mode!
 added a common paths file for all boot scripts to eliminate path issues
 added extra code-server config options to disable some unwanted things
 added code to convert the os log setting to code-server so logging is increased for debugging
-added npm and vsce to allow code-server to check extension signatures
 added a workspace to help cleanup the view to only HA files and not the local server
 added a folder for code-server config files, to distinguish from ha config
 added a new init script to run user-added scripts at boot to enhance functionality

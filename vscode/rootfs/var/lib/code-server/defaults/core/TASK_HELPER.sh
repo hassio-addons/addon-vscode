@@ -9,7 +9,7 @@ show_vars() {
     bashio::log.info "ENV VARS:"
     set -o posix ; set | while IFS='' read -r line
     do
-        echo "$line"
+        echo "$line" 1>&2
     done
 }
 
