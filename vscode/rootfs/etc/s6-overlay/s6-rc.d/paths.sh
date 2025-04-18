@@ -5,6 +5,8 @@
 readonly DEFAULT_CONFIG_PATH="/data/vscode"
 readonly DEFAULT_FILES_PATH="/var/lib/code-server/defaults"
 readonly ROOT_CODE_SERVER_CONFIG_PATH="/root/.config/code-server/" # needed for code-server to cleanly
+readonly ROOT_CODE_SERVER_USER_PATH="/root/.config/code-server/user" # needed for code-server to cleanly
+
 readonly CODE_SERVER_EXTENSIONS_INSTALL_PATH="$DEFAULT_CONFIG_PATH/extensions"
 readonly CODE_SERVER_EXTENSIONS_LIST="$DEFAULT_CONFIG_PATH/vscode.extensions"
 readonly CODE_SERVER_WORKSPACE_DIR="/data/workspace"

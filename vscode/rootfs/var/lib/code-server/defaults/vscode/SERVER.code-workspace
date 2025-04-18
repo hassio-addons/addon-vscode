@@ -1,5 +1,4 @@
 {
-	"extends": ".vscode/settings.json",
 	"folders": [
 		{
 			"path": "."
@@ -9,7 +8,12 @@
 		"files.associations": {
 			"*.yaml": "home-assistant"
 		},
-		"window.autoDetectColorScheme": true
+		"window.autoDetectColorScheme": true,
+		"terminal.integrated.defaultProfile.linux": "zsh",
+		"esphome.validator": "local",
+		"terminal.integrated.copyOnSelection": true,
+		"workbench.iconTheme": "vs-seti",
+		"yaml.format.enable": true,
 	},
 	"extensions": {
 		"recommendations": [
