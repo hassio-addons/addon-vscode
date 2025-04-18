@@ -106,7 +106,7 @@ setup_code_workspace() {
             bashio::log.warning "Failed linking PATHS.sh"
     elif [ ! -L "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ]; then
         bashio::log.warning "Failed path.sh link: Removing and recreating..."
-        rm -f"$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK"
+        rm  -f"$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK"
         ln -sn "/etc/s6-overlay/s6-rc.d/paths.sh" "$CUSTOM_BASH_SCRIPTS_PATH_SYMLINK" ||
             bashio::log.warning "Failed linking PATHS.sh"
     else
