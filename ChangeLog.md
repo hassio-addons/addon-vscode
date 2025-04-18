@@ -19,6 +19,7 @@ removed boot time removal of code-server extensions
 
 ## Added
 
+added auto dark mode
 added a common paths file for all boot scripts to eliminate path issues
 added extra code-server config options to disable some unwanted things
 added code to convert the os log setting to code-server so logging is increased for debugging
