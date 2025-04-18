@@ -77,9 +77,6 @@ RUN if [ "${BUILD_ARCH}" = "aarch64" ]; then HA_CLI_URL="https://github.com/home
     && mv ./ha "/usr/bin/ha" \
     && chmod +x "/usr/bin/ha"
 
-# Resolve code error
-WORKDIR /usr/lib/code-server/lib/vscode
-RUN npm add vsda
 
 #Copy root file system
 COPY rootfs/ /
