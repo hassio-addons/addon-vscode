@@ -201,13 +201,13 @@ setup_user_settings() {
     fi
 
     # Sets up default user settings on first start.
-    if ! bashio::fs.file_exists "$user_path"/settings.json; then
-        cp "$DEFAULT_FILES_PATH/vscode/settings.json" "$user_path/settings.json"
+    if ! bashio::fs.file_exists "$CODE_SERVER_VSCODE_DIR"/settings.json; then
+        cp "$DEFAULT_FILES_PATH/vscode/settings.json" "$CODE_SERVER_VSCODE_DIR/settings.json"
     else
         # Upgrade if settings.json is still default from previous version.
-        current=$(sha512sum "$user_path"/settings.json | cut -d " " -f 1)
+        current=$(sha512sum "$CODE_SERVER_VSCODE_DIR"/settings.json | cut -d " " -f 1)
         if [[ " ${PREVIOUS_DEFAULT_CONFIG_HASHES[*]} " == *" ${current} "* ]]; then
-            cp "$DEFAULT_FILES_PATH/vscode/settings.json" "$user_path/settings.json"
+            cp "$DEFAULT_FILES_PATH/vscode/settings.json" "$CODE_SERVER_VSCODE_DIR/settings.json"
         fi
     fi
 
