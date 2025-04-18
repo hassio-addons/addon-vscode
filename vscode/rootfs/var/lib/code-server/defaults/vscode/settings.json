@@ -118,7 +118,6 @@
   "vsicons.projectDetection.disableDetect": true,
   "workbench.iconTheme": "vs-seti",
   "yaml.format.enable": true,
-  "window.autoDetectColorScheme": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [
     80,
