@@ -33,7 +33,6 @@ map:
 services:
   - mysql:want
   - mqtt:want
-journald: true
 options:
   log_level: warning
 schema:
