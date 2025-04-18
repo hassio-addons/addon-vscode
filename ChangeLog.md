@@ -11,6 +11,7 @@ changed code-server launch to use its config instead of command line args
 changed boot scripts for readability
 changed boot dependency order for stability
 changed default files path
+changed reset to use correct path
 
 ## Removed
 
@@ -27,10 +28,11 @@ added a folder for code-server config files, to distinguish from
 added a new init script to run user-added scripts at boot to enhance functionality
 added a tasks file for common tasks be in vs code.
 added a script in custom boot to allow tasks to be code-backed for extra convenience.
+added powershell
 
 ## TODO
 
 get code to auto-launch terminal to motd
-fix settings reset
+
 check install packages for needed
 

@@ -8,7 +8,6 @@
 		"files.associations": {
 			"*.yaml": "home-assistant"
 		},
-		"window.autoDetectColorScheme": true,
 		"terminal.integrated.defaultProfile.linux": "zsh",
 		"esphome.validator": "local",
 		"terminal.integrated.copyOnSelection": true,
