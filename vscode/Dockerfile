@@ -47,7 +47,7 @@ RUN \
         uuid-runtime=2.38.1-5+deb12u1 \
         wget>=1.21.3-1+b2 \
         zip=3.0-13 \
-        zsh=5.9-4+b5 \
+        zsh=5.9-4+b6 \
         less=590-2.1~deb12u2 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
