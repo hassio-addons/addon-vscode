@@ -2,13 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "rebaseWhen": "behind-base-branch",
   "dependencyDashboard": true,
-  "labels": ["dependencies", "no-stale"],
+  "labels": [
+    "dependencies",
+    "no-stale"
+  ],
   "commitMessagePrefix": "⬆️",
   "commitMessageTopic": "{{depName}}",
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["/Dockerfile$", "/build.yaml$"],
+      "managerFilePatterns": [
+        "//Dockerfile$/",
+        "//build.yaml$/"
+      ],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "ARG BUILD_FROM=(?<depName>.*?):(?<currentValue>.*?)\\s+",
@@ -18,7 +24,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["/Dockerfile$"],
+      "managerFilePatterns": [
+        "//Dockerfile$/"
+      ],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "\\s\\s(?<package>[a-z0-9][a-z0-9-]+)=(?<currentValue>[a-z0-9-:_+~.]+)\\s+"
@@ -29,7 +37,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["/Dockerfile$"],
+      "managerFilePatterns": [
+        "//Dockerfile$/"
+      ],
       "matchStrings": [
         "ARG CODE_SERVER_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
       ],
@@ -38,7 +48,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["/Dockerfile$"],
+      "managerFilePatterns": [
+        "//Dockerfile$/"
+      ],
       "matchStrings": [
         "ARG HA_CLI_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s+"
       ],
@@ -48,23 +60,35 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
-      "matchStrings": ["emilast\\.LogFileHighlighter#(?<currentValue>.+)\\s"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
+      "matchStrings": [
+        "emilast\\.LogFileHighlighter#(?<currentValue>.+)\\s"
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "emilast/vscode-logfile-highlighter"
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
-      "matchStrings": ["esbenp\\.prettier-vscode#(?<currentValue>.+)\\s"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
+      "matchStrings": [
+        "esbenp\\.prettier-vscode#(?<currentValue>.+)\\s"
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "prettier/prettier-vscode",
       "extractVersionTemplate": "^v(?<version>.*)$"
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
-      "matchStrings": ["ESPHome\\.esphome-vscode#(?<currentValue>.+)\\s"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
+      "matchStrings": [
+        "ESPHome\\.esphome-vscode#(?<currentValue>.+)\\s"
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "esphome/esphome-vscode",
       "versioningTemplate": "loose",
@@ -72,7 +96,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
       "matchStrings": [
         "keesschollaart\\.vscode-home-assistant#(?<currentValue>.+)\\s"
       ],
@@ -82,7 +108,9 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
       "matchStrings": [
         "lukas-tr\\.materialdesignicons-intellisense#(?<currentValue>.+)\\s"
       ],
@@ -92,15 +120,23 @@
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
-      "matchStrings": ["netcorext\\.uuid-generator#(?<currentValue>.+)\\s"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
+      "matchStrings": [
+        "netcorext\\.uuid-generator#(?<currentValue>.+)\\s"
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "arenchen/vscode-uuid-generator"
     },
     {
       "customType": "regex",
-      "fileMatch": ["vscode/vscode.extensions$"],
-      "matchStrings": ["usernamehw\\.errorlens#(?<currentValue>.+)\\s"],
+      "managerFilePatterns": [
+        "/vscode/vscode.extensions$/"
+      ],
+      "matchStrings": [
+        "usernamehw\\.errorlens#(?<currentValue>.+)\\s"
+      ],
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "usernamehw/vscode-error-lens",
       "extractVersionTemplate": "^v(?<version>.*)$"
@@ -108,42 +144,75 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["repology"],
+      "matchDatasources": [
+        "repology"
+      ],
       "automerge": true
     },
     {
       "groupName": "Add-on base image",
-      "matchDatasources": ["docker"]
+      "matchDatasources": [
+        "docker"
+      ]
     },
     {
       "groupName": "Add-on base image",
-      "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "automerge": true
     },
     {
-      "matchDatasources": ["github-releases"],
-      "matchDepNames": ["coder/code-server"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "coder/code-server"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "automerge": true
     },
     {
-      "matchDatasources": ["github-releases"],
-      "matchDepNames": ["home-assistant/cli"],
+      "matchDatasources": [
+        "github-releases"
+      ],
+      "matchDepNames": [
+        "home-assistant/cli"
+      ],
       "automerge": true
     },
     {
-      "matchManagers": ["pip_requirements"],
-      "addLabels": ["python"]
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "addLabels": [
+        "python"
+      ]
     },
     {
-      "matchManagers": ["pip_requirements"],
-      "matchDepTypes": ["dev"],
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchDepTypes": [
+        "dev"
+      ],
       "rangeStrategy": "pin"
     },
     {
-      "matchManagers": ["pip_requirements"],
-      "matchUpdateTypes": ["minor", "patch"],
+      "matchManagers": [
+        "pip_requirements"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "automerge": true
     }
   ]
