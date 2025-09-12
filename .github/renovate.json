@@ -25,7 +25,7 @@
       ],
       "versioningTemplate": "deb",
       "datasourceTemplate": "repology",
-      "depNameTemplate": "debian_12/{{{replace 'openssh-client' 'openssh' package}}}"
+      "depNameTemplate": "debian_13/{{{replace 'openssh-client' 'openssh' package}}}"
     },
     {
       "customType": "regex",
