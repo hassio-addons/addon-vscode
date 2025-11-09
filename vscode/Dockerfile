@@ -27,28 +27,28 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        ack=3.6.0-1 \
-        libarchive-tools=3.6.2-1+deb12u2 \
-        build-essential=12.9 \
-        colordiff=1.0.20-1 \
-        git=1:2.39.5-0+deb12u2 \
-        iputils-ping=3:20221126-1+deb12u1 \
-        locales=2.36-9+deb12u7 \
-        mariadb-client=1:10.11.14-0+deb12u2 \
-        mosquitto-clients=2.0.11-1.2+deb12u1 \
-        net-tools=2.10-0.1+deb12u2 \
-        nmap=7.93+dfsg1-1 \
-        openssh-client=1:9.2p1-2+deb12u7 \
-        openssl=3.0.17-1~deb12u3 \
-        python3-dev=3.11.2-1+b1 \
-        python3-venv=3.11.2-1+b1 \
-        python3=3.11.2-1+b1 \
-        unzip=6.0-28 \
-        uuid-runtime=2.38.1-5+deb12u1 \
-        wget>=1.21.3-1+b2 \
-        zip=3.0-13 \
-        zsh=5.9-4+b6 \
-        less=590-2.1~deb12u2 \
+        ack=3.8.1-1 \
+        libarchive-tools=3.7.4-4 \
+        build-essential=12.12 \
+        colordiff=1.0.21-1 \
+        git=1:2.47.3-0+deb13u1 \
+        iputils-ping=3:20240905-3 \
+        locales=2.41-12 \
+        mariadb-client=1:11.8.3-0+deb13u1 \
+        mosquitto-clients=2.0.21-1 \
+        net-tools=2.10-1.3 \
+        nmap=7.95+dfsg-3 \
+        openssh-client=1:10.0p1-7 \
+        openssl=3.5.1-1+deb13u1 \
+        python3-dev=3.13.5-1 \
+        python3-venv=3.13.5-1 \
+        python3=3.13.5-1 \
+        unzip=6.0-29 \
+        uuid-runtime=2.41-5 \
+        wget=1.25.0-2 \
+        zip=3.0-15 \
+        zsh=5.9-8+b14 \
+        less=668-1 \
     \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && locale-gen \
