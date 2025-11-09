@@ -21,7 +21,7 @@ COPY vscode.extensions /root/vscode.extensions
 # Setup base system
 ARG BUILD_ARCH=amd64
 ARG CODE_SERVER_VERSION="v4.103.2"
-ARG HA_CLI_VERSION="4.40.1"
+ARG HA_CLI_VERSION="4.42.0"
 # hadolint ignore=SC2181, DL3008
 RUN \
     apt-get update \
