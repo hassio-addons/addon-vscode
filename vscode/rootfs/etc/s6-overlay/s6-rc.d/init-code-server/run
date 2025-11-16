@@ -28,6 +28,14 @@ if bashio::config.has_value 'config_path'; then
     if ! bashio::fs.directory_exists "${config_path}"; then
         bashio::exit.nok "Configured config path does not exists"
     fi
+    # Prevent using root directory as workspace to avoid performance issues
+    if [[ "${config_path}" == "/" ]]; then
+        bashio::exit.nok \
+            "Using the root directory (/) as workspace is not allowed. " \
+            "This causes severe performance issues as VS Code will index " \
+            "the entire filesystem. Please use /config or another specific " \
+            "directory instead."
+    fi
 fi
 
 # Ensure persistent data folder exists.
