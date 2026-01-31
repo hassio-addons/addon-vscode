@@ -65,6 +65,7 @@ RUN \
         --strip 1 -C /usr/local/lib/code-server \
     \
     && ln -s /usr/local/lib/code-server/bin/code-server /usr/local/bin/code-server \
+    && ln -sf /usr/local/lib/code-server/lib/node /usr/local/bin/node \
     \
     && mkdir -p /root/.code-server/extensions \
     && uuid=$(uuidgen) \
