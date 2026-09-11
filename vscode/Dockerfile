@@ -20,7 +20,7 @@ COPY vscode.extensions /root/vscode.extensions
 
 # Setup base system
 ARG BUILD_ARCH=amd64
-ARG CODE_SERVER_VERSION="v4.136.2"
+ARG CODE_SERVER_VERSION="v4.137.0"
 ARG HA_CLI_VERSION="5.5.0"
 RUN \
     apt-get update \
