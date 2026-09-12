@@ -32,7 +32,7 @@ RUN \
         colordiff=1.0.21-1 \
         git=1:2.47.3-0+deb13u1 \
         iputils-ping=3:20240905-3 \
-        locales=2.41-12+deb13u3 \
+        locales=2.41-12+deb13u4 \
         mariadb-client=1:11.8.6-0+deb13u1 \
         mosquitto-clients=2.0.21-1 \
         net-tools=2.10-1.3 \
